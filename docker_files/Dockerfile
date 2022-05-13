@@ -18,20 +18,12 @@ RUN mkdir -p $HOME/.config/pip && echo "[global]\nquiet = True" > $HOME/.config/
 # Clone repository
 RUN mkdir /tethys_apps && cd /tethys_apps && git clone https://github.com/BYU-Hydroinformatics/Water-Data-Explorer-WHOS.git
 
-
 RUN mkdir -p ${TETHYS_PERSIST}/keys
 ###########
 # INSTALL #
 ###########
 RUN chmod +x /install_dependencies.sh
 RUN /install_dependencies.sh
-
-
-# RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate base \
-#   ; conda install mamba --yes"
-
-# RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
-#   ; mamba install --yes --file requirements.txt"
 
 RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
   ; cd /tethys_apps/Water-Data-Explorer-WHOS \
