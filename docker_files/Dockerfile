@@ -1,32 +1,41 @@
-# Use our Tethyscore base docker image as a parent image
 FROM tethysplatform/tethys-core:master
 
 #########
 # SETUP #
 #########
+
 # Speed up APT installs
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
  && echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache \
  && echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/no-check-valid
+
 # Install APT Package
 RUN apt-get update --allow-releaseinfo-change -qq && apt-get -yqq install gcc libgdal-dev g++ libhdf5-dev > /dev/null
+
 # Quiet pip installs
 RUN mkdir -p $HOME/.config/pip && echo "[global]\nquiet = True" > $HOME/.config/pip/pip.conf
 
-RUN mkdir /tethys_apps && cd /tethys_apps && git clone --single-branch --branch inmet-WDE https://github.com/BYU-Hydroinformatics/Water-Data-Explorer.git
-
-
-## UNCOMMENT TO USE THE VERSION FOR INMET ##
+# Clone repository
+RUN mkdir /tethys_apps && cd /tethys_apps && git clone https://github.com/BYU-Hydroinformatics/Water-Data-Explorer-WHOS.git
 
 
 RUN mkdir -p ${TETHYS_PERSIST}/keys
 ###########
 # INSTALL #
 ###########
+RUN chmod +x /install_dependencies.sh
+RUN /install_dependencies.sh
+
+
+# RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate base \
+#   ; conda install mamba --yes"
+
+# RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
+#   ; mamba install --yes --file requirements.txt"
 
 RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
-  ; cd /tethys_apps/Water-Data-Explorer \
-  ; tethys install -N"
+  ; cd /tethys_apps/Water-Data-Explorer-WHOS \
+  ; tethys install -N -w"
 
 RUN ${CONDA_HOME}/bin/conda install -n tethys pip
 
@@ -36,10 +45,8 @@ RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
 ######################################################
 # CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
 ######################################################
+# Use our Tethyscore base docker image as a parent image
 
-ADD nginx /usr/lib/tethys/tethys/tethys_cli/gen_templates/
-
-#########
 # CHOWN #
 #########
 RUN export NGINX_USER=$(grep 'user .*;' /etc/nginx/nginx.conf | awk '{print $2}' | awk -F';' '{print $1}') \
