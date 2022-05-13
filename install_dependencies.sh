@@ -12,11 +12,12 @@
 #
 # mamba install -c conda-forge --yes --file requirements.txt
 # Install mamba first
-conda install -c conda-forge --yes mamba
+echo ${CONDA_HOME}
+. ${CONDA_HOME}/bin/conda install -c conda-forge --yes mamba
 #
 #  To go around issue above, one can
 #  iterate over all lines in the
 #  requirements.txt file.
 #
 
-while read requirement; do mamba install --yes $requirement || pip install $requirement; done < requirements.txt
+while read requirement; do . ${CONDA_HOME}/bin/mamba install --yes $requirement || . ${CONDA_HOME}/bin/pip install $requirement; done < requirements.txt

@@ -22,8 +22,8 @@ RUN mkdir -p ${TETHYS_PERSIST}/keys
 ###########
 # INSTALL #
 ###########
-RUN chmod +x /install_dependencies.sh
-RUN /install_dependencies.sh
+RUN cd /tethys_apps/Water-Data-Explorer-WHOS && chmod +x install_dependencies.sh && ./install_dependencies.sh
+
 
 RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
   ; cd /tethys_apps/Water-Data-Explorer-WHOS \
