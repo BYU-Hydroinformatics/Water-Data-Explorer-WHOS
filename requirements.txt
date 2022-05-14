@@ -1,3 +1,4 @@
+libgdal
 fiona
 geojson
 xmltodict
@@ -5,3 +6,4 @@ pyshp
 geopandas
 suds-community
 pywaterml
+
