@@ -21,5 +21,6 @@ ${CONDA_HOME}/bin/mamba install -n tethys pip
 #  requirements.txt file.
 #
 ${CONDA_HOME}/bin/activate tethys
+${CONDA_HOME}/bin/mamba install -c conda-forge --yes --file requirements.txt
 
-while read requirement; do ${CONDA_HOME}/bin/mamba install -c conda-forge --yes $requirement || ${CONDA_HOME}/bin/pip install $requirement; done < requirements.txt
+# while read requirement; do ${CONDA_HOME}/bin/mamba install -c conda-forge --yes $requirement || ${CONDA_HOME}/bin/pip install $requirement; done < requirements.txt

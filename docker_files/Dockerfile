@@ -39,51 +39,51 @@ RUN /bin/bash -c "cd /tethys_apps/Water-Data-Explorer-WHOS \
 #   ; tethys install -N -w"
 
 
-# RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
-#   ;  pip install psycopg2==2.8.6"
+RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
+  ;  pip install psycopg2==2.8.6"
 
-# ######################################################
-# # CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
-# ######################################################
-# # Use our Tethyscore base docker image as a parent image
+######################################################
+# CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
+######################################################
+# Use our Tethyscore base docker image as a parent image
 
-# # CHOWN #
-# #########
-# RUN export NGINX_USER=$(grep 'user .*;' /etc/nginx/nginx.conf | awk '{print $2}' | awk -F';' '{print $1}') \
-#   ; find ${TETHYSAPP_DIR} ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
-#   ; find ${WORKSPACE_ROOT} ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
-#   ; find ${STATIC_ROOT} ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
-#   ; find ${TETHYS_PERSIST}/keys ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
-#   ; find ${TETHYS_HOME}/tethys ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {}
-
-
-# #########################
-# # CONFIGURE ENVIRONMENT #
-# #########################
-# EXPOSE 80
+# CHOWN #
+#########
+RUN export NGINX_USER=$(grep 'user .*;' /etc/nginx/nginx.conf | awk '{print $2}' | awk -F';' '{print $1}') \
+  ; find ${TETHYSAPP_DIR} ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
+  ; find ${WORKSPACE_ROOT} ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
+  ; find ${STATIC_ROOT} ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
+  ; find ${TETHYS_PERSIST}/keys ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {} \
+  ; find ${TETHYS_HOME}/tethys ! -user ${NGINX_USER} -print0 | xargs -0 -I{} chown ${NGINX_USER}: {}
 
 
-# ################
-# # COPY IN SALT #
-# ################
-
-# ## Be sure to be inside the docker_files folder ##
-# ADD /salt/ /srv/salt/
-
-# # #####################################
-# # # ADDITIONAL DATABASE CONFIGURATION #
-# # #####################################
-# ADD fix.sql $HOME
-# ADD configure_db.sh $HOME
+#########################
+# CONFIGURE ENVIRONMENT #
+#########################
+EXPOSE 80
 
 
-# # ######################
-# # # CONFIGURE FINAL_RUN #
-# # ######################
-# ADD final_run.sh $HOME
+################
+# COPY IN SALT #
+################
+
+## Be sure to be inside the docker_files folder ##
+ADD /salt/ /srv/salt/
+
+# #####################################
+# # ADDITIONAL DATABASE CONFIGURATION #
+# #####################################
+ADD fix.sql $HOME
+ADD configure_db.sh $HOME
 
 
-# # #######
-# # # RUN #
-# # #######
-# CMD bash final_run.sh
+# ######################
+# # CONFIGURE FINAL_RUN #
+# ######################
+ADD final_run.sh $HOME
+
+
+# #######
+# # RUN #
+# #######
+CMD bash final_run.sh
