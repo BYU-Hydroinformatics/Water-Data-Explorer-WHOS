@@ -25,7 +25,7 @@ RUN mkdir -p ${TETHYS_PERSIST}/keys
 RUN /bin/bash -c "cd /tethys_apps/Water-Data-Explorer-WHOS \
   ; chmod u+x install_dependencies.sh \
   ; ./install_dependencies.sh \
-  ; . ${CONDA_HOME}/bin/activate tethys
+  ; . ${CONDA_HOME}/bin/activate tethys \
   ; tethys install -N -w"
 
 # RUN ${CONDA_HOME}/bin/conda install -n base -c conda-forge mamba
