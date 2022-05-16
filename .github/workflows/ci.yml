@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
         name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       -
         name: Build and push
         uses: docker/build-push-action@v2
@@ -37,10 +37,10 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:latest
-    #       cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache
-    #       cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache,mode=max
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
 
     # steps:
     #   # Check out code
