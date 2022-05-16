@@ -1,6 +1,4 @@
 cryptography==36.0.2
-libgcc
-libgdal
 fiona
 geojson
 xmltodict
