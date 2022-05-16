@@ -13,7 +13,7 @@
 # mamba install -c conda-forge --yes --file requirements.txt
 # Install mamba first
 echo ${CONDA_HOME}
-${CONDA_HOME}/bin/conda install -c conda-forge --yes mamba
+${CONDA_HOME}/bin/conda install -n base -c conda-forge --yes mamba
 ${CONDA_HOME}/bin/mamba install -n tethys pip
 #
 #  To go around issue above, one can
@@ -21,6 +21,6 @@ ${CONDA_HOME}/bin/mamba install -n tethys pip
 #  requirements.txt file.
 #
 ${CONDA_HOME}/bin/activate tethys
-${CONDA_HOME}/bin/mamba install -c conda-forge --yes --file requirements.txt
+${CONDA_HOME}/bin/mamba install -n tethys -c conda-forge --yes --file requirements.txt
 
 # while read requirement; do ${CONDA_HOME}/bin/mamba install -c conda-forge --yes $requirement || ${CONDA_HOME}/bin/pip install $requirement; done < requirements.txt
