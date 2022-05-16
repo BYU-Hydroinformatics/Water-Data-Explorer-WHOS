@@ -1,3 +1,4 @@
+libgcc
 libgdal
 fiona
 geojson
