@@ -10,7 +10,6 @@ requirements:
     channels:
       - conda-forge
     packages:
-      - fiona
       - geojson
       - xmltodict
       - pyshp

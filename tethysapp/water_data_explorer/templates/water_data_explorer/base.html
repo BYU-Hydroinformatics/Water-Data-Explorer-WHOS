@@ -1,7 +1,25 @@
 {% extends "tethys_apps/app_base.html" %}
 
 {% load staticfiles %}
+{% block global_scripts %}
+  {{ block.super }}  
+  
+  {% if gtagcode %}
+    
+    <script async src='https://www.googletagmanager.com/gtag/js?id={{ gtagcode|safe }}' ></script>
+    <script>
+      var gcode = "{{ gtagcode|safe }}";
 
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', gcode);
+
+    </script>
+    
+  {% endif%}
+{% endblock %}
 {% block title %}{{ tethys_app.name }}{% endblock %}
 
 {% block app_icon %}
@@ -79,6 +97,8 @@
     var can_block_map = {{can_block_map|yesno:"true,false"}};
     console.log(can_block_map)
     var can_delete_hydrogroups = {{can_delete_hydrogroups|yesno:"true,false"}};
+    var can_download = {{can_download|yesno:"true,false"}};
+    console.log(can_download)
     var endpointGeoServer = "{{ geoEndpoint|safe }}";
     var geoServerWorkspace = "{{ geoWorkspace|safe }}";
     var geoServerLayer = "{{ geoLayer|safe }}";

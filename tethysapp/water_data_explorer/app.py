@@ -147,73 +147,96 @@ class WaterDataExplorer(TethysAppBase):
         """
         # Viewer Permissions
         delete_hydrogroups = Permission(
-            name="delete_hydrogroups",
-            description="Delete a Hydrogroup from the App",
+            name = 'delete_hydrogroups',
+            description = 'Delete a Hydrogroup from the App',
         )
 
         block_map = Permission(
-            name="block_map",
-            description="locks the map to a certain limit",
+            name='block_map',
+            description='locks the map to a certain limit',
+        )
+        use_wde = Permission(
+            name='use_wde',
+            description='Use WDE'
+        )
+        can_download = Permission(
+            name='can_download',
+            description='download data if logged in'
+        )
+        download_at_least = PermissionGroup(
+            name='download_at_least',
+            permissions=(can_download,)
         )
 
         admin = PermissionGroup(
-            name="admin", permissions=(delete_hydrogroups, block_map)
+            name='admin',
+            permissions=(delete_hydrogroups, block_map, use_wde)
         )
 
-        permissions = (admin,)
+
+        permissions = (admin,download_at_least,)
 
         return permissions
 
     def custom_settings(self):
         custom_settings = (
+
             CustomSetting(
-                name="Views Names",
-                type=CustomSetting.TYPE_STRING,
-                description="Name of the region holding the views (e.g. La Plata Basin)",
-                required=False,
+                name='Views Names',
+                type = CustomSetting.TYPE_STRING,
+                description='Name of the region holding the views (e.g. La Plata Basin)',
+                required=False
             ),
             CustomSetting(
-                name="InstitutionLogo",
-                type=CustomSetting.TYPE_STRING,
-                description="Link containing the isntitution logo.",
-                required=False,
+                name='InstitutionLogo',
+                type = CustomSetting.TYPE_STRING,
+                description='Link containing the isntitution logo.',
+                required=False
             ),
             CustomSetting(
-                name="Boundary Geoserver Endpoint",
-                type=CustomSetting.TYPE_STRING,
+                name='Boundary Geoserver Endpoint',
+                type = CustomSetting.TYPE_STRING,
                 description='Geoserver endpoint for the hydroshare resource containning the layer (e.g:"https://geoserver.hydroshare.org/geoserver/layerID")',
-                required=False,
+                required=False
             ),
             CustomSetting(
-                name="Boundary Workspace Name",
-                type=CustomSetting.TYPE_STRING,
-                description="workspace and layer name (e.g workspace:layername)",
-                required=False,
+                name='Boundary Workspace Name',
+                type = CustomSetting.TYPE_STRING,
+                description='workspace and layer name (e.g workspace:layername)',
+                required=False
             ),
             CustomSetting(
-                name="Boundary Layer Name",
-                type=CustomSetting.TYPE_STRING,
-                description="layer name (e.g workspace:layername)",
-                required=False,
+                name='Boundary Layer Name',
+                type = CustomSetting.TYPE_STRING,
+                description='layer name (e.g workspace:layername)',
+                required=False
             ),
             CustomSetting(
-                name="Boundary Movement",
-                type=CustomSetting.TYPE_BOOLEAN,
-                description="Block or Allow movement outside the map boundary layer (True/False)",
-                required=False,
+                name='Boundary Movement',
+                type = CustomSetting.TYPE_BOOLEAN,
+                description='Block or Allow movement outside the map boundary layer (True/False)',
+                required=False
+
             ),
             CustomSetting(
-                name="Boundary Color",
-                type=CustomSetting.TYPE_STRING,
-                description="The color style for the boundary (e.g #ffcc33)",
-                required=False,
+                name='Boundary Color',
+                type = CustomSetting.TYPE_STRING,
+                description='The color style for the boundary (e.g #ffcc33)',
+                required=False
             ),
             CustomSetting(
-                name="Boundary Width",
-                type=CustomSetting.TYPE_STRING,
-                description="Width of the boundary. A number from 1 to 10",
-                required=False,
+                name='Boundary Width',
+                type = CustomSetting.TYPE_STRING,
+                description='Width of the boundary. A number from 1 to 10',
+                required=False
             ),
+            CustomSetting(
+                name='GA_MEASUREMENT_ID',
+                type = CustomSetting.TYPE_STRING,
+                description='GA_MEASUREMENT_ID for Google Analytics gtag.js',
+                required=False
+            ),
+
         )
         return custom_settings
 
