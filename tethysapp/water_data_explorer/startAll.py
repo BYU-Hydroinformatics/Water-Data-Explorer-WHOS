@@ -67,4 +67,4 @@ def home(request):
      'logo_institucion': logoInst
     }
 
-    return render(request, 'water_data_explorer/home.html', context)
+    return render(request, 'water_data_explorer_whos/home.html', context)

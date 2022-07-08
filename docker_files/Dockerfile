@@ -15,14 +15,14 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get -yqq install gcc li
 RUN mkdir -p $HOME/.config/pip && echo "[global]\nquiet = True" > $HOME/.config/pip/pip.conf
 
 # # Clone repository
-RUN mkdir /tethys_apps && cd /tethys_apps && git clone https://github.com/BYU-Hydroinformatics/Water-Data-Explorer-WHOS.git
+RUN mkdir /tethys_apps && cd /tethys_apps && git clone https://github.com/BYU-Hydroinformatics/water-data-explorer-whos-WHOS.git
 
 RUN mkdir -p ${TETHYS_PERSIST}/keys
 # ###########
 # # INSTALL #
 # ###########
 
-RUN /bin/bash -c "cd /tethys_apps/Water-Data-Explorer-WHOS \
+RUN /bin/bash -c "cd /tethys_apps/water-data-explorer-whos-WHOS \
   ; chmod u+x install_dependencies.sh \
   ; ./install_dependencies.sh \
   ; . ${CONDA_HOME}/bin/activate tethys \
@@ -33,7 +33,7 @@ RUN /bin/bash -c "cd /tethys_apps/Water-Data-Explorer-WHOS \
 
 
 # RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
-#   ; cd /tethys_apps/Water-Data-Explorer-WHOS \
+#   ; cd /tethys_apps/water-data-explorer-whos-WHOS \
 #   ; while read requirement; do ${CONDA_HOME}/bin/mamba install --yes $requirement || ${CONDA_HOME}/bin/pip install $requirement; done < requirements.txt \
 #   ; tethys install -N -w"
 

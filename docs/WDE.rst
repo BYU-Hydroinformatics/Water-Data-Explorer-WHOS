@@ -72,7 +72,7 @@ The WDE docker image installation has support for different types of architectur
 
 Two Images: one PostgreSQL image and WDE image.
 
-  - Using a `docker-compose.yml <https://github.com/BYU-Hydroinformatics/Water-Data-Explorer/blob/inmet-WDE/docker_files/docker-compose.yml>`_ to run both containers declaring environment variables::
+  - Using a `docker-compose.yml <https://github.com/BYU-Hydroinformatics/water-data-explorer-whos/blob/inmet-WDE/docker_files/docker-compose.yml>`_ to run both containers declaring environment variables::
 
        docker-compose up
 
@@ -96,7 +96,7 @@ One Image: one WDE image connected to a local instance of PostgreSQL or an Amazo
    Currently there is only support for AWS if an cloud based database is used.
 
 .. note::
-   env.txt sample files can be found in `here <https://github.com/BYU-Hydroinformatics/Water-Data-Explorer/tree/master/docker_files/helpful_files>`_
+   env.txt sample files can be found in `here <https://github.com/BYU-Hydroinformatics/water-data-explorer-whos/tree/master/docker_files/helpful_files>`_
 
 Regular Production Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -131,7 +131,7 @@ Source Code
 
 The WDE source code is available on Github:
 
-  - https://github.com/BYU-Hydroinformatics/Water-Data-Explorer
+  - https://github.com/BYU-Hydroinformatics/water-data-explorer-whos
 
 .. note::
    Please feel free to contribute.

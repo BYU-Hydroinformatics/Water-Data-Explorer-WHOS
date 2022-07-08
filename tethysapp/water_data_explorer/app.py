@@ -13,10 +13,10 @@ class WaterDataExplorer(TethysAppBase):
     """
 
     name = "Water Data Explorer"
-    index = "water_data_explorer:home"
-    icon = "water_data_explorer/images/wde.png"
-    package = "water_data_explorer"
-    root_url = "water-data-explorer"
+    index = "water_data_explorer_whos:home"
+    icon = "water_data_explorer_whos/images/wde.png"
+    package = "water_data_explorer_whos"
+    root_url = "water-data-explorer-whos"
     color = "#868e96"
     description = (
         '"A tethys app that lets the user to visualize and query WSDL enpoints'
@@ -34,108 +34,108 @@ class WaterDataExplorer(TethysAppBase):
         url_maps = (
             UrlMap(
                 name="home",
-                url="water-data-explorer",
-                controller="water_data_explorer.startAll.home",
+                url="water-data-explorer-whos",
+                controller="water_data_explorer_whos.startAll.home",
             ),
             UrlMap(
                 name="create-group",
                 url="create-group/",
-                controller="water_data_explorer.groups.create_group",
+                controller="water_data_explorer_whos.groups.create_group",
             ),
             UrlMap(
                 name="load-groups",
                 url="load-groups/",
-                controller="water_data_explorer.groups.get_groups_list",
+                controller="water_data_explorer_whos.groups.get_groups_list",
             ),
             UrlMap(
                 name="add-hydrosever-groups",
                 url="soap-group/",
-                controller="water_data_explorer.endpoints.soap_group",
+                controller="water_data_explorer_whos.endpoints.soap_group",
             ),
             UrlMap(
                 name="update-hydrosever-groups",
                 url="soap-update/",
-                controller="water_data_explorer.endpoints.upload_hs",
+                controller="water_data_explorer_whos.endpoints.upload_hs",
             ),
             UrlMap(
                 name="save-sites",
                 url="save-sites/",
-                controller="water_data_explorer.endpoints.save_sites_data",
+                controller="water_data_explorer_whos.endpoints.save_sites_data",
             ),
             UrlMap(
                 name="save-new-sites",
                 url="save_new_sites/",
-                controller="water_data_explorer.endpoints.save_new_sites_data",
+                controller="water_data_explorer_whos.endpoints.save_new_sites_data",
             ),
             UrlMap(
                 name="save-stream",
                 url="save_stream/",
-                controller="water_data_explorer.endpoints.save_only_sites_stream",
+                controller="water_data_explorer_whos.endpoints.save_only_sites_stream",
             ),
             UrlMap(
                 name="save-variables",
                 url="save-variables/",
-                controller="water_data_explorer.endpoints.save_variables_data",
+                controller="water_data_explorer_whos.endpoints.save_variables_data",
             ),
             UrlMap(
                 name="load-hydroserver-of-groups",
                 url="catalog-group/",
-                controller="water_data_explorer.groups.catalog_group",
+                controller="water_data_explorer_whos.groups.catalog_group",
             ),
             UrlMap(
                 name="delete-group-hydroserver",
                 url="delete-group-hydroserver/",
-                controller="water_data_explorer.endpoints.delete_group_hydroserver",
+                controller="water_data_explorer_whos.endpoints.delete_group_hydroserver",
             ),
             UrlMap(
                 name="delete-group",
                 url="delete-group/",
-                controller="water_data_explorer.groups.delete_group",
+                controller="water_data_explorer_whos.groups.delete_group",
             ),
             UrlMap(
                 name="keyword-group",
                 url="keyword-group",
-                controller="water_data_explorer.groups.keyWordsForGroup",
+                controller="water_data_explorer_whos.groups.keyWordsForGroup",
             ),
             UrlMap(
                 name="get-variables-hs",
                 url="get-variables-hs/",
-                controller="water_data_explorer.endpoints.get_variables_hs",
+                controller="water_data_explorer_whos.endpoints.get_variables_hs",
             ),
             UrlMap(
                 name="get-available-sites",
                 url="get-available-sites/",
-                controller="water_data_explorer.endpoints.get_available_sites",
+                controller="water_data_explorer_whos.endpoints.get_available_sites",
             ),
             UrlMap(
                 name="get-hydroserver-info",
                 url="get-hydroserver-info/",
-                controller="water_data_explorer.endpoints.get_hydroserver_info",
+                controller="water_data_explorer_whos.endpoints.get_hydroserver_info",
             ),
             UrlMap(
                 name="available-variables",
                 url="available-variables/",
-                controller="water_data_explorer.groups.available_variables",
+                controller="water_data_explorer_whos.groups.available_variables",
             ),
             UrlMap(
                 name="available-regions",
                 url="available-regions/",
-                controller="water_data_explorer.groups.available_regions",
+                controller="water_data_explorer_whos.groups.available_regions",
             ),
             UrlMap(
                 name="catalog-filter",
                 url="catalog-filter/",
-                controller="water_data_explorer.groups.catalog_filter",
+                controller="water_data_explorer_whos.groups.catalog_filter",
             ),
             UrlMap(
                 name="get-variables-for-country",
                 url="get-variables-for-country/",
-                controller="water_data_explorer.groups.get_variables_for_country",
+                controller="water_data_explorer_whos.groups.get_variables_for_country",
             ),
             UrlMap(
                 name="get-download-hs",
                 url="get-download-hs/",
-                controller="water_data_explorer.endpoints.get_download_hs",
+                controller="water_data_explorer_whos.endpoints.get_download_hs",
             ),
         )
 
@@ -223,7 +223,7 @@ class WaterDataExplorer(TethysAppBase):
             PersistentStoreDatabaseSetting(
                 name="catalog_db",
                 description="catalogs database",
-                initializer="water_data_explorer.init_stores.init_catalog_db",
+                initializer="water_data_explorer_whos.init_stores.init_catalog_db",
                 required=True,
             ),
         )

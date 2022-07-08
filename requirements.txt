@@ -5,7 +5,7 @@ xmltodict
 pyshp
 geopandas
 suds-community
-scikit-learn==0.22
+scikit-learn
 tslearn
 pywaterml
 

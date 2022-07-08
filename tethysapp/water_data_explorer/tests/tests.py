@@ -33,16 +33,16 @@ To run any tests:
        See below for specific examples
 
         To run all tests across this app:
-            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer"
+            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer_whos"
 
         To run all tests in this file:
-            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer.tests.tests"
+            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer_whos.tests.tests"
 
         To run tests in the WaterDataExplorerTestCase class:
-            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer.tests.tests.WaterDataExplorerTestCase"
+            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer_whos.tests.tests.WaterDataExplorerTestCase"
 
         To run only the test_if_tethys_platform_is_great function in the WaterDataExplorerTestCase class:
-            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer.tests.tests.WaterDataExplorerTestCase.test_if_tethys_platform_is_great"
+            Test command: "tethys test -f tethys_apps.tethysapp.water_data_explorer_whos.tests.tests.WaterDataExplorerTestCase.test_if_tethys_platform_is_great"
 
 To learn more about writing tests, see:
     https://docs.djangoproject.com/en/1.9/topics/testing/overview/#writing-tests
@@ -151,7 +151,7 @@ class WaterDataExplorerTestCase(TethysTestCase):
         c.force_login(user)
 
         # Have the test client "browse" to your home page
-        response = c.get('/apps/water-data-explorer/')  # The final '/' is essential for all pages/controllers
+        response = c.get('/apps/water-data-explorer-whos/')  # The final '/' is essential for all pages/controllers
 
         # Test that the request processed correctly (with a 200 status code)
         self.assertEqual(response.status_code, 200)
