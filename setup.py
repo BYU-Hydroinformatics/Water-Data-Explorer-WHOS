@@ -22,7 +22,7 @@ setup(
     keywords='',
     author='Giovanni Romero Bustamante',
     author_email='gio.rombus@gmail.com',
-    url='https://github.com/BYU-Hydroinformatics/water-data-explorer-whos',
+    url='https://github.com/BYU-Hydroinformatics/Water-Data-Explorer-WHOS',
     license='BSD 3-Clause License',
     packages=find_namespace_packages(),
     package_data={'': resource_files},

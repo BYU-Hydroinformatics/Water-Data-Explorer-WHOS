@@ -26,15 +26,11 @@ Persistent_Store_Name = 'catalog_db'
 def available_regions(request):
 
     ret_object = {}
-    list_regions = []
     SessionMaker = app.get_persistent_store_database(
         Persistent_Store_Name, as_sessionmaker=True)
     session = SessionMaker()
 
     region_list = []
-    hydroserver_lat_list = []
-    hydroserver_long_list = []
-    hydroserver_name_list = []
 
     if request.method == 'POST' and 'group' not in request.POST:
         hydroservers_selected = session.query(HydroServer_Individual).all()

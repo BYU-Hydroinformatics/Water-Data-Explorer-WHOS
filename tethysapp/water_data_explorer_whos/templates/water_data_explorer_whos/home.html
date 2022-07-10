@@ -1,30 +1,24 @@
-{% extends "water_data_explorer_whos/base.html" %} {% load tethys_gizmos %} {%
-load static %} {% block app_navigation_toggle_override %} <<a href="#"></a>> {%
-endblock %} {% block app_navigation_items %}
+{% extends "water_data_explorer_whos/base.html" %} 
 
-<!--The Hydroservers are added to this box-->
+{% load tethys_gizmos %} 
 
-<!-- id= "buttonsBar" for the button bar -->
+{%load static %} 
+
+{% block app_navigation_toggle_override %} 
+<a href="#"></a> 
+{% endblock %} 
+
+{% block app_navigation_items %}
+
+
 <br />
-{#
-<img
-  id="GeneralLoading"
-  class="view-file hidden"
-  src="https://media.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif"
-/>
-#}
+
 <img
   id="GeneralLoading"
   class="view-file hidden"
   src="{% static 'water_data_explorer_whos/images/loading.gif' %}"
 />
-{#
-<img
-  id="graphAddLoading"
-  class="view-file hidden"
-  src="{% static 'water_data_explorer_whos/images/loading.gif' %}"
-/>
-#}
+
 
 <div class="accordion" id="groups_hydroservers">
   <div id="panHydroGroups" class="panel panel-default">
@@ -86,14 +80,13 @@ endblock %} {% block app_navigation_items %}
   ></div>
 </div>
 
-{% include "water_data_explorer_whos/sideContent.html" %} {% endblock %} {%
-block app_content %}
-<!-- <div id="content_map"> -->
-<!-- <div id="container_map"> -->
+{% include "water_data_explorer_whos/sideContent.html" %} 
+
+{% endblock %} 
+{% block app_content %}
 <div id="map" class="map"></div>
 <table id="tableLegend"></table>
 
-<!-- </div> -->
 <div id="graph">
   <img
     id="graphAddLoading"
@@ -313,98 +306,46 @@ block app_content %}
   </div> -->
 </div>
 
-<!-- <div id="graph">
 
-  <div id="options">
-    <h3 id= "siteName_title"> Select a Station</h3>
-      <p id= "siteDes"> No Site Selected, when a site is "clicked" metadata of the site will display
-        in this part such as a name and a description.
-      </p>
-    <div id="table_div"></div>
-
-  </div>
-  <img id="graphAddLoading" class="view-file hidden" alt="loading gif" src="{% static 'water_data_explorer_whos/images/loading.gif' %}">
-
-  <div id="plots2">
-    <h3></h3>
-    <div id="controlGraphs">
-      <select id= "variables_graph" class="selectpicker" data-live-search="true" data-style="btn-info"width: '100%'>
-        <option > No Variables Available . . .</option>
-      </select>
-      <select id="type_graph_select2" class="selectpicker" data-width="fit">
-
-        <optgroup label="Individual Variable Plots">
-          <option> Scatter </option>
-          <option> Whisker and Box </option>
-      </optgroup>
-      </select>
-      <div class="containerTime">
-          <div class='col-md-5'>
-              <div class="form-group">
-                  <div class='input-group date' id='datetimepicker6' data-provide="datepicker">
-                      <input type='text' class="form-control" />
-                      <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-              </div>
-          </div>
-          <div class='col-md-5'>
-              <div class="form-group">
-                  <div class='input-group date' id='datetimepicker7' data-provide="datepicker">
-                      <input type='text' class="form-control" />
-                      <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <button type="button" id= "update_graphs" class="btn btn-danger">Search</button>
-      <select id= "download_dropdown" class="selectpicker" data-live-search="false" data-width="fit">
-          <option value="Download">Download</option>
-          <option value="CSV" >CSV</option>
-          <option value = "WaterML1.0">WaterML 1.0</option>
-          <option value = "WaterML2.0">WaterML 2.0</option>
-      </select>
-    </div>
-
-    <div id="plots"></div>
-
-
-
-  </div>
-
-
-</div> -->
 <script>
   $(function () {
     $('#about').modal('show');
   });
 </script>
 
-{% endblock %} {# Use the after_app_content block for modals #} {% block
-app_content_wrapper_override %} {{ block.super }} {% include
-"water_data_explorer_whos/modals/manageServers.html" %} {% include
-"water_data_explorer_whos/modals/delCentral.html" %} {% include
-"water_data_explorer_whos/modals/addHydroserver.html" %} {% include
-"water_data_explorer_whos/modals/delServer.html" %} {% include
-"water_data_explorer_whos/modals/addGroupHydroserver.html" %} {% include
-"water_data_explorer_whos/modals/keywordSearch.html" %} {% include
-"water_data_explorer_whos/modals/groupSearch.html" %} {% include
-"water_data_explorer_whos/modals/DeleteHydroWarning.html" %} {% include
-"water_data_explorer_whos/modals/DeleteTableGroup.html" %} {% include
-"water_data_explorer_whos/modals/showVariables.html" %} {% include
-"water_data_explorer_whos/modals/showVariables2.html" %} {% include
-"water_data_explorer_whos/modals/hydro_info.html" %} {% include
-"water_data_explorer_whos/modals/promp_down.html" %} {% endblock %} {% block
-after_app_content %}
+{% endblock %} {# Use the after_app_content block for modals #} 
+{% block app_content_wrapper_override %} 
+{{ block.super }} 
+{% include "water_data_explorer_whos/modals/manageServers.html" %} 
+{% include "water_data_explorer_whos/modals/delCentral.html" %} 
+{% include "water_data_explorer_whos/modals/addHydroserver.html" %} 
+{% include "water_data_explorer_whos/modals/delServer.html" %} 
+{% include "water_data_explorer_whos/modals/addGroupHydroserver.html" %} 
+{% include "water_data_explorer_whos/modals/keywordSearch.html" %} 
+{% include "water_data_explorer_whos/modals/groupSearch.html" %} 
+{% include "water_data_explorer_whos/modals/DeleteHydroWarning.html" %} 
+{% include "water_data_explorer_whos/modals/DeleteTableGroup.html" %} 
+{% include "water_data_explorer_whos/modals/showVariables.html" %} 
+{% include "water_data_explorer_whos/modals/showVariables2.html" %} 
+{% include "water_data_explorer_whos/modals/hydro_info.html" %} 
+{% include "water_data_explorer_whos/modals/promp_down.html" %} 
+
+{% endblock %} 
+
+{% block after_app_content %}
 <!-- Example Modal -->
 
-{% endblock %} {% block app_actions %}
+{% endblock %} 
+
+{% block app_actions %}
+
 <div id="zoomlevel"></div>
 
-{% endblock %} {% block scripts %} {{ block.super }}
+{% endblock %} 
+
+{% block scripts %} 
+
+{{ block.super }}
 
 <script type="text/javascript">
   $(function () {

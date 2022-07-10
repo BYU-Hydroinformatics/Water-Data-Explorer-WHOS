@@ -11,6 +11,8 @@ Persistent_Store_Name = 'catalog_db'
 
 logging.getLogger('suds.client').setLevel(logging.CRITICAL)
 
+
+@login_required()
 def home(request):
     """
     Controller for the app home page.

@@ -3,6 +3,7 @@ import os
 import json
 import pandas as pd
 import geopandas as gpd
+import requests
 import shapely.speedups
 import pywaterml.waterML as pwml
 from .model import Base, Groups, HydroServer_Individual
