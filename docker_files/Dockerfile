@@ -9,7 +9,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
  && echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/no-check-valid
 
 # # Install APT Package
-RUN apt-get update --allow-releaseinfo-change -qq && apt-get -yqq install gcc libgdal-dev g++ libhdf5-dev > /dev/null
+RUN apt-get update --allow-releaseinfo-change -qq && apt-get -yqq install apt-utils gcc libgdal-dev g++ libhdf5-dev > /dev/null
 
 # # Quiet pip installs
 RUN mkdir -p $HOME/.config/pip && echo "[global]\nquiet = True" > $HOME/.config/pip/pip.conf
@@ -22,20 +22,14 @@ RUN mkdir -p ${TETHYS_PERSIST}/keys
 # # INSTALL #
 # ###########
 
+# install mamba much better than conda ##
+RUN ${CONDA_HOME}/bin/conda install -n base -c conda-forge mamba
+
+# install tethys with mamba ##
 RUN /bin/bash -c "cd /tethys_apps/Water-Data-Explorer-WHOS \
-  ; chmod u+x install_dependencies.sh \
-  ; ./install_dependencies.sh \
   ; . ${CONDA_HOME}/bin/activate tethys \
+  ; ${CONDA_HOME}/bin/mamba install --yes --file requirements.txt -c conda-forge \
   ; tethys install -N -w"
-
-# RUN ${CONDA_HOME}/bin/conda install -n base -c conda-forge mamba
-# RUN ${CONDA_HOME}/bin/mamba install -n tethys pip
-
-
-# RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
-#   ; cd /tethys_apps/water-data-explorer-whos-WHOS \
-#   ; while read requirement; do ${CONDA_HOME}/bin/mamba install --yes $requirement || ${CONDA_HOME}/bin/pip install $requirement; done < requirements.txt \
-#   ; tethys install -N -w"
 
 
 RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
@@ -44,7 +38,6 @@ RUN /bin/bash -c ". ${CONDA_HOME}/bin/activate tethys \
 ######################################################
 # CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
 ######################################################
-# Use our Tethyscore base docker image as a parent image
 
 # CHOWN #
 #########
@@ -61,6 +54,12 @@ RUN export NGINX_USER=$(grep 'user .*;' /etc/nginx/nginx.conf | awk '{print $2}'
 #########################
 EXPOSE 80
 
+
+######################################################
+# CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
+######################################################
+
+ADD nginx /usr/lib/tethys/tethys/tethys_cli/gen_templates/
 
 ################
 # COPY IN SALT #
