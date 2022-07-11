@@ -30,45 +30,45 @@ Pre_WaterDataExplorer_Settings:
   cmd.run:
     - name: cat {{ TETHYS_HOME }}/tethys/tethys_portal/settings.py
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Sync_Apps:
   cmd.run:
     - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys db sync
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Remove_Persistent_Stores_Database:
   cmd.run:
     - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys services remove persistent {{ PS_SERVICE_NAME }} -f
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Create_Persistent_Stores_Database:
   cmd.run:
     - name: ". {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys services create persistent -n {{ PS_SERVICE_NAME }} -c {{ APP_DB_USERNAME }}:{{ APP_DB_PASSWORD }}@{{ APP_DB_HOST }}:{{ APP_DB_PORT }}"
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Link_Persistent_Stores_Database:
   cmd.run:
-    - name: ". {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys link persistent:{{ PS_SERVICE_NAME }} water_data_explorer:ps_database:catalog_db"
+    - name: ". {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys link persistent:{{ PS_SERVICE_NAME }} water_data_explorer_whos:ps_database:catalog_db"
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Sync_App_Persistent_Stores:
   cmd.run:
     - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys syncstores all
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Making_Portal_Open:
   cmd.run:
     - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys settings --set BYPASS_TETHYS_HOME_PAGE "${BYPASS_TETHYS_HOME_PAGE}" --set ENABLE_OPEN_PORTAL "${ENABLE_OPEN_PORTAL}"
     - shell: /bin/bash
-    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_setup_complete" ];"
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
 Flag_Complete_Setup:
   cmd.run:
-    - name: touch ${TETHYS_PERSIST}/water_data_explorer_setup_complete
+    - name: touch ${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete
     - shell: /bin/bash

@@ -40,7 +40,7 @@
  })()
 
 
-var water_data_explorer_PACKAGE = (function() {
+var water_data_explorer_whos_PACKAGE = (function() {
     "use strict" // And enable strict mode for this library
 
     /**

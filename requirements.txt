@@ -1,11 +1,7 @@
 cryptography==36.0.2
-fiona
 geojson
 xmltodict
 pyshp
 geopandas
 suds-community
-scikit-learn==0.22
-tslearn
 pywaterml
-

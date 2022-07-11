@@ -1,7 +1,25 @@
 {% extends "tethys_apps/app_base.html" %}
 
 {% load staticfiles %}
+{% block global_scripts %}
+  {{ block.super }}  
+  
+  {% if gtagcode %}
+    
+    <script async src='https://www.googletagmanager.com/gtag/js?id={{ gtagcode|safe }}' ></script>
+    <script>
+      var gcode = "{{ gtagcode|safe }}";
 
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', gcode);
+
+    </script>
+    
+  {% endif%}
+{% endblock %}
 {% block title %}{{ tethys_app.name }}{% endblock %}
 
 {% block app_icon %}
@@ -24,9 +42,9 @@
 <div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Manage HydroServers">
 </div>
 
-{% include "water_data_explorer/modals/helpModal.html" %}
+{% include "water_data_explorer_whos/modals/helpModal.html" %}
 <div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Help/Information">
-	<a href = "https://water-data-explorer.readthedocs.io/en/latest/"><span class="glyphicon glyphicon-info-sign"></span></a>
+	<a href = "https://water-data-explorer-whos.readthedocs.io/en/latest/"><span class="glyphicon glyphicon-info-sign"></span></a>
 </div>
 {% endblock %}
 
@@ -44,7 +62,7 @@
 {% block app_content_wrapper_override %}
 
 {{ block.super }}
-{% include "water_data_explorer/modals/terms_service.html" %}
+{% include "water_data_explorer_whos/modals/terms_service.html" %}
 
 
 {% endblock %}
@@ -58,14 +76,14 @@
 
 {% block content_dependent_styles %}
   {{ block.super }}
-  <link href="{% static 'water_data_explorer/vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css' %}" rel="stylesheet" />
-  <link href="{% static 'water_data_explorer/vendor/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css' %}" rel="stylesheet" />
-  <link href="{% static 'water_data_explorer/vendor/bootstrap-select-1.11.2/css/bootstrap-select.min.css' %}" rel="stylesheet" />
-  <link href="{% static 'water_data_explorer/vendor/bootstrap-toggle-master/css/bootstrap-toggle.min.css' %}" rel="stylesheet" />
-  <link href="{% static 'water_data_explorer/vendor/contextMenu/contextMenu.css' %}" rel="stylesheet" />
-  <link href="{% static 'water_data_explorer/vendor/openlayers/ol.css' %}" rel="stylesheet">
-  <link href="{% static 'water_data_explorer/vendor/fontawesome-free-5.12.1-web/css/all.css' %}" rel="stylesheet">
-  <link href="{% static 'water_data_explorer/css/main.css' %}" rel="stylesheet"/>
+  <link href="{% static 'water_data_explorer_whos/vendor/bootstrap-3.3.6-dist/css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'water_data_explorer_whos/vendor/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'water_data_explorer_whos/vendor/bootstrap-select-1.11.2/css/bootstrap-select.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'water_data_explorer_whos/vendor/bootstrap-toggle-master/css/bootstrap-toggle.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'water_data_explorer_whos/vendor/contextMenu/contextMenu.css' %}" rel="stylesheet" />
+  <link href="{% static 'water_data_explorer_whos/vendor/openlayers/ol.css' %}" rel="stylesheet">
+  <link href="{% static 'water_data_explorer_whos/vendor/fontawesome-free-5.12.1-web/css/all.css' %}" rel="stylesheet">
+  <link href="{% static 'water_data_explorer_whos/css/main.css' %}" rel="stylesheet"/>
 
 {% endblock %}
 
@@ -74,11 +92,13 @@
   <script>
     var windowSize = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-  	var baseStatic = "{% static 'water_data_explorer/index.html' %}";
+  	var baseStatic = "{% static 'water_data_explorer_whos/index.html' %}";
   	baseStatic = baseStatic.replace('\/index.html','');
     var can_block_map = {{can_block_map|yesno:"true,false"}};
     console.log(can_block_map)
     var can_delete_hydrogroups = {{can_delete_hydrogroups|yesno:"true,false"}};
+    var can_download = {{can_download|yesno:"true,false"}};
+    console.log(can_download)
     var endpointGeoServer = "{{ geoEndpoint|safe }}";
     var geoServerWorkspace = "{{ geoWorkspace|safe }}";
     var geoServerLayer = "{{ geoLayer|safe }}";
@@ -90,24 +110,24 @@
 
   </script>
 
-  <script src="{% static 'water_data_explorer/vendor/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/vendor/bootstrap-select-1.11.2/js/bootstrap-select.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/vendor/bootstrap-toggle-master/js/bootstrap-toggle.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/vendor/plotly-latest.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/vendor/bootstrap-notify.min.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/vendor/contextMenu/contextMenu.min.js' %}" async="async"></script>
-  <script src="{% static 'water_data_explorer/vendor/openlayers/ol.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/vendor/fontawesome-free-5.12.1-web/js/all.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/bootstrap-select-1.11.2/js/bootstrap-select.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/bootstrap-toggle-master/js/bootstrap-toggle.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/plotly-latest.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/bootstrap-notify.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/contextMenu/contextMenu.min.js' %}" async="async"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/openlayers/ol.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/vendor/fontawesome-free-5.12.1-web/js/all.js' %}" type="text/javascript"></script>
   <script src= "https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js" type="text/javascript"></script>
   <script src= "https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/3.19.0/parser.min.js" type="text/javascript"></script>
   <script src= "https://cdn.jsdelivr.net/npm/danfojs@0.2.7/lib/bundle.min.js"></script>
-  <script src="{% static 'water_data_explorer/js/variables.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/js/utilities.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/js/initAll.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/js/utilitiesGraphs.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/js/groups.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/js/endpoints.js' %}" type="text/javascript"></script>
-  <script src="{% static 'water_data_explorer/js/sites.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/variables.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/utilities.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/initAll.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/utilitiesGraphs.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/groups.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/endpoints.js' %}" type="text/javascript"></script>
+  <script src="{% static 'water_data_explorer_whos/js/sites.js' %}" type="text/javascript"></script>
   <script type="text/javascript">
 
     $(window).resize(function(e) {

@@ -2,7 +2,7 @@ from setuptools import setup, find_namespace_packages
 from tethys_apps.app_installation import find_resource_files
 
 # -- Apps Definition -- #
-app_package = 'water_data_explorer'
+app_package = 'water_data_explorer_whos'
 release_package = 'tethysapp-' + app_package
 
 # -- Python Dependencies -- #
@@ -22,7 +22,7 @@ setup(
     keywords='',
     author='Giovanni Romero Bustamante',
     author_email='gio.rombus@gmail.com',
-    url='https://github.com/BYU-Hydroinformatics/Water-Data-Explorer',
+    url='https://github.com/BYU-Hydroinformatics/Water-Data-Explorer-WHOS',
     license='BSD 3-Clause License',
     packages=find_namespace_packages(),
     package_data={'': resource_files},
