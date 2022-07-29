@@ -68,6 +68,18 @@ Making_Portal_Open:
     - shell: /bin/bash
     - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
+Changing_Upload_Size:
+  cmd.run:
+    - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys settings --set DATA_UPLOAD_MAX_MEMORY_SIZE "${DATA_UPLOAD_MAX_MEMORY_SIZE}" --set DATA_UPLOAD_MAX_NUMBER_FIELDS "${DATA_UPLOAD_MAX_NUMBER_FIELDS}"
+    - shell: /bin/bash
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
+
+Add_analitycal_config:
+  cmd.run:
+    - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys settings --set ANALYTICS_CONFIG.GOOGLE_ANALYTICS_GTAG_PROPERTY_ID "${GOOGLE_ANALYTICS_GTAG_PROPERTY_ID}"
+    - shell: /bin/bash
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
+
 Flag_Complete_Setup:
   cmd.run:
     - name: touch ${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete

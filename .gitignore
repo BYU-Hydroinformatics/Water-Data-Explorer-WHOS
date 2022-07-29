@@ -19,3 +19,6 @@ docker_files/postgres-data
 .markdownlint.yaml
 .shellcheckrc
 .trunk
+docker_files/data
+docker_files/logs
+
