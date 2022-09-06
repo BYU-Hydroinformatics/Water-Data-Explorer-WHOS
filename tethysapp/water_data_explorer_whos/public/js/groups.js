@@ -62,7 +62,8 @@ getWaterOneFlowServicesInfoHelperJS = function (xmlData) {
 giveServices = function (services) {
   let json_response = {};
   let hs_list = [];
-  services.forEach(function (i) {
+  if(!Array.isArray(services)){
+    let i = services;
     let hs = {};
     let url = i["servURL"];
     if (url.endsWith("?WSDL") == false) {
@@ -81,7 +82,30 @@ giveServices = function (services) {
     hs["title"] = title;
     hs["description"] = description;
     hs_list.push(hs);
-  });
+  }
+  else{
+    services.forEach(function (i) {
+      let hs = {};
+      let url = i["servURL"];
+      if (url.endsWith("?WSDL") == false) {
+        url = url + "?WSDL";
+      }
+  
+      let title = i["Title"];
+      let description =
+        "None was provided by the organiation in charge of the Web Service";
+  
+      if (i.hasOwnProperty("aabstract")) {
+        description = i["aabstract"];
+      }
+  
+      hs["url"] = url;
+      hs["title"] = title;
+      hs["description"] = description;
+      hs_list.push(hs);
+    });
+  }
+
   json_response["services"] = hs_list;
   return json_response;
 };
@@ -106,6 +130,7 @@ give_available_services = function () {
           let services = getWaterOneFlowServicesInfoHelperJS(xmlData);
           console.log(services);
           obj_services = giveServices(services);
+          console.log(obj_services);
           $("#rows_servs").empty();
           var services_ava = obj_services["services"];
           tmp_hs_url = services_ava;
