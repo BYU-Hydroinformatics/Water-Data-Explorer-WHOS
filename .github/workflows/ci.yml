@@ -33,7 +33,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache
+          # cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/wde-whos:buildcache,mode=max
           # cache-from: type=gha
           # cache-to: type=gha,mode=max
