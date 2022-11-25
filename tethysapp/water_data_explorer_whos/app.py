@@ -1,8 +1,4 @@
-from tethys_sdk.app_settings import (
-    CustomSetting,
-    PersistentStoreDatabaseSetting,
-    SpatialDatasetServiceSetting,
-)
+from tethys_sdk.app_settings import CustomSetting,PersistentStoreDatabaseSettingSpatialDatasetServiceSetting
 from tethys_sdk.base import TethysAppBase, url_map_maker
 from tethys_sdk.permissions import Permission, PermissionGroup
 
@@ -13,7 +9,7 @@ class WaterDataExplorer(TethysAppBase):
     """
 
     name = "Water Data Explorer"
-    index = "water_data_explorer_whos:home"
+    index = "home"
     icon = "water_data_explorer_whos/images/wde.png"
     package = "water_data_explorer_whos"
     root_url = "water-data-explorer-whos"
