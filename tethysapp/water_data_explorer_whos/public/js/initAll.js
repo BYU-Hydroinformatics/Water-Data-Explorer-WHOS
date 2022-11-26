@@ -568,7 +568,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
       })
 
 
-      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-bs-toggle="tooltip"]').tooltip()
 
       $('body').tooltip({
           selector: '.tool_tip_h'
