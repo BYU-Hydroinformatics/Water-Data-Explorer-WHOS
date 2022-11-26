@@ -1,18 +1,19 @@
+
+
 import logging
+
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
 from .auxiliary import *
-
-from tethys_sdk.permissions import login_required,has_permission
+from tethys_sdk.routing import controller
+from tethys_sdk.permissions import has_permission
 from .app import WaterDataExplorer as app
 
 Persistent_Store_Name = 'catalog_db'
 
 logging.getLogger('suds.client').setLevel(logging.CRITICAL)
 
-
-@login_required()
+@controller(name='home', url='water-data-explorer-whos')
 def home(request):
     """
     Controller for the app home page.

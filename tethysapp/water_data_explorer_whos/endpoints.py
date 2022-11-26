@@ -10,12 +10,14 @@ from .model import Base, Groups, HydroServer_Individual
 from .auxiliary import *
 from django.http import JsonResponse
 from .app import WaterDataExplorer as app
+from tethys_sdk.routing import controller
 
 Persistent_Store_Name = 'catalog_db'
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.DEBUG)
 
 
+@controller(name='get-download-hs', url='water-data-explorer-whos/get-download-hs')
 def get_download_hs(request):
     hs_name = request.POST.get('hs_name')
     hs_url = request.POST.get('hs_url')
@@ -36,8 +38,7 @@ def get_download_hs(request):
 
     return JsonResponse(nb)
 
-
-
+@controller(name='get-variables-hs', url='water-data-explorer-whos/get-variables-hs')
 def get_variables_hs(request):
     list_catalog={}
     #print("get_variables_hs Function")
@@ -64,6 +65,7 @@ def get_variables_hs(request):
 
     return JsonResponse(list_catalog)
 
+@controller(name='get-available-sites', url='water-data-explorer-whos/get-available-sites')
 def get_available_sites(request):
     if request.method=='POST':
         specific_group=request.POST.get('group')
@@ -90,6 +92,7 @@ def get_available_sites(request):
 
     return JsonResponse(list_catalog)
 
+@controller(name='get-hydroserver-info', url='water-data-explorer-whos/get-hydroserver-info')
 def get_hydroserver_info(request):
     specific_group = request.POST.get('group')
     specific_hs = request.POST.get('hs')
@@ -109,7 +112,7 @@ def get_hydroserver_info(request):
 
     return JsonResponse(response_obj)
 
-
+@controller(name='save-variables', url='water-data-explorer-whos/save-variables')
 def save_variables_data(request):
     return_obj = {}
     if request.is_ajax() and request.method == 'POST':
@@ -159,6 +162,7 @@ def save_variables_data(request):
 
     return JsonResponse(return_obj)
 
+@controller(name='save-sites', url='water-data-explorer-whos/save-sites')
 def save_sites_data(request):
     return_obj = {}
     difference = 0
@@ -200,6 +204,7 @@ def save_sites_data(request):
     return JsonResponse(return_obj)
 
 
+@controller(name='save-new-sites', url='water-data-explorer-whos/save_new_sites')
 def save_new_sites_data(request):
     return_obj = {}
     print("entering save_new_sites function")
@@ -247,6 +252,7 @@ def save_new_sites_data(request):
         print(error)
         return JsonResponse(return_obj)
 
+@controller(name='save-stream', url='water-data-explorer-whos/save_stream')
 def save_only_sites_stream(request):
     return_obj = {}
     object_countries = {}
@@ -305,6 +311,8 @@ def save_only_sites_stream(request):
         print(error)
         return_obj['error'] = 'there is a problem'
         return JsonResponse(return_obj)
+
+@controller(name='update-hydrosever-groups', url='water-data-explorer-whos/soap-update')
 def upload_hs(request):
     return_obj = {}
     difference = 0
@@ -417,10 +425,7 @@ def available_variables_2(url):
     varaibles_list["variables_codes"] = hydroserver_variable_code_list
     return varaibles_list
 
-######*****************************************************************************************################
-######**ADD A HYDROSERVER TO THE SELECTED GROUP OF HYDROSERVERS THAT WERE CREATED BY THE USER *################
-######*****************************************************************************************################
-
+@controller(name='add-hydrosever-groups', url='water-data-explorer-whos/soap-group')
 def soap_group(request):
     return_obj = {}
     if request.is_ajax() and request.method == 'POST':
@@ -509,9 +514,7 @@ def soap_group(request):
 
     return JsonResponse(return_obj)
 
-######*****************************************************************************************################
-############################## DELETE THE HYDROSERVER OF AN SPECIFIC GROUP ####################################
-######*****************************************************************************************################
+@controller(name='delete-group-hydroserver', url='water-data-explorer-whos/delete-group-hydroserver')
 def delete_group_hydroserver(request):
     list_catalog = {}
     SessionMaker = app.get_persistent_store_database(

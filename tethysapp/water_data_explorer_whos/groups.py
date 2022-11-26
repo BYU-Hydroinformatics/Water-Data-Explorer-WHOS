@@ -11,6 +11,7 @@ from .model import Groups, HydroServer_Individual
 
 
 from tethys_sdk.permissions import has_permission
+from tethys_sdk.routing import controller
 
 from .auxiliary import *
 from .endpoints import available_regions_2, available_variables_2
@@ -22,7 +23,7 @@ from django.http import JsonResponse
 from .app import WaterDataExplorer as app
 Persistent_Store_Name = 'catalog_db'
 
-
+@controller(name='available-regions', url='water-data-explorer-whos/available-regions')
 def available_regions(request):
 
     ret_object = {}
@@ -45,6 +46,7 @@ def available_regions(request):
     ret_object['countries'] = region_list
     return JsonResponse(ret_object)
 
+@controller(name='available-variables', url='water-data-explorer-whos/available-variables')
 def available_variables(request):
     SessionMaker = app.get_persistent_store_database(
         Persistent_Store_Name, as_sessionmaker=True)
@@ -81,9 +83,7 @@ def available_variables(request):
     return JsonResponse(varaibles_list)
 
 
-######*****************************************************************************************################
-######***********************CREATE AN EMPTY GROUP OF HYDROSERVERS ****************************################
-######*****************************************************************************************################
+@controller(name='create-group', url='water-data-explorer-whos/create-group')
 def create_group(request):
     group_obj={}
     SessionMaker = app.get_persistent_store_database(Persistent_Store_Name, as_sessionmaker=True)
@@ -180,10 +180,8 @@ def addMultipleViews(request,hs_list,group):
 
     return ret_object
 
-######*****************************************************************************************################
-######************RETRIEVES THE GROUPS OF HYDROSERVERS THAT WERE CREATED BY THE USER **********################
-######*****************************************************************************************################
 
+@controller(name='load-groups', url='water-data-explorer-whos/load-groups')
 def get_groups_list(request):
     list_catalog = {}
 
@@ -217,9 +215,7 @@ def get_groups_list(request):
 
     return JsonResponse(list_catalog)
 
-######*****************************************************************************************################
-##############################LOAD THE HYDROSERVERS OF AN SPECIFIC GROUP#######################################
-######*****************************************************************************************################
+@controller(name='load-hydroserver-of-groups', url='water-data-explorer-whos/catalog-group')
 def catalog_group(request):
 
     specific_group=request.POST.get('group')
@@ -244,10 +240,8 @@ def catalog_group(request):
 
     return JsonResponse(list_catalog)
 
-######*****************************************************************************************################
-############################## DELETE A GROUP OF HYDROSERVERS #############################
-######*****************************************************************************************################
 
+@controller(name='delete-group', url='water-data-explorer-whos/delete-group')
 def delete_group(request):
     list_response = {}
     can_delete_permission = has_permission(request,"delete_hydrogroups")
@@ -281,6 +275,8 @@ def delete_group(request):
 
     return JsonResponse(list_response)
 
+
+@controller(name='catalog-filter', url='water-data-explorer-whos/catalog-filter')
 def catalog_filter(request):
     ret_obj = {}
     actual_group = None
@@ -617,6 +613,8 @@ def filter_variable(variables_list, actual_group = None):
 
     return hs_list
 
+
+@controller(name='get-variables-for-country', url='water-data-explorer-whos/get-variables-for-country')
 def get_variables_for_country(request):
     response_obj = {}
     countries = request.POST.getlist('countries[]')
@@ -641,9 +639,8 @@ def get_variables_for_country(request):
     response_obj['variables_codes'] = list_variables_codes
     return JsonResponse(response_obj)
 
-######*****************************************************************************************################
-############################## Function to retrieve the keywords for all the selected groups #############################
-######*****************************************************************************************################
+
+@controller(name='keyword-group', url='water-data-explorer-whos/keyword-group')
 def keyWordsForGroup(request):
     list_catalog={}
     specific_group=request.POST.get('group')
