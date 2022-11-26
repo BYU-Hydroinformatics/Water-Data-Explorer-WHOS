@@ -538,7 +538,7 @@ activate_layer_values = function (){
 
         url_request = `${url_base}?request=GetSiteInfoObject&site=${SITE}`;
         console.log(url_request);
-        $("#GeneralLoading").removeClass("hidden");
+        $("#GeneralLoading").removeClass("d-none");
         $('#sG').bootstrapToggle('on');
         $.ajax({
           type:"GET",
@@ -716,7 +716,7 @@ activate_layer_values = function (){
                     variable_select.selectpicker("refresh");
                     var selectedItem = $('#variables_graph').val() -1;
                     var selectedItemText = $('#variables_graph option:selected').text();
-                    $("#GeneralLoading").removeClass("hidden");
+                    $("#GeneralLoading").removeClass("d-none");
                     let object_request2 = {};
                     object_request2['hs_name']=feature_single.values_['hs_name'];
                     object_request2['site_name']=feature_single.values_['name'];
@@ -762,17 +762,17 @@ activate_layer_values = function (){
                     $('#datetimepicker6').datepicker('setEndDate', dateUTC_end);
                     $('#datetimepicker7').datepicker('setStartDate',dateUTC_start);
                     $('#datetimepicker7').datepicker('setEndDate',dateUTC_end);
-                    $("#GeneralLoading").addClass("hidden");
+                    $("#GeneralLoading").addClass("d-none");
 
                   }
                   catch(e){
                     console.log(e);
-                    $("#GeneralLoading").addClass("hidden");
+                    $("#GeneralLoading").addClass("d-none");
                   }
 
                 });
 
-                 $("#GeneralLoading").addClass("hidden");
+                 $("#GeneralLoading").addClass("d-none");
                  $("#siteName_title").empty();
 
               }
@@ -780,7 +780,7 @@ activate_layer_values = function (){
                 description_site.innerHTML =
                   ` <p> <em> Station/Platform Name:</em> ${feature_single.values_['name']}<p>`
 
-                $("#GeneralLoading").addClass("hidden");
+                $("#GeneralLoading").addClass("d-none");
                 $.notify(
                     {
                         message: `The ${feature_single.values_['name']} site does not contain any variable`
@@ -802,7 +802,7 @@ activate_layer_values = function (){
               }
             }
             catch(e){
-              $("#GeneralLoading").addClass("hidden");
+              $("#GeneralLoading").addClass("d-none");
               console.log(e);
               $.notify(
                   {
@@ -828,7 +828,7 @@ activate_layer_values = function (){
 
           },
           error: function(xhr, status, error){
-            $("#GeneralLoading").addClass("hidden");
+            $("#GeneralLoading").addClass("d-none");
 
             $.notify(
                 {
@@ -856,7 +856,7 @@ activate_layer_values = function (){
     });
   }
   catch(error){
-    $("#GeneralLoading").addClass("hidden");
+    $("#GeneralLoading").addClass("d-none");
     $.notify(
         {
             message: `Unable to retrieve information of the selected site`

@@ -42,7 +42,7 @@ get_vars_from_site = function (resultList){
     let var_select = $("#variable_choose");
     var_select.empty();
     var_select.selectpicker("refresh");
-    $("#downloading_loading").removeClass("hidden");
+    $("#downloading_loading").removeClass("d-none");
     let url_base = $("#url_WOF").text().split("?")[0];
     let SITE = resultList[indexs]['sitecode'];
     let url_request;
@@ -83,7 +83,7 @@ get_vars_from_site = function (resultList){
 
               $("#btn-add-download").unbind();
               $("#btn-add-download").on("click", function(){
-                $("#downloading_loading").removeClass("hidden");
+                $("#downloading_loading").removeClass("d-none");
                 $.ajax({
                   type:"GET",
                   url: `https://gist.githubusercontent.com/romer8/89c851014afb276b0f20cb61c9c731f6/raw/a0ee55ca83e75f34f26eb94bd52941cc2a2199cd/pywaterml_template.ipynb`,
@@ -102,11 +102,11 @@ get_vars_from_site = function (resultList){
                       document.body.appendChild(link);
                       link.click();
                       document.body.removeChild(link);
-                      $("#downloading_loading").addClass("hidden");
+                      $("#downloading_loading").addClass("d-none");
                     }
                     catch(e){
                       console.log(e);
-                      $("#downloading_loading").addClass("hidden");
+                      $("#downloading_loading").addClass("d-none");
                       $.notify(
                           {
                               message: `Something went wrong when downloading a python notebook for the site`
@@ -130,7 +130,7 @@ get_vars_from_site = function (resultList){
                   },
                   error:function(error){
                     console.log(error);
-                    $("#downloading_loading").addClass("hidden");
+                    $("#downloading_loading").addClass("d-none");
 
                     $.notify(
                         {
@@ -154,10 +154,10 @@ get_vars_from_site = function (resultList){
                 })
               });
 
-              $("#downloading_loading").addClass("hidden");
+              $("#downloading_loading").addClass("d-none");
             }
             else{
-              $("#downloading_loading").addClass("hidden");
+              $("#downloading_loading").addClass("d-none");
               $.notify(
                   {
                       message: `There is no variables in the selected site`
@@ -179,7 +179,7 @@ get_vars_from_site = function (resultList){
             }
           }
           catch(e){
-            $("#downloading_loading").addClass("hidden");
+            $("#downloading_loading").addClass("d-none");
             $.notify(
                 {
                     message: `Something went wrong when loading the variables for the site`
@@ -202,7 +202,7 @@ get_vars_from_site = function (resultList){
 
         },
         error:function(){
-          $("#downloading_loading").addClass("hidden");
+          $("#downloading_loading").addClass("d-none");
 
           $.notify(
               {
@@ -227,7 +227,7 @@ get_vars_from_site = function (resultList){
   }
   catch(error){
     console.log(error)
-    $("#downloading_loading").addClass("hidden");
+    $("#downloading_loading").addClass("d-none");
     $.notify(
         {
             message: `Something went wrong when loading the variables for the site`
@@ -357,7 +357,7 @@ load_individual_hydroservers_group = function(group_name){
       left: '50%',
       transform: 'translate(-50%, -50%)'
     });
-   $("#GeneralLoading").removeClass("hidden");
+   $("#GeneralLoading").removeClass("d-none");
        $.ajax({
            type: "POST",
            url: `catalog-group/`,
@@ -531,11 +531,11 @@ load_individual_hydroservers_group = function(group_name){
                        input_check.checked = true;
                      });
                })
-               $("#GeneralLoading").addClass("hidden");
+               $("#GeneralLoading").addClass("d-none");
              }
              catch(e){
                console.log(e);
-               $("#GeneralLoading").addClass("hidden");
+               $("#GeneralLoading").addClass("d-none");
                $.notify(
                    {
                        message: `Something went wrong loading the hydroservers for the group called ${group_name}. Please see the console for details.`
@@ -560,7 +560,7 @@ load_individual_hydroservers_group = function(group_name){
 
            },
            error: function(error) {
-             $("#GeneralLoading").addClass("hidden");
+             $("#GeneralLoading").addClass("d-none");
                $.notify(
                    {
                        message: `Something went wrong loading the hydroservers for the group called ${group_name}. Please see the console for details.`
@@ -650,7 +650,7 @@ add_hydroserver = function(){
           $modalAddSOAP.find(".warning").html("");
       }
 
-      $("#soapAddLoading").removeClass("hidden");
+      $("#soapAddLoading").removeClass("d-none");
 
       let title_server = $("#soap-title").val();
       let unique_id_group = uuidv4();
@@ -690,7 +690,7 @@ add_hydroserver = function(){
       var list_sites_me = [];
       var notifications;
       console.log(url_request);
-      // $("#loading_p").removeClass("hidden");
+      // $("#loading_p").removeClass("d-none");
       // $("#loading_p").html(`Adding ${title_server}: 0 new sites added to the database . . .`);
         $.ajax({
           type:"GET",
@@ -841,8 +841,8 @@ add_hydroserver = function(){
                     },
                     error: function(err){
                       console.log(err);
-                      $("#soapAddLoading-group").addClass("hidden");
-                      // $("#loading_p").addClass("hidden");
+                      $("#soapAddLoading-group").addClass("d-none");
+                      // $("#loading_p").addClass("d-none");
 
                       // $.notify(
                       //     {
@@ -1085,13 +1085,13 @@ add_hydroserver = function(){
                               }
                           )
                           notifications.close();
-                          $("#soapAddLoading-group").addClass("hidden");
+                          $("#soapAddLoading-group").addClass("d-none");
 
 
                     }
                     catch(err){
                       console.log(err);
-                      $("#soapAddLoading-group").addClass("hidden");
+                      $("#soapAddLoading-group").addClass("d-none");
 
                       $("#btn-add-soap").show();
                       $.notify(
@@ -1117,7 +1117,7 @@ add_hydroserver = function(){
                 },
                 error: function(err){
                   console.log(err);
-                  $("#soapAddLoading-group").addClass("hidden");
+                  $("#soapAddLoading-group").addClass("d-none");
                   $.notify(
                       {
                           message: `We are having problems adding the ${title_server} WaterOneFlow web service`
@@ -1142,7 +1142,7 @@ add_hydroserver = function(){
             }
             catch(e){
               console.log(e);
-              $("#soapAddLoading-group").addClass("hidden");
+              $("#soapAddLoading-group").addClass("d-none");
               $.notify(
                   {
                       message: `We are having problems adding the ${title_server} WaterOneFlow web service`
@@ -1166,7 +1166,7 @@ add_hydroserver = function(){
 
           error: function(err){
             console.log(err);
-            $("#soapAddLoading-group").addClass("hidden");
+            $("#soapAddLoading-group").addClass("d-none");
             $.notify(
                 {
                     message: `We are having problems adding the ${title_server} WaterOneFlow web service`
@@ -1189,7 +1189,7 @@ add_hydroserver = function(){
         })
   }
   catch(e){
-        $("#soapAddLoading").addClass("hidden");
+        $("#soapAddLoading").addClass("d-none");
         $("#btn-add-soap").show();
         console.log(e);
         $.notify(
@@ -1502,7 +1502,7 @@ showVariables2 = function(){
 
    let $modalVariables = $("#modalShowVariablesTable");
    $(`#hideScroll2`).empty();
-   $("#variablesLoading2").removeClass("hidden");
+   $("#variablesLoading2").removeClass("d-none");
    $.ajax({
        type: "POST",
        url: `get-variables-hs/`,
@@ -1555,10 +1555,10 @@ showVariables2 = function(){
                  HSTableHtml += "</tbody></table>"
                  $modalVariables.find("#hideScroll2").html(HSTableHtml)
              }
-             $("#variablesLoading2").addClass("hidden");
+             $("#variablesLoading2").addClass("d-none");
          }
          catch(e){
-           $("#variablesLoading2").addClass("hidden");
+           $("#variablesLoading2").addClass("d-none");
              $.notify(
                  {
                      message: `There is a problem retrieving the variables of the ${hsActual} Web Service`
@@ -1582,7 +1582,7 @@ showVariables2 = function(){
 
       },
       error: function(error) {
-        $("#variablesLoading2").addClass("hidden");
+        $("#variablesLoading2").addClass("d-none");
           $.notify(
               {
                   message: `There is no variables in the ${hsActual} Web Service`
@@ -1607,7 +1607,7 @@ showVariables2 = function(){
     })
  }
  catch(e){
-   $("#variablesLoading2").addClass("hidden");
+   $("#variablesLoading2").addClass("d-none");
 
    $.notify(
        {
@@ -1662,7 +1662,7 @@ hydroserver_information = function(){
     filterSites['group']=groupActual;
     filterSites['hs']=hsActual;
     $("#hydroserverTitle").html(`${filterSites['hs']}`);
-    $("#downloading_loading").removeClass("hidden");
+    $("#downloading_loading").removeClass("d-none");
 
     $.ajax({
       type:"POST",
@@ -1801,11 +1801,11 @@ hydroserver_information = function(){
               }
 
           }
-          $("#downloading_loading").addClass("hidden");
+          $("#downloading_loading").addClass("d-none");
         }
         catch(e){
           console.log(e);
-          $("#downloading_loading").addClass("hidden");
+          $("#downloading_loading").addClass("d-none");
 
           $.notify(
               {
@@ -1830,7 +1830,7 @@ hydroserver_information = function(){
       },
       error: function(error) {
         console.log(error);
-        $("#downloading_loading").addClass("hidden");
+        $("#downloading_loading").addClass("d-none");
 
           $.notify(
               {
@@ -1857,7 +1857,7 @@ hydroserver_information = function(){
   }
   catch(e){
     console.log(e);
-    $("#downloading_loading").addClass("hidden");
+    $("#downloading_loading").addClass("d-none");
 
     $.notify(
         {
@@ -1950,7 +1950,7 @@ getVariablesJS = function(url,hsActual,group_name){
       url_request = document.location.protocol + "//" + make_sure_not_mc[1] +"?request=GetVariablesObject&format=WML1";
     }
     console.log(url_request);
-    $("#GeneralLoading").removeClass("hidden");
+    $("#GeneralLoading").removeClass("d-none");
     $.ajax({
       type:"GET",
       url:url_request,
@@ -1970,11 +1970,11 @@ getVariablesJS = function(url,hsActual,group_name){
             dataType: "JSON",
             data: requestObject,
             success:function(data){
-              $("#GeneralLoading").addClass("hidden");
+              $("#GeneralLoading").addClass("d-none");
               return data
             },
             error: function(error){
-              $("#GeneralLoading").addClass("hidden");
+              $("#GeneralLoading").addClass("d-none");
               console.log(error);
               $.notify(
                   {
@@ -1998,7 +1998,7 @@ getVariablesJS = function(url,hsActual,group_name){
           })
         }
         catch(e){
-          $("#GeneralLoading").addClass("hidden");
+          $("#GeneralLoading").addClass("d-none");
           console.log(e);
           $.notify(
               {
@@ -2022,7 +2022,7 @@ getVariablesJS = function(url,hsActual,group_name){
 
       },
       error: function(error){
-        $("#GeneralLoading").addClass("hidden");
+        $("#GeneralLoading").addClass("d-none");
         console.log(error);
         $.notify(
             {
@@ -2046,7 +2046,7 @@ getVariablesJS = function(url,hsActual,group_name){
     })
   }
   catch(e){
-    $("#GeneralLoading").addClass("hidden");
+    $("#GeneralLoading").addClass("d-none");
     $.notify(
         {
             message: `There was an error updating the Web Service`
@@ -2538,7 +2538,7 @@ getSitesJS = function(url,hsActual,group_name){
            left: '50%',
            transform: 'translate(-50%, -50%)'
          });
-        $("#GeneralLoading").removeClass("hidden");
+        $("#GeneralLoading").removeClass("d-none");
         // url_request = url_decons[0] + "?request=GetSitesObject&format=WML1";
         let make_sure_not_mc = url_decons[0].split("//");
         if(make_sure_not_mc[0] == document.location.protocol){
@@ -2610,11 +2610,11 @@ getSitesJS = function(url,hsActual,group_name){
                             }
                         }
                     )
-                  $("#GeneralLoading").addClass("hidden");
+                  $("#GeneralLoading").addClass("d-none");
                 }
                 catch(e){
                   console.log(e);
-                  $("#GeneralLoading").addClass("hidden");
+                  $("#GeneralLoading").addClass("d-none");
                   $.notify(
                       {
                           message: `There was an error updating the Web Service`
@@ -2637,7 +2637,7 @@ getSitesJS = function(url,hsActual,group_name){
               },
               error:function(error){
                 console.log(error);
-                $("#GeneralLoading").addClass("hidden");
+                $("#GeneralLoading").addClass("d-none");
                 $.notify(
                     {
                         message: `There was an error updating the Web Service.`
@@ -2661,7 +2661,7 @@ getSitesJS = function(url,hsActual,group_name){
           }
           catch(e){
             console.log(e);
-            $("#GeneralLoading").addClass("hidden");
+            $("#GeneralLoading").addClass("d-none");
             $.notify(
                 {
                     message: `There was an error Updating the selected Web Service.`
@@ -2686,7 +2686,7 @@ getSitesJS = function(url,hsActual,group_name){
         },
         error:function(error){
           console.log(error);
-          $("#GeneralLoading").addClass("hidden");
+          $("#GeneralLoading").addClass("d-none");
           $.notify(
               {
                   message: `There was an error Updating the selected Web Service.`
@@ -2711,7 +2711,7 @@ getSitesJS = function(url,hsActual,group_name){
   }
     catch(e){
       console.log(e);
-      $("#GeneralLoading").addClass("hidden");
+      $("#GeneralLoading").addClass("d-none");
       $.notify(
           {
               message: `There was an error Updating the selected Web Service.`
@@ -2789,7 +2789,7 @@ update_hydroserver = function(){
 //     requestObject['hs'] = filterSites['hs'];
 //     requestObject['group'] = filterSites['group'];
 //     requestObject['variables'] = key_words_to_search;
-//     $("#variablesLoading").removeClass("hidden");
+//     $("#variablesLoading").removeClass("d-none");
 //     $.ajax({
 //         type: "POST",
 //         url: `get-available-sites/`,
@@ -2832,7 +2832,7 @@ update_hydroserver = function(){
 //                                    "color":"#555555",
 //                                    "font-weight": "normal"});
 //             })
-//             $("#variablesLoading").addClass("hidden");
+//             $("#variablesLoading").addClass("d-none");
 //             $("#modalShowVariables").modal("hide")
 //             $(`#${hs}`).css({"opacity": "1",
 //                                 "border-color": "#ac2925",
@@ -2842,7 +2842,7 @@ update_hydroserver = function(){
 //                                 "font-weight": "bold"});
 //           }
 //           catch(e){
-//             $("#variablesLoading").removeClass("hidden");
+//             $("#variablesLoading").removeClass("d-none");
 //               $.notify(
 //                   {
 //                       message: `There is a problem showing the available sites in the web service/s`
@@ -2865,7 +2865,7 @@ update_hydroserver = function(){
 //
 //        },
 //        error: function(error) {
-//          $("#variablesLoading").removeClass("hidden");
+//          $("#variablesLoading").removeClass("d-none");
 //            $.notify(
 //                {
 //                    message: `There is a problem showing the available sites in the web service/s`
@@ -2889,7 +2889,7 @@ update_hydroserver = function(){
 //      })
 //   }
 //   catch(e){
-//     $("#variablesLoading").addClass("hidden");
+//     $("#variablesLoading").addClass("d-none");
 //
 //     $.notify(
 //         {

@@ -510,7 +510,7 @@ select_variable_change = function(){
       if(selectedItem !== "0"){
 
         $("#graphAddLoading").css({left:'0',bottom:"0",right:"0",top:"0", margin:"auto", position:'fixed',"z-index": 9999});
-        $("#graphAddLoading").removeClass("hidden");
+        $("#graphAddLoading").removeClass("d-none");
 
 
         let url_base = object_request_variable['hs_url'].split("?")[0];
@@ -662,7 +662,7 @@ select_variable_change = function(){
                           }
                           // IF TO AVOID 'WaterML1.0' VALUE IN THE DROPDOWN//
                           else if(selectedDownloadType == "WaterML1.0" ){
-                            $("#graphAddLoading").removeClass("hidden");
+                            $("#graphAddLoading").removeClass("d-none");
                             // let url_base = object_request_variable['hs_url'].split("?")[0];
                             let SITE = object_request_variable['code'];
                             let VARIABLE = object_request_variable['code_variable'];
@@ -684,7 +684,7 @@ select_variable_change = function(){
                                 pom.draggable = true;
                                 pom.classList.add('dragout');
                                 pom.click();
-                                $("#graphAddLoading").addClass("hidden");
+                                $("#graphAddLoading").addClass("d-none");
 
                                 $.notify(
                                     {
@@ -726,7 +726,7 @@ select_variable_change = function(){
                                    pom.draggable = true;
                                    pom.classList.add('dragout');
                                    pom.click();
-                                   $("#graphAddLoading").addClass("hidden");
+                                   $("#graphAddLoading").addClass("d-none");
 
                                    $.notify(
                                        {
@@ -749,7 +749,7 @@ select_variable_change = function(){
 
                                  },
                                  error:function(){
-                                   $("#graphAddLoading").addClass("hidden");
+                                   $("#graphAddLoading").addClass("d-none");
 
                                    $.notify(
                                        {
@@ -779,7 +779,7 @@ select_variable_change = function(){
                           }
                           // IF TO AVOID 'WaterML2.0' VALUE IN THE DROPDOWN//
                           else if(selectedDownloadType == "WaterML2.0" ){
-                            $("#graphAddLoading").removeClass("hidden");
+                            $("#graphAddLoading").removeClass("d-none");
                             // let url_base = object_request_variable['hs_url'].split("?")[0];
                             let SITE = object_request_variable['code'];
                             let VARIABLE = object_request_variable['code_variable'];
@@ -798,7 +798,7 @@ select_variable_change = function(){
                                 pom.draggable = true;
                                 pom.classList.add('dragout');
                                 pom.click();
-                                $("#graphAddLoading").addClass("hidden");
+                                $("#graphAddLoading").addClass("d-none");
 
                                 $.notify(
                                     {
@@ -833,7 +833,7 @@ select_variable_change = function(){
                                 link.click();
 
 
-                                $("#graphAddLoading").addClass("hidden");
+                                $("#graphAddLoading").addClass("d-none");
 
                                 $.notify(
                                     {
@@ -855,7 +855,7 @@ select_variable_change = function(){
                                 )
                               }
                               catch(e){
-                                $("#graphAddLoading").addClass("hidden");
+                                $("#graphAddLoading").addClass("d-none");
 
                                 $.notify(
                                     {
@@ -881,7 +881,7 @@ select_variable_change = function(){
                           }
                           // IF TO AVOID 'NetCDF' VALUE IN THE DROPDOWN//
                           else if(selectedDownloadType == "NetCDF" ){
-                            $("#graphAddLoading").removeClass("hidden");
+                            $("#graphAddLoading").removeClass("d-none");
                             // let url_base = object_request_variable['hs_url'].split("?")[0];
                             let SITE = object_request_variable['code'];
                             let VARIABLE = object_request_variable['code_variable'];
@@ -900,7 +900,7 @@ select_variable_change = function(){
                                 pom.draggable = true;
                                 pom.classList.add('dragout');
                                 pom.click();
-                                $("#graphAddLoading").addClass("hidden");
+                                $("#graphAddLoading").addClass("d-none");
 
                                 $.notify(
                                     {
@@ -922,7 +922,7 @@ select_variable_change = function(){
                                 )
                             }).
                             catch(error =>{ console
-                              $("#graphAddLoading").addClass("hidden");
+                              $("#graphAddLoading").addClass("d-none");
 
                               $.notify(
                                   {
@@ -948,7 +948,7 @@ select_variable_change = function(){
                       }
                       catch(e){
                         console.log(e);
-                        $("#graphAddLoading").addClass("hidden");
+                        $("#graphAddLoading").addClass("d-none");
 
                         $.notify(
                             {
@@ -981,13 +981,13 @@ select_variable_change = function(){
 
                     initialize_graphs(undefined,y_array,title_graph,undefined, undefined,undefined,"whisker");
                   }
-                  $("#graphAddLoading").addClass("hidden")
+                  $("#graphAddLoading").addClass("d-none")
 
                }
                else{
                  let title_graph=  `${object_request_graphs['site_name']} - ${selectedItemText} No Data Available`
                  initialize_graphs([],[],title_graph,"","","","scatter");
-                 $("#graphAddLoading").addClass("hidden")
+                 $("#graphAddLoading").addClass("d-none")
                  $.notify(
                      {
                          message: `The variable does not contain any data, Sorry`
@@ -1011,7 +1011,7 @@ select_variable_change = function(){
               }
               catch(e){
                 console.log(e);
-                $("#graphAddLoading").addClass("hidden")
+                $("#graphAddLoading").addClass("d-none")
                 $.notify(
                     {
                         message: `Unable to retrieve the data for the selected variable`
@@ -1038,7 +1038,7 @@ select_variable_change = function(){
              let title_graph=  `${object_request_graphs['site_name']} - ${selectedItemText}
              No Data Available`
              initialize_graphs([],[],title_graph,"","","","scatter");
-             $("#graphAddLoading").addClass("hidden")
+             $("#graphAddLoading").addClass("d-none")
              $.notify(
                  {
                      message: `There is an error retrieving the values for the ${selectedItem} variable `
