@@ -494,14 +494,14 @@ html_for_groups = function(isAdmin, title, id_group_separator){
 
               <input class="chkbx-layers" type="checkbox">
               <button class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalInterface">
-                <span class=" glyphicon glyphicon-info-sign "></span>
+                <i class="bi bi-info-circle"></i>
               </button>
 
               <button id="load-from-soap" class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalAddSoap">
-                <span class="glyphicon glyphicon-plus"></span>
+                <i class="bi bi-info-circle"></i>
               </button>
               <button id="delete-server" class="btn btn-primary btn-sm" data-toggle="modal"  data-dismiss="modal" data-target="#modalDelete">
-                <span class="glyphicon glyphicon-trash"></span>
+                <i class="bi bi-info-circle"></i>
               </button>
           </li>
 
@@ -534,7 +534,7 @@ html_for_groups = function(isAdmin, title, id_group_separator){
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
             <input class="chkbx-layers" type="checkbox">
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalInterface">
-              <span class=" glyphicon glyphicon-info-sign "></span>
+              <i class="bi bi-info-circle"></i>
             </button>
           </li>
         </div>
@@ -631,26 +631,27 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
 
     let check_var = (( isNew == true ) ? 'checked' : '');
     let newHtml;
-
-    if (isAdmin){
+      
+      if (isAdmin){
       newHtml = `
       <li class="ui-state-default" layer-name="${title}" id="${title}" >
       <span class="server-name tool_tip_h" data-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
       <input class="chkbx-layer" type="checkbox" data-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
       <button type="button" id="${title}_${group_name}_reload" class="btn btn-xs" >
-       <span  class="glyphicon glyphicon-refresh tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Update View">
-       </span>
+      <i class="bi bi-arrow-clockwise tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Update View"></i> 
+
       </button>
       <button type="button" id="${title}_zoom" class="btn btn-dark btn-xs" >
-       <span class="glyphicon glyphicon-map-marker tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zoom to View"></span>
+       <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
       </button>
   
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalShowVariablesTable"> <span class=" glyphicon glyphicon-list-alt tool_tip_h" data-toggle="tooltip" data-placement="bottom" title="View Variables"></span>
-      </button>
+      <button id="${title}_variables" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalShowVariablesTable"> 
+        <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
+        </button>
   
       <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalHydroserInformation">
-       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      </button>
+       <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
+       </button>
   
       </li>
       `;
@@ -661,14 +662,16 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
       <span class="server-name tool_tip_h" data-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
       <input class="chkbx-layer" type="checkbox" data-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
       <button type="button" id="${title}_zoom" class="btn btn-dark btn-xs" >
-       <span class="glyphicon glyphicon-map-marker tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zoom to View"></span>
+        <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
+
       </button>
   
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalShowVariablesTable"> <span class=" glyphicon glyphicon-list-alt tool_tip_h" data-toggle="tooltip" data-placement="bottom" title="View Variables"></span>
+      <button id="${title}_variables" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalShowVariablesTable"> 
+      <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
       </button>
   
       <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalHydroserInformation">
-       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+       <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
       </button>
   
       </li>

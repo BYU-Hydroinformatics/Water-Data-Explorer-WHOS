@@ -31,11 +31,11 @@
 {% block app_title %}{{ tethys_app.name }}{% endblock %}
 {% block header_buttons %}
 
-<div class= 'tool_tip_h' data-toggle= 'tooltip' data-placement='bottom' title= 'Show/Hide Legend'> <input id="sG-legend" type="checkbox" checked data-toggle="toggle" data-on="<span class='glyphicon glyphicon-th-list'></span>" data-off="<span class='glyphicon glyphicon-th-list'></span>" data-size="mini" data-onstyle = "danger"></input></div>
-<div class= 'tool_tip_h' data-toggle= 'tooltip' data-placement='bottom' title= 'Show/Hide Graphs Panel'> <input id="sG" type="checkbox" data-toggle="toggle" data-on="<span class='glyphicon glyphicon-signal'></span>" data-off="<span class='glyphicon glyphicon-signal'></span>" data-size="mini" data-onstyle = "danger"></input></div>
+<div class= 'tool_tip_h' data-toggle= 'tooltip' data-placement='bottom' title= 'Show/Hide Legend'> <input id="sG-legend" type="checkbox" checked data-toggle="toggle" data-on="<i class='bi bi-list-ul'></i>" data-off="<i class='bi bi-list-ul'></i>" data-size="mini" data-onstyle = "danger"></input></div>
+<div class= 'tool_tip_h' data-toggle= 'tooltip' data-placement='bottom' title= 'Show/Hide Graphs Panel'> <input id="sG" type="checkbox" data-toggle="toggle" data-on="<i class='bi bi-bar-chart-fill'></i>" data-off="<i class='bi bi-bar-chart-fill'></i>" data-size="mini" data-onstyle = "danger"></input></div>
 {% if can_block_map %}
   {% if geoEndpoint %}
-    <input id="blockPosition" type="checkbox" checked data-toggle="toggle" data-on="<span class='glyphicon glyphicon-picture'></span>" data-off="<span class='glyphicon glyphicon-picture'></span>" data-size="mini" data-onstyle = "danger"></input>
+    <input id="blockPosition" type="checkbox" checked data-toggle="toggle" data-on="<i class='bi bi-layers-half'></i>" data-off="<i class='bi bi-layers-half'></i>" data-size="mini" data-onstyle = "danger"></input>
   {% endif %}
 {% endif %}
 
@@ -44,7 +44,7 @@
 
 {% include "water_data_explorer_whos/modals/helpModal.html" %}
 <div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Help/Information">
-	<a href = "https://water-data-explorer-whos.readthedocs.io/en/latest/"><span class="glyphicon glyphicon-info-sign"></span></a>
+	<a href = "https://water-data-explorer-whos.readthedocs.io/en/latest/"><i class="bi bi-question-circle"></i></a>
 </div>
 {% endblock %}
 
