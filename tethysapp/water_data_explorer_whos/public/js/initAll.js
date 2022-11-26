@@ -150,7 +150,8 @@ var water_data_explorer_whos_PACKAGE = (function() {
           new ol.layer.Tile({
             title: 'Open Street Map',
             source: new ol.source.OSM(),
-            type: 'base'
+            type: 'base',
+            visible: false
           }),
 
           new ol.layer.Tile({
@@ -168,6 +169,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
               attributions:'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' + 'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
               url:'https://server.arcgisonline.com/ArcGIS/rest/services/' + 'World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
             }),
+            visible: false
           }),
           new ol.layer.Tile({
             title: 'ArcGIS World Imaginary Map',
@@ -176,6 +178,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
               attributions:'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' + 'rest/services/World_Imagery/MapServer">ArcGIS</a>',
               url:'https://server.arcgisonline.com/ArcGIS/rest/services/' + 'World_Imagery/MapServer/tile/{z}/{y}/{x}'
             }),
+            visible: false
           })
 
         ]
@@ -261,7 +264,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
               // interactions: ol.interaction.defaults({ dragPan: false}),
           })
 
-          map.addControl(new ol.control.LayerSwitcher());
+          map.addControl(new ol.control.LayerSwitcher({reverse:true}));
           map.addLayer(vector_layer);
           map.addLayer(shpLayer);
 
