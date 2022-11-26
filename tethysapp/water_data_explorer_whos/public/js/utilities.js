@@ -493,14 +493,14 @@ html_for_groups = function(isAdmin, title, id_group_separator){
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
 
               <input class="chkbx-layers" type="checkbox">
-              <button class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalInterface">
+              <button class="btn btn-primary btn-sm" data-toggle="modal" data-bs-dismiss="modal" data-target="#modalInterface">
                 <i class="bi bi-info-circle"></i>
               </button>
 
-              <button id="load-from-soap" class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalAddSoap">
+              <button id="load-from-soap" class="btn btn-primary btn-sm" data-toggle="modal" data-bs-dismiss="modal" data-target="#modalAddSoap">
                 <i class="bi bi-info-circle"></i>
               </button>
-              <button id="delete-server" class="btn btn-primary btn-sm" data-toggle="modal"  data-dismiss="modal" data-target="#modalDelete">
+              <button id="delete-server" class="btn btn-primary btn-sm" data-toggle="modal"  data-bs-dismiss="modal" data-target="#modalDelete">
                 <i class="bi bi-info-circle"></i>
               </button>
           </li>
@@ -533,7 +533,7 @@ html_for_groups = function(isAdmin, title, id_group_separator){
           </h4>
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
             <input class="chkbx-layers" type="checkbox">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalInterface">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-bs-dismiss="modal" data-target="#modalInterface">
               <i class="bi bi-info-circle"></i>
             </button>
           </li>
