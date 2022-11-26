@@ -1,4 +1,4 @@
-from tethys_sdk.app_settings import CustomSetting,PersistentStoreDatabaseSettingSpatialDatasetServiceSetting
+from tethys_sdk.app_settings import CustomSetting,PersistentStoreDatabaseSetting,SpatialDatasetServiceSetting
 from tethys_sdk.base import TethysAppBase, url_map_maker
 from tethys_sdk.permissions import Permission, PermissionGroup
 
