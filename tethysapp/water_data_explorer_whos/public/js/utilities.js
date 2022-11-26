@@ -485,7 +485,7 @@ html_for_groups = function(isAdmin, title, id_group_separator){
       <div class="panel panel-default" id="${title}_panel">
         <div class="panel-heading buttonAppearance" role="tab" id="heading_${title}">
           <h4 class="panel-title tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
-            <a role="button" data-bs-toggle="collapse" data-target="#collapse_${title}" href="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
+            <a role="button" data-bs-toggle="collapse" data-bs-target="#collapse_${title}" href="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
             <span class="group-name"> ${id_dictionary[title]}</span>
 
             </a>
@@ -493,14 +493,14 @@ html_for_groups = function(isAdmin, title, id_group_separator){
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
 
               <input class="chkbx-layers" type="checkbox">
-              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-target="#modalInterface">
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalInterface">
                 <i class="bi bi-info-circle"></i>
               </button>
 
-              <button id="load-from-soap" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-target="#modalAddSoap">
+              <button id="load-from-soap" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalAddSoap">
                 <i class="bi bi-info-circle"></i>
               </button>
-              <button id="delete-server" class="btn btn-primary btn-sm" data-bs-toggle="modal"  data-bs-dismiss="modal" data-target="#modalDelete">
+              <button id="delete-server" class="btn btn-primary btn-sm" data-bs-toggle="modal"  data-bs-dismiss="modal" data-bs-target="#modalDelete">
                 <i class="bi bi-info-circle"></i>
               </button>
           </li>
@@ -533,7 +533,7 @@ html_for_groups = function(isAdmin, title, id_group_separator){
           </h4>
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
             <input class="chkbx-layers" type="checkbox">
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-target="#modalInterface">
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalInterface">
               <i class="bi bi-info-circle"></i>
             </button>
           </li>
@@ -645,11 +645,11 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
        <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
       </button>
   
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-target="#modalShowVariablesTable"> 
+      <button id="${title}_variables" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
         <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
         </button>
   
-      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-target="#modalHydroserInformation">
+      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
        <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
        </button>
   
@@ -666,11 +666,11 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
 
       </button>
   
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-target="#modalShowVariablesTable"> 
+      <button id="${title}_variables" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
       <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
       </button>
   
-      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-target="#modalHydroserInformation">
+      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
        <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
       </button>
   
