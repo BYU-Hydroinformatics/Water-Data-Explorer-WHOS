@@ -155,69 +155,120 @@ give_available_services = function () {
         } catch (e) {
           console.log(e);
           $("#soapAddLoading-group").addClass("d-none");
-          $.notify(
-            {
-              message: `There was an error retrieving the different web services contained in the view`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: `There was an error retrieving the different web services contained in the view`,
+            effect: 'fade',
+            speed: 300,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          }) 
+          // $.notify(
+          //   {
+          //     message: `There was an error retrieving the different web services contained in the view`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         }
       },
       error: function (error) {
         console.log(error);
         $("#soapAddLoading-group").addClass("d-none");
-        $.notify(
-          {
-            message: `There was an error retrieving the different web services contained in the view`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: `There was an error retrieving the different web services contained in the view`,
+          effect: 'fade',
+          speed: 300,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        }) 
+        // $.notify(
+        //   {
+        //     message: `There was an error retrieving the different web services contained in the view`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       },
     });
   } catch (error) {
     $("#soapAddLoading-group").addClass("d-none");
-    $.notify(
-      {
-        message: `There was an error retriving the input data from the Web Service`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: `There was an error retrieving the different web services contained in the view`,
+      effect: 'fade',
+      speed: 300,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    }) 
+    // $.notify(
+    //   {
+    //     message: `There was an error retriving the input data from the Web Service`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-check_available_serv").on("click", give_available_services);
@@ -290,47 +341,81 @@ show_variables_groups = function () {
       } catch (e) {
         console.log(e);
         $("#KeywordLoading").addClass("d-none");
-        $.notify(
-          {
-            message: `There was an error retrieving the different variables for the selected group`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: `There was an error retriving the input data from the Web Service`,
+          effect: 'fade',
+          speed: 300,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        }) 
+        // $.notify(
+        //   {
+        //     message: `There was an error retrieving the different variables for the selected group`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       }
     },
     error: function (error) {
       console.log(e);
       $("#KeywordLoading").addClass("d-none");
-      $.notify(
-        {
-          message: `There was an error retrieving the different variables for the selected group`,
-        },
-        {
-          type: "danger",
-          allow_dismiss: true,
-          z_index: 20000,
-          delay: 5000,
-          animate: {
-            enter: "animated fadeInRight",
-            exit: "animated fadeOutRight",
-          },
-          onShow: function () {
-            this.css({ width: "auto", height: "auto" });
-          },
-        }
-      );
+      new Notify ({
+        status: 'error',
+        title: 'Error',
+        text: `There was an error retrieving the different variables for the selected group`,
+        effect: 'fade',
+        speed: 300,
+        customClass: '',
+        customIcon: '',
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        gap: 20,
+        distance: 20,
+        type: 1,
+        position: 'right top'
+      }) 
+      // $.notify(
+      //   {
+      //     message: `There was an error retrieving the different variables for the selected group`,
+      //   },
+      //   {
+      //     type: "danger",
+      //     allow_dismiss: true,
+      //     z_index: 20000,
+      //     delay: 5000,
+      //     animate: {
+      //       enter: "animated fadeInRight",
+      //       exit: "animated fadeOutRight",
+      //     },
+      //     onShow: function () {
+      //       this.css({ width: "auto", height: "auto" });
+      //     },
+      //   }
+      // );
     },
   });
 };
@@ -371,47 +456,81 @@ available_regions = function () {
       } catch (e) {
         console.log(e);
         $("#KeywordLoading").addClass("d-none");
-        $.notify(
-          {
-            message: `There was an error trying to retrieve the different countries contained by the web services in the app`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: `There was an error trying to retrieve the different countries contained by the web services in the app`,
+          effect: 'fade',
+          speed: 300,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        }) 
+        // $.notify(
+        //   {
+        //     message: `There was an error trying to retrieve the different countries contained by the web services in the app`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       }
     },
     error: function (error) {
       console.log(error);
       $("#KeywordLoading").addClass("d-none");
-      $.notify(
-        {
-          message: `There was an error trying to retrieve the different countries contained by the web services in the app`,
-        },
-        {
-          type: "danger",
-          allow_dismiss: true,
-          z_index: 20000,
-          delay: 5000,
-          animate: {
-            enter: "animated fadeInRight",
-            exit: "animated fadeOutRight",
-          },
-          onShow: function () {
-            this.css({ width: "auto", height: "auto" });
-          },
-        }
-      );
+      new Notify ({
+        status: 'error',
+        title: 'Error',
+        text: `There was an error trying to retrieve the different countries contained by the web services in the app`,
+        effect: 'fade',
+        speed: 300,
+        customClass: '',
+        customIcon: '',
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        gap: 20,
+        distance: 20,
+        type: 1,
+        position: 'right top'
+      }) 
+      // $.notify(
+      //   {
+      //     message: `There was an error trying to retrieve the different countries contained by the web services in the app`,
+      //   },
+      //   {
+      //     type: "danger",
+      //     allow_dismiss: true,
+      //     z_index: 20000,
+      //     delay: 5000,
+      //     animate: {
+      //       enter: "animated fadeInRight",
+      //       exit: "animated fadeOutRight",
+      //     },
+      //     onShow: function () {
+      //       this.css({ width: "auto", height: "auto" });
+      //     },
+      //   }
+      // );
     },
   });
 };
@@ -473,69 +592,120 @@ listener_checkbox = function (list_countries) {
         } catch (e) {
           $("#KeywordLoading").addClass("d-none");
           console.log(e);
-          $.notify(
-            {
-              message: `There was an error retrieving the different variables for the selected web service`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: `There was an error retrieving the different variables for the selected web service`,
+            effect: 'fade',
+            speed: 300,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          }) 
+          // $.notify(
+          //   {
+          //     message: `There was an error retrieving the different variables for the selected web service`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         }
       },
       error: function (error) {
         console.log(error);
         $("#KeywordLoading").addClass("d-none");
-        $.notify(
-          {
-            message: `There was an error retrieving the different variables for the selected web service`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: `There was an error retrieving the different variables for the selected web service`,
+          effect: 'fade',
+          speed: 300,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        }) 
+        // $.notify(
+        //   {
+        //     message: `There was an error retrieving the different variables for the selected web service`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       },
     });
   } catch (e) {
     $("#KeywordLoading").addClass("d-none");
-    $.notify(
-      {
-        message: `There was an error retrieving the different variables for the selected web service`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: `There was an error retrieving the different variables for the selected web service`,
+      effect: 'fade',
+      speed: 300,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    }) 
+    // $.notify(
+    //   {
+    //     message: `There was an error retrieving the different variables for the selected web service`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 
@@ -739,30 +909,66 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                     `Adding ${title_server}: ${json_response} . . .`
                   );
                   if (notifications != undefined) {
-                    notifications.update({
-                      message: `${title_server}: ${json_response} . . .`,
-                      delay: 500,
-                    });
+                    notifications.close();
+                    notifications =   new Notify ({
+                      status: 'success',
+                      title: 'Adding Stations',
+                      text: `${title_server}: ${json_response} . . .`,
+                      effect: 'fade',
+                      speed: 300,
+                      customClass: '',
+                      customIcon: '',
+                      showIcon: true,
+                      showCloseButton: true,
+                      autoclose: false,
+                      autotimeout: 3000,
+                      gap: 20,
+                      distance: 20,
+                      type: 1,
+                      position: 'right top'
+                    })
+                    // notifications.update({
+                    //   message: `${title_server}: ${json_response} . . .`,
+                    //   delay: 500,
+                    // });
                   } else {
-                    notifications = $.notify(
-                      {
-                        message: `${title_server}: 0 new sites added to the database . . .`,
-                      },
-                      {
-                        newest_on_top: true,
-                        type: "success",
-                        allow_dismiss: true,
-                        z_index: 500,
-                        delay: 0,
-                        animate: {
-                          enter: "animated fadeInRight",
-                          exit: "animated fadeOutRight",
-                        },
-                        onShow: function () {
-                          this.css({ width: "auto", height: "auto" });
-                        },
-                      }
-                    );
+
+                    notifications =   new Notify ({
+                      status: 'success',
+                      title: 'Adding Stations',
+                      text: `${title_server}: 0 new sites added to the database . . .`,
+                      effect: 'fade',
+                      speed: 300,
+                      customClass: '',
+                      customIcon: '',
+                      showIcon: true,
+                      showCloseButton: true,
+                      autoclose: false,
+                      autotimeout: 3000,
+                      gap: 20,
+                      distance: 20,
+                      type: 1,
+                      position: 'right top'
+                    })
+                    // notifications = $.notify(
+                    //   {
+                    //     message: `${title_server}: 0 new sites added to the database . . .`,
+                    //   },
+                    //   {
+                    //     newest_on_top: true,
+                    //     type: "success",
+                    //     allow_dismiss: true,
+                    //     z_index: 500,
+                    //     delay: 0,
+                    //     animate: {
+                    //       enter: "animated fadeInRight",
+                    //       exit: "animated fadeOutRight",
+                    //     },
+                    //     onShow: function () {
+                    //       this.css({ width: "auto", height: "auto" });
+                    //     },
+                    //   }
+                    // );
                   }
                 }
               },
@@ -1008,144 +1214,250 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                 });
                 urls_servers[$("#soap-title").val()] = url_to_sent;
                 getVariablesJS(url_to_sent, new_title, group_name_e3);
-
-                $.notify(
-                  {
-                    message: `Successfully Added the ${title_server} WaterOneFlow Service to the Map`,
-                  },
-                  {
-                    newest_on_top: true,
-                    type: "success",
-                    allow_dismiss: true,
-                    z_index: 20000,
-                    delay: 100,
-                    animate: {
-                      enter: "animated fadeInRight",
-                      exit: "animated fadeOutRight",
-                    },
-                    onShow: function () {
-                      this.css({ width: "auto", height: "auto" });
-                    },
-                  }
-                );
-                notifications.close();
+                if (notifications != undefined) {
+                  notifications.close();
+                  new Notify ({
+                    status: 'success',
+                    title: 'Adding Stations',
+                    text: `Successfully Added the ${title_server} WaterOneFlow Service to the Map`,
+                    effect: 'fade',
+                    speed: 300,
+                    customClass: '',
+                    customIcon: '',
+                    showIcon: true,
+                    showCloseButton: true,
+                    autoclose: true,
+                    autotimeout: 3000,
+                    gap: 20,
+                    distance: 20,
+                    type: 1,
+                    position: 'right top'
+                  })
+                }
+                // $.notify(
+                //   {
+                //     message: `Successfully Added the ${title_server} WaterOneFlow Service to the Map`,
+                //   },
+                //   {
+                //     newest_on_top: true,
+                //     type: "success",
+                //     allow_dismiss: true,
+                //     z_index: 20000,
+                //     delay: 100,
+                //     animate: {
+                //       enter: "animated fadeInRight",
+                //       exit: "animated fadeOutRight",
+                //     },
+                //     onShow: function () {
+                //       this.css({ width: "auto", height: "auto" });
+                //     },
+                //   }
+                // );
+                // notifications.close();
                 $("#soapAddLoading-group").addClass("d-none");
               } catch (err) {
                 console.log(err);
                 $("#soapAddLoading-group").addClass("d-none");
 
                 $("#btn-add-soap").show();
-                $.notify(
-                  {
-                    message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-                  },
-                  {
-                    type: "danger",
-                    allow_dismiss: true,
-                    z_index: 20000,
-                    delay: 5000,
-                    animate: {
-                      enter: "animated fadeInRight",
-                      exit: "animated fadeOutRight",
-                    },
-                    onShow: function () {
-                      this.css({ width: "auto", height: "auto" });
-                    },
-                  }
-                );
+                new Notify ({
+                  status: 'error',
+                  title: 'Error',
+                  text: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+                  effect: 'fade',
+                  speed: 300,
+                  customClass: '',
+                  customIcon: '',
+                  showIcon: true,
+                  showCloseButton: true,
+                  autoclose: true,
+                  autotimeout: 3000,
+                  gap: 20,
+                  distance: 20,
+                  type: 1,
+                  position: 'right top'
+                })
+                // $.notify(
+                //   {
+                //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+                //   },
+                //   {
+                //     type: "danger",
+                //     allow_dismiss: true,
+                //     z_index: 20000,
+                //     delay: 5000,
+                //     animate: {
+                //       enter: "animated fadeInRight",
+                //       exit: "animated fadeOutRight",
+                //     },
+                //     onShow: function () {
+                //       this.css({ width: "auto", height: "auto" });
+                //     },
+                //   }
+                // );
               }
             },
             error: function (err) {
               console.log(err);
               $("#soapAddLoading-group").addClass("d-none");
-              $.notify(
-                {
-                  message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-                },
-                {
-                  type: "danger",
-                  allow_dismiss: true,
-                  z_index: 20000,
-                  delay: 5000,
-                  animate: {
-                    enter: "animated fadeInRight",
-                    exit: "animated fadeOutRight",
-                  },
-                  onShow: function () {
-                    this.css({ width: "auto", height: "auto" });
-                  },
-                }
-              );
+              new Notify ({
+                status: 'error',
+                title: 'Error',
+                text: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+                effect: 'fade',
+                speed: 300,
+                customClass: '',
+                customIcon: '',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: 3000,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: 'right top'
+              })
+              // $.notify(
+              //   {
+              //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+              //   },
+              //   {
+              //     type: "danger",
+              //     allow_dismiss: true,
+              //     z_index: 20000,
+              //     delay: 5000,
+              //     animate: {
+              //       enter: "animated fadeInRight",
+              //       exit: "animated fadeOutRight",
+              //     },
+              //     onShow: function () {
+              //       this.css({ width: "auto", height: "auto" });
+              //     },
+              //   }
+              // );
             },
           });
         } catch (e) {
           console.log(e);
           $("#soapAddLoading-group").addClass("d-none");
-          $.notify(
-            {
-              message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+            effect: 'fade',
+            speed: 300,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          })
+          // $.notify(
+          //   {
+          //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         }
       },
 
       error: function (err) {
         console.log(err);
         $("#soapAddLoading-group").addClass("d-none");
-        $.notify(
-          {
-            message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+          effect: 'fade',
+          speed: 300,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        })
+        // $.notify(
+        //   {
+        //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       },
     });
   } catch (e) {
     console.log(e);
     $("#soapAddLoading-group").addClass("d-none");
-    $.notify(
-      {
-        message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+      effect: 'fade',
+      speed: 300,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    
+    // $.notify(
+    //   {
+    //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 
@@ -1292,25 +1604,41 @@ create_group_hydroservers = function () {
 
           $("#btn-add-addHydro").show();
           $("#soapAddLoading-group").addClass("d-none");
-
-          $.notify(
-            {
-              message: `Successfully Created Group of views to the database`,
-            },
-            {
-              type: "success",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 500,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'success',
+            title: 'Success',
+            text: 'Successfully Created Group of views to the database',
+            effect: 'fade',
+            speed: 200,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          })
+          // $.notify(
+          //   {
+          //     message: `Successfully Created Group of views to the database`,
+          //   },
+          //   {
+          //     type: "success",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 500,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
           $("#modalAddGroupServerForm").each(function () {
             this.reset();
           });
@@ -1324,71 +1652,123 @@ create_group_hydroservers = function () {
           console.log(e);
           $("soapAddLoading-group").addClass("d-none");
           $("#btn-add-addHydro").show();
-          $.notify(
-            {
-              message: `There was an error adding the group of views`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: 'There was an error adding the group of views',
+            effect: 'fade',
+            speed: 200,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          })
+          
+          // $.notify(
+          //   {
+          //     message: `There was an error adding the group of views`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         }
       },
       error: function (error) {
         console.log(error);
         $("soapAddLoading-group").addClass("d-none");
         $("#btn-add-addHydro").show();
-        $.notify(
-          {
-            message: `There was an error adding the group of views`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: 'There was an error adding the group of views',
+          effect: 'fade',
+          speed: 200,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        })
+        // $.notify(
+        //   {
+        //     message: `There was an error adding the group of views`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       },
     });
   } catch (error) {
     console.log(error);
     $("soapAddLoading-group").addClass("d-none");
-    $.notify(
-      {
-        message: `There was an error while adding the group of WaterOneFlow web services`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'There was an error while adding the group of WaterOneFlow web services',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `There was an error while adding the group of WaterOneFlow web services`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-add-addHydro").on("click", create_group_hydroservers);
@@ -1471,48 +1851,81 @@ load_group_hydroservers = function () {
       } catch (e) {
         console.log(e);
         $("#GeneralLoading").addClass("d-none");
-        $.notify(
-          {
-            message: `There was an error while loading the different Web Services`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: 'There was an error while loading the different Web Services',
+          effect: 'fade',
+          speed: 200,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        })
+        // $.notify(
+        //   {
+        //     message: `There was an error while loading the different Web Services`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       }
     },
     error: function (error) {
       console.log(error);
       $("#GeneralLoading").addClass("d-none");
-
-      $.notify(
-        {
-          message: `There was an error while loading the different Web Services`,
-        },
-        {
-          type: "danger",
-          allow_dismiss: true,
-          z_index: 20000,
-          delay: 5000,
-          animate: {
-            enter: "animated fadeInRight",
-            exit: "animated fadeOutRight",
-          },
-          onShow: function () {
-            this.css({ width: "auto", height: "auto" });
-          },
-        }
-      );
+      new Notify ({
+        status: 'error',
+        title: 'Error',
+        text: 'There was an error while loading the different Web Services',
+        effect: 'fade',
+        speed: 200,
+        customClass: '',
+        customIcon: '',
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        gap: 20,
+        distance: 20,
+        type: 1,
+        position: 'right top'
+      })
+      // $.notify(
+      //   {
+      //     message: `There was an error while loading the different Web Services`,
+      //   },
+      //   {
+      //     type: "danger",
+      //     allow_dismiss: true,
+      //     z_index: 20000,
+      //     delay: 5000,
+      //     animate: {
+      //       enter: "animated fadeInRight",
+      //       exit: "animated fadeOutRight",
+      //     },
+      //     onShow: function () {
+      //       this.css({ width: "auto", height: "auto" });
+      //     },
+      //   }
+      // );
     },
   });
 };
@@ -1557,24 +1970,41 @@ make_list_groups = function () {
     }
   } catch (error) {
     console.log(error);
-    $.notify(
-      {
-        message: `We are having an error trying to make the list of groups in the application`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having an error trying to make the list of groups in the application',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having an error trying to make the list of groups in the application`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-del-groups-f").on("click", make_list_groups);
@@ -1633,68 +2063,119 @@ get_hs_list_from_hydroserver = function () {
           }
         } catch (e) {
           console.log(e);
-          $.notify(
-            {
-              message: `We are having an error trying to get the list of servers that are in the group`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: 'We are having an error trying to get the list of servers that are in the group',
+            effect: 'fade',
+            speed: 200,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          })
+          // $.notify(
+          //   {
+          //     message: `We are having an error trying to get the list of servers that are in the group`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         }
       },
       error: function (error) {
         console.log(error);
-        $.notify(
-          {
-            message: `We are having an error trying to get the list of servers that are in the group`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: 'We are having an error trying to get the list of servers that are in the group',
+          effect: 'fade',
+          speed: 200,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        })
+        // $.notify(
+        //   {
+        //     message: `We are having an error trying to get the list of servers that are in the group`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       },
     });
   } catch (error) {
     console.log(error);
-    $.notify(
-      {
-        message: `We are having an error trying to recognize the actual group`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having an error trying to recognize the actual group',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having an error trying to recognize the actual group`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $(document).on("click", "#delete-server", get_hs_list_from_hydroserver);
@@ -1775,109 +2256,193 @@ delete_group_of_hydroservers = function () {
             }
 
             map.updateSize();
-
-            $.notify(
-              {
-                message: `Successfully Deleted Group!`,
-              },
-              {
-                type: "success",
-                allow_dismiss: true,
-                z_index: 20000,
-                delay: 5000,
-                animate: {
-                  enter: "animated fadeInRight",
-                  exit: "animated fadeOutRight",
-                },
-                onShow: function () {
-                  this.css({ width: "auto", height: "auto" });
-                },
-              }
-            );
+            new Notify ({
+              status: 'success',
+              title: 'Success',
+              text: 'Successfully Deleted Group!',
+              effect: 'fade',
+              speed: 200,
+              customClass: '',
+              customIcon: '',
+              showIcon: true,
+              showCloseButton: true,
+              autoclose: true,
+              autotimeout: 3000,
+              gap: 20,
+              distance: 20,
+              type: 1,
+              position: 'right top'
+            })
+            // $.notify(
+            //   {
+            //     message: `Successfully Deleted Group!`,
+            //   },
+            //   {
+            //     type: "success",
+            //     allow_dismiss: true,
+            //     z_index: 20000,
+            //     delay: 5000,
+            //     animate: {
+            //       enter: "animated fadeInRight",
+            //       exit: "animated fadeOutRight",
+            //     },
+            //     onShow: function () {
+            //       this.css({ width: "auto", height: "auto" });
+            //     },
+            //   }
+            // );
           } catch (e) {
             console.log(e);
-            $.notify(
-              {
-                message: `We are having an error deleting the selected groups of views`,
-              },
-              {
-                type: "danger",
-                allow_dismiss: true,
-                z_index: 20000,
-                delay: 5000,
-                animate: {
-                  enter: "animated fadeInRight",
-                  exit: "animated fadeOutRight",
-                },
-                onShow: function () {
-                  this.css({ width: "auto", height: "auto" });
-                },
-              }
-            );
+            new Notify ({
+              status: 'error',
+              title: 'Error',
+              text: 'We are having an error deleting the selected groups of views',
+              effect: 'fade',
+              speed: 200,
+              customClass: '',
+              customIcon: '',
+              showIcon: true,
+              showCloseButton: true,
+              autoclose: true,
+              autotimeout: 3000,
+              gap: 20,
+              distance: 20,
+              type: 1,
+              position: 'right top'
+            })
+            // $.notify(
+            //   {
+            //     message: `We are having an error deleting the selected groups of views`,
+            //   },
+            //   {
+            //     type: "danger",
+            //     allow_dismiss: true,
+            //     z_index: 20000,
+            //     delay: 5000,
+            //     animate: {
+            //       enter: "animated fadeInRight",
+            //       exit: "animated fadeOutRight",
+            //     },
+            //     onShow: function () {
+            //       this.css({ width: "auto", height: "auto" });
+            //     },
+            //   }
+            // );
           }
         },
         error: function (error) {
           console.log(error);
-          $.notify(
-            {
-              message: `We are having an error deleting the selected groups of views`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: 'We are having an error deleting the selected groups of views',
+            effect: 'fade',
+            speed: 200,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          })
+          // $.notify(
+          //   {
+          //     message: `We are having an error deleting the selected groups of views`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         },
       });
     } else {
-      $.notify(
-        {
-          message: `You need to select at least one group to delete`,
-        },
-        {
-          type: "info",
-          allow_dismiss: true,
-          z_index: 20000,
-          delay: 5000,
-          animate: {
-            enter: "animated fadeInRight",
-            exit: "animated fadeOutRight",
-          },
-          onShow: function () {
-            this.css({ width: "auto", height: "auto" });
-          },
-        }
-      );
+      new Notify ({
+        status: 'warning',
+        title: 'Warning',
+        text: 'You need to select at least one group to delete',
+        effect: 'fade',
+        speed: 200,
+        customClass: '',
+        customIcon: '',
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        gap: 20,
+        distance: 20,
+        type: 1,
+        position: 'right top'
+      })
+      // $.notify(
+      //   {
+      //     message: `You need to select at least one group to delete`,
+      //   },
+      //   {
+      //     type: "info",
+      //     allow_dismiss: true,
+      //     z_index: 20000,
+      //     delay: 5000,
+      //     animate: {
+      //       enter: "animated fadeInRight",
+      //       exit: "animated fadeOutRight",
+      //     },
+      //     onShow: function () {
+      //       this.css({ width: "auto", height: "auto" });
+      //     },
+      //   }
+      // );
     }
   } catch (err) {
     console.log(err);
-    $.notify(
-      {
-        message: `We are having problems tryingto recognize the actual group`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having problems trying to recognize the actual group',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having problems trying to recognize the actual group`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-del-hydro-groups").on("click", delete_group_of_hydroservers);
@@ -2143,72 +2708,121 @@ catalog_filter_regions = function () {
         } catch (e) {
           console.log(e);
           $("#KeywordLoading").addClass("d-none");
-
-          $.notify(
-            {
-              message: `Something were wrong when filtering the web services by region`,
-            },
-            {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: "animated fadeInRight",
-                exit: "animated fadeOutRight",
-              },
-              onShow: function () {
-                this.css({ width: "auto", height: "auto" });
-              },
-            }
-          );
+          new Notify ({
+            status: 'error',
+            title: 'Error',
+            text: 'Something were wrong when filtering the web services by region',
+            effect: 'fade',
+            speed: 200,
+            customClass: '',
+            customIcon: '',
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+          })
+          // $.notify(
+          //   {
+          //     message: `Something were wrong when filtering the web services by region`,
+          //   },
+          //   {
+          //     type: "danger",
+          //     allow_dismiss: true,
+          //     z_index: 20000,
+          //     delay: 5000,
+          //     animate: {
+          //       enter: "animated fadeInRight",
+          //       exit: "animated fadeOutRight",
+          //     },
+          //     onShow: function () {
+          //       this.css({ width: "auto", height: "auto" });
+          //     },
+          //   }
+          // );
         }
       },
       error: function (error) {
         console.log(error);
         $("#KeywordLoading").addClass("d-none");
-
-        $.notify(
-          {
-            message: `Something were wrong when filtering the web services by region`,
-          },
-          {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000,
-            animate: {
-              enter: "animated fadeInRight",
-              exit: "animated fadeOutRight",
-            },
-            onShow: function () {
-              this.css({ width: "auto", height: "auto" });
-            },
-          }
-        );
+        new Notify ({
+          status: 'error',
+          title: 'Error',
+          text: 'Something were wrong when filtering the web services by region',
+          effect: 'fade',
+          speed: 200,
+          customClass: '',
+          customIcon: '',
+          showIcon: true,
+          showCloseButton: true,
+          autoclose: true,
+          autotimeout: 3000,
+          gap: 20,
+          distance: 20,
+          type: 1,
+          position: 'right top'
+        })
+        // $.notify(
+        //   {
+        //     message: `Something were wrong when filtering the web services by region`,
+        //   },
+        //   {
+        //     type: "danger",
+        //     allow_dismiss: true,
+        //     z_index: 20000,
+        //     delay: 5000,
+        //     animate: {
+        //       enter: "animated fadeInRight",
+        //       exit: "animated fadeOutRight",
+        //     },
+        //     onShow: function () {
+        //       this.css({ width: "auto", height: "auto" });
+        //     },
+        //   }
+        // );
       },
     });
   } catch (error) {
     console.log(error);
     $("#KeywordLoading").addClass("d-none");
-    $.notify(
-      {
-        message: `We are having a problem trying to retrieve the regions to filter the groups`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having a problem trying to retrieve the regions to filter the groups',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having a problem trying to retrieve the regions to filter the groups`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-key-filter-only-country").on("click", catalog_filter_regions);
@@ -2382,49 +2996,81 @@ catalog_filter_vars = function () {
             } catch (error) {
               console.log(error);
               $("#KeywordLoading").addClass("d-none");
-
-              $.notify(
-                {
-                  message: `Something were wrong when filtering the web services by variable`,
-                },
-                {
-                  type: "danger",
-                  allow_dismiss: true,
-                  z_index: 20000,
-                  delay: 5000,
-                  animate: {
-                    enter: "animated fadeInRight",
-                    exit: "animated fadeOutRight",
-                  },
-                  onShow: function () {
-                    this.css({ width: "auto", height: "auto" });
-                  },
-                }
-              );
+              new Notify ({
+                status: 'error',
+                title: 'Error',
+                text: 'Something were wrong when filtering the web services by variable',
+                effect: 'fade',
+                speed: 200,
+                customClass: '',
+                customIcon: '',
+                showIcon: true,
+                showCloseButton: true,
+                autoclose: true,
+                autotimeout: 3000,
+                gap: 20,
+                distance: 20,
+                type: 1,
+                position: 'right top'
+              })
+              // $.notify(
+              //   {
+              //     message: `Something were wrong when filtering the web services by variable`,
+              //   },
+              //   {
+              //     type: "danger",
+              //     allow_dismiss: true,
+              //     z_index: 20000,
+              //     delay: 5000,
+              //     animate: {
+              //       enter: "animated fadeInRight",
+              //       exit: "animated fadeOutRight",
+              //     },
+              //     onShow: function () {
+              //       this.css({ width: "auto", height: "auto" });
+              //     },
+              //   }
+              // );
             }
           },
           error: function (error) {
             console.log(error);
             $("#KeywordLoading").addClass("d-none");
-
-            $.notify(
-              {
-                message: `Something were wrong when filtering the web services by variable`,
-              },
-              {
-                type: "danger",
-                allow_dismiss: true,
-                z_index: 20000,
-                delay: 5000,
-                animate: {
-                  enter: "animated fadeInRight",
-                  exit: "animated fadeOutRight",
-                },
-                onShow: function () {
-                  this.css({ width: "auto", height: "auto" });
-                },
-              }
-            );
+            new Notify ({
+              status: 'error',
+              title: 'Error',
+              text: 'Something were wrong when filtering the web services by variable',
+              effect: 'fade',
+              speed: 200,
+              customClass: '',
+              customIcon: '',
+              showIcon: true,
+              showCloseButton: true,
+              autoclose: true,
+              autotimeout: 3000,
+              gap: 20,
+              distance: 20,
+              type: 1,
+              position: 'right top'
+            })
+            // $.notify(
+            //   {
+            //     message: `Something were wrong when filtering the web services by variable`,
+            //   },
+            //   {
+            //     type: "danger",
+            //     allow_dismiss: true,
+            //     z_index: 20000,
+            //     delay: 5000,
+            //     animate: {
+            //       enter: "animated fadeInRight",
+            //       exit: "animated fadeOutRight",
+            //     },
+            //     onShow: function () {
+            //       this.css({ width: "auto", height: "auto" });
+            //     },
+            //   }
+            // );
           },
         });
       });
@@ -2432,24 +3078,41 @@ catalog_filter_vars = function () {
   } catch (error) {
     console.log(error);
     $("#KeywordLoading").addClass("d-none");
-    $.notify(
-      {
-        message: `We are having a problem trying to retrieve the regions to filter the groups`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having a problem trying to retrieve the regions to filter the groups',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having a problem trying to retrieve the regions to filter the groups`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-key-filter-only-variables").on("click", catalog_filter_vars);
@@ -2500,24 +3163,41 @@ reset_keywords = function () {
         });
       });
   } catch (error) {
-    $.notify(
-      {
-        message: `There is a problem reseting the fitler`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'There is a problem reseting the fitler',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `There is a problem reseting the fitler`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-r-reset").on("click", reset_keywords);
@@ -2554,24 +3234,41 @@ load_search_modal = function () {
     available_regions();
   } catch (error) {
     console.log(error);
-    $.notify(
-      {
-        message: `We are having an error trying to load the menu`,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having an error trying to load the men',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having an error trying to load the menu`,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 $("#btn-filter-groups-f").on("click", load_search_modal);
@@ -2662,24 +3359,41 @@ general_search = function (id_search_input, id_table) {
     }
   } catch (error) {
     console.log(error);
-    $.notify(
-      {
-        message: `We are having a problem trying doing the search `,
-      },
-      {
-        type: "danger",
-        allow_dismiss: true,
-        z_index: 20000,
-        delay: 5000,
-        animate: {
-          enter: "animated fadeInRight",
-          exit: "animated fadeOutRight",
-        },
-        onShow: function () {
-          this.css({ width: "auto", height: "auto" });
-        },
-      }
-    );
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: 'We are having a problem trying doing the search',
+      effect: 'fade',
+      speed: 200,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //   {
+    //     message: `We are having a problem trying doing the search `,
+    //   },
+    //   {
+    //     type: "danger",
+    //     allow_dismiss: true,
+    //     z_index: 20000,
+    //     delay: 5000,
+    //     animate: {
+    //       enter: "animated fadeInRight",
+    //       exit: "animated fadeOutRight",
+    //     },
+    //     onShow: function () {
+    //       this.css({ width: "auto", height: "auto" });
+    //     },
+    //   }
+    // );
   }
 };
 

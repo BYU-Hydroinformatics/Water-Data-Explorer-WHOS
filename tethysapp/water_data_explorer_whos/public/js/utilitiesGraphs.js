@@ -641,24 +641,41 @@ select_variable_change = function(){
                             document.body.appendChild(link);
                             link.click();
                             document.body.removeChild(link);
-                            $.notify(
-                                {
-                                    message: `Download completed for the ${object_request_graphs['variable']} variable in CSV format`
-                                },
-                                {
-                                    type: "sucess",
-                                    allow_dismiss: true,
-                                    z_index: 20000,
-                                    delay: 5000,
-                                    animate: {
-                                      enter: 'animated fadeInRight',
-                                      exit: 'animated fadeOutRight'
-                                    },
-                                    onShow: function() {
-                                        this.css({'width':'auto','height':'auto'});
-                                    }
-                                }
-                            )
+                            new Notify ({
+                              status: 'success',
+                              title: 'Success',
+                              text: `Download completed for the ${object_request_graphs['variable']} variable in CSV format`,
+                              effect: 'fade',
+                              speed: 300,
+                              customClass: '',
+                              customIcon: '',
+                              showIcon: true,
+                              showCloseButton: true,
+                              autoclose: true,
+                              autotimeout: 3000,
+                              gap: 20,
+                              distance: 20,
+                              type: 1,
+                              position: 'right top'
+                            })
+                            // $.notify(
+                            //     {
+                            //         message: `Download completed for the ${object_request_graphs['variable']} variable in CSV format`
+                            //     },
+                            //     {
+                            //         type: "sucess",
+                            //         allow_dismiss: true,
+                            //         z_index: 20000,
+                            //         delay: 5000,
+                            //         animate: {
+                            //           enter: 'animated fadeInRight',
+                            //           exit: 'animated fadeOutRight'
+                            //         },
+                            //         onShow: function() {
+                            //             this.css({'width':'auto','height':'auto'});
+                            //         }
+                            //     }
+                            // )
                           }
                           // IF TO AVOID 'WaterML1.0' VALUE IN THE DROPDOWN//
                           else if(selectedDownloadType == "WaterML1.0" ){
@@ -685,25 +702,41 @@ select_variable_change = function(){
                                 pom.classList.add('dragout');
                                 pom.click();
                                 $("#graphAddLoading").addClass("d-none");
-
-                                $.notify(
-                                    {
-                                        message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`
-                                    },
-                                    {
-                                        type: "success",
-                                        allow_dismiss: true,
-                                        z_index: 20000,
-                                        delay: 5000,
-                                        animate: {
-                                          enter: 'animated fadeInRight',
-                                          exit: 'animated fadeOutRight'
-                                        },
-                                        onShow: function() {
-                                            this.css({'width':'auto','height':'auto'});
-                                        }
-                                    }
-                                )
+                                new Notify ({
+                                  status: 'success',
+                                  title: 'Success',
+                                  text: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`,
+                                  effect: 'fade',
+                                  speed: 300,
+                                  customClass: '',
+                                  customIcon: '',
+                                  showIcon: true,
+                                  showCloseButton: true,
+                                  autoclose: true,
+                                  autotimeout: 3000,
+                                  gap: 20,
+                                  distance: 20,
+                                  type: 1,
+                                  position: 'right top'
+                                })
+                                // $.notify(
+                                //     {
+                                //         message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`
+                                //     },
+                                //     {
+                                //         type: "success",
+                                //         allow_dismiss: true,
+                                //         z_index: 20000,
+                                //         delay: 5000,
+                                //         animate: {
+                                //           enter: 'animated fadeInRight',
+                                //           exit: 'animated fadeOutRight'
+                                //         },
+                                //         onShow: function() {
+                                //             this.css({'width':'auto','height':'auto'});
+                                //         }
+                                //     }
+                                // )
                             }).
                             catch(error =>{
 
@@ -727,48 +760,80 @@ select_variable_change = function(){
                                    pom.classList.add('dragout');
                                    pom.click();
                                    $("#graphAddLoading").addClass("d-none");
-
-                                   $.notify(
-                                       {
-                                           message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`
-                                       },
-                                       {
-                                           type: "success",
-                                           allow_dismiss: true,
-                                           z_index: 20000,
-                                           delay: 5000,
-                                           animate: {
-                                             enter: 'animated fadeInRight',
-                                             exit: 'animated fadeOutRight'
-                                           },
-                                           onShow: function() {
-                                               this.css({'width':'auto','height':'auto'});
-                                           }
-                                       }
-                                   )
+                                   new Notify ({
+                                    status: 'success',
+                                    title: 'Success',
+                                    text: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`,
+                                    effect: 'fade',
+                                    speed: 300,
+                                    customClass: '',
+                                    customIcon: '',
+                                    showIcon: true,
+                                    showCloseButton: true,
+                                    autoclose: true,
+                                    autotimeout: 3000,
+                                    gap: 20,
+                                    distance: 20,
+                                    type: 1,
+                                    position: 'right top'
+                                  })
+                                  //  $.notify(
+                                  //      {
+                                  //          message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`
+                                  //      },
+                                  //      {
+                                  //          type: "success",
+                                  //          allow_dismiss: true,
+                                  //          z_index: 20000,
+                                  //          delay: 5000,
+                                  //          animate: {
+                                  //            enter: 'animated fadeInRight',
+                                  //            exit: 'animated fadeOutRight'
+                                  //          },
+                                  //          onShow: function() {
+                                  //              this.css({'width':'auto','height':'auto'});
+                                  //          }
+                                  //      }
+                                  //  )
 
                                  },
                                  error:function(){
                                    $("#graphAddLoading").addClass("d-none");
-
-                                   $.notify(
-                                       {
-                                           message: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 1.0 format`
-                                       },
-                                       {
-                                           type: "danger",
-                                           allow_dismiss: true,
-                                           z_index: 20000,
-                                           delay: 5000,
-                                           animate: {
-                                             enter: 'animated fadeInRight',
-                                             exit: 'animated fadeOutRight'
-                                           },
-                                           onShow: function() {
-                                               this.css({'width':'auto','height':'auto'});
-                                           }
-                                       }
-                                   )
+                                   new Notify ({
+                                    status: 'error',
+                                    title: 'Error',
+                                    text: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 1.0 format`,
+                                    effect: 'fade',
+                                    speed: 300,
+                                    customClass: '',
+                                    customIcon: '',
+                                    showIcon: true,
+                                    showCloseButton: true,
+                                    autoclose: true,
+                                    autotimeout: 3000,
+                                    gap: 20,
+                                    distance: 20,
+                                    type: 1,
+                                    position: 'right top'
+                                  })
+                                  //  $.notify(
+                                  //      {
+                                  //          message: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 1.0 format`
+                                  //      },
+                                  //      {
+                                  //          type: "danger",
+                                  //          allow_dismiss: true,
+                                  //          z_index: 20000,
+                                  //          delay: 5000,
+                                  //          animate: {
+                                  //            enter: 'animated fadeInRight',
+                                  //            exit: 'animated fadeOutRight'
+                                  //          },
+                                  //          onShow: function() {
+                                  //              this.css({'width':'auto','height':'auto'});
+                                  //          }
+                                  //      }
+                                  //  )
                                  }
 
 
@@ -799,25 +864,41 @@ select_variable_change = function(){
                                 pom.classList.add('dragout');
                                 pom.click();
                                 $("#graphAddLoading").addClass("d-none");
-
-                                $.notify(
-                                    {
-                                        message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 2.0 format`
-                                    },
-                                    {
-                                        type: "success",
-                                        allow_dismiss: true,
-                                        z_index: 20000,
-                                        delay: 5000,
-                                        animate: {
-                                          enter: 'animated fadeInRight',
-                                          exit: 'animated fadeOutRight'
-                                        },
-                                        onShow: function() {
-                                            this.css({'width':'auto','height':'auto'});
-                                        }
-                                    }
-                                )
+                                new Notify ({
+                                  status: 'success',
+                                  title: 'Success',
+                                  text: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 2.0 format`,
+                                  effect: 'fade',
+                                  speed: 300,
+                                  customClass: '',
+                                  customIcon: '',
+                                  showIcon: true,
+                                  showCloseButton: true,
+                                  autoclose: true,
+                                  autotimeout: 3000,
+                                  gap: 20,
+                                  distance: 20,
+                                  type: 1,
+                                  position: 'right top'
+                                })
+                                // $.notify(
+                                //     {
+                                //         message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 2.0 format`
+                                //     },
+                                //     {
+                                //         type: "success",
+                                //         allow_dismiss: true,
+                                //         z_index: 20000,
+                                //         delay: 5000,
+                                //         animate: {
+                                //           enter: 'animated fadeInRight',
+                                //           exit: 'animated fadeOutRight'
+                                //         },
+                                //         onShow: function() {
+                                //             this.css({'width':'auto','height':'auto'});
+                                //         }
+                                //     }
+                                // )
                             }).
                             catch(error =>{ console
                               try{
@@ -834,47 +915,79 @@ select_variable_change = function(){
 
 
                                 $("#graphAddLoading").addClass("d-none");
-
-                                $.notify(
-                                    {
-                                        message: `There Service ${object_request_variable['hs_url']} does not provide WaterML 2.0 downloads, but the WDE provides ones `
-                                    },
-                                    {
-                                        type: "success",
-                                        allow_dismiss: true,
-                                        z_index: 20000,
-                                        delay: 5000,
-                                        animate: {
-                                          enter: 'animated fadeInRight',
-                                          exit: 'animated fadeOutRight'
-                                        },
-                                        onShow: function() {
-                                            this.css({'width':'auto','height':'auto'});
-                                        }
-                                    }
-                                )
+                                new Notify ({
+                                  status: 'success',
+                                  title: 'Success',
+                                  text: `There Service ${object_request_variable['hs_url']} does not provide WaterML 2.0 downloads, but the WDE provides ones`,
+                                  effect: 'fade',
+                                  speed: 300,
+                                  customClass: '',
+                                  customIcon: '',
+                                  showIcon: true,
+                                  showCloseButton: true,
+                                  autoclose: true,
+                                  autotimeout: 3000,
+                                  gap: 20,
+                                  distance: 20,
+                                  type: 1,
+                                  position: 'right top'
+                                })
+                                // $.notify(
+                                //     {
+                                //         message: `There Service ${object_request_variable['hs_url']} does not provide WaterML 2.0 downloads, but the WDE provides ones `
+                                //     },
+                                //     {
+                                //         type: "success",
+                                //         allow_dismiss: true,
+                                //         z_index: 20000,
+                                //         delay: 5000,
+                                //         animate: {
+                                //           enter: 'animated fadeInRight',
+                                //           exit: 'animated fadeOutRight'
+                                //         },
+                                //         onShow: function() {
+                                //             this.css({'width':'auto','height':'auto'});
+                                //         }
+                                //     }
+                                // )
                               }
                               catch(e){
                                 $("#graphAddLoading").addClass("d-none");
-
-                                $.notify(
-                                    {
-                                        message: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 2.0 format`
-                                    },
-                                    {
-                                        type: "danger",
-                                        allow_dismiss: true,
-                                        z_index: 20000,
-                                        delay: 5000,
-                                        animate: {
-                                          enter: 'animated fadeInRight',
-                                          exit: 'animated fadeOutRight'
-                                        },
-                                        onShow: function() {
-                                            this.css({'width':'auto','height':'auto'});
-                                        }
-                                    }
-                                )
+                                new Notify ({
+                                  status: 'error',
+                                  title: 'Error',
+                                  text: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 2.0 format`,
+                                  effect: 'fade',
+                                  speed: 300,
+                                  customClass: '',
+                                  customIcon: '',
+                                  showIcon: true,
+                                  showCloseButton: true,
+                                  autoclose: true,
+                                  autotimeout: 3000,
+                                  gap: 20,
+                                  distance: 20,
+                                  type: 1,
+                                  position: 'right top'
+                                })
+                                // $.notify(
+                                //     {
+                                //         message: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 2.0 format`
+                                //     },
+                                //     {
+                                //         type: "danger",
+                                //         allow_dismiss: true,
+                                //         z_index: 20000,
+                                //         delay: 5000,
+                                //         animate: {
+                                //           enter: 'animated fadeInRight',
+                                //           exit: 'animated fadeOutRight'
+                                //         },
+                                //         onShow: function() {
+                                //             this.css({'width':'auto','height':'auto'});
+                                //         }
+                                //     }
+                                // )
                               }
 
                             });
@@ -901,47 +1014,79 @@ select_variable_change = function(){
                                 pom.classList.add('dragout');
                                 pom.click();
                                 $("#graphAddLoading").addClass("d-none");
-
-                                $.notify(
-                                    {
-                                        message: `Download completed for the ${object_request_graphs['variable']} variable in NetCDF format`
-                                    },
-                                    {
-                                        type: "success",
-                                        allow_dismiss: true,
-                                        z_index: 20000,
-                                        delay: 5000,
-                                        animate: {
-                                          enter: 'animated fadeInRight',
-                                          exit: 'animated fadeOutRight'
-                                        },
-                                        onShow: function() {
-                                            this.css({'width':'auto','height':'auto'});
-                                        }
-                                    }
-                                )
+                                new Notify ({
+                                  status: 'success',
+                                  title: 'Success',
+                                  text: `Download completed for the ${object_request_graphs['variable']} variable in NetCDF format`,
+                                  effect: 'fade',
+                                  speed: 300,
+                                  customClass: '',
+                                  customIcon: '',
+                                  showIcon: true,
+                                  showCloseButton: true,
+                                  autoclose: true,
+                                  autotimeout: 3000,
+                                  gap: 20,
+                                  distance: 20,
+                                  type: 1,
+                                  position: 'right top'
+                                })
+                                // $.notify(
+                                //     {
+                                //         message: `Download completed for the ${object_request_graphs['variable']} variable in NetCDF format`
+                                //     },
+                                //     {
+                                //         type: "success",
+                                //         allow_dismiss: true,
+                                //         z_index: 20000,
+                                //         delay: 5000,
+                                //         animate: {
+                                //           enter: 'animated fadeInRight',
+                                //           exit: 'animated fadeOutRight'
+                                //         },
+                                //         onShow: function() {
+                                //             this.css({'width':'auto','height':'auto'});
+                                //         }
+                                //     }
+                                // )
                             }).
                             catch(error =>{ console
                               $("#graphAddLoading").addClass("d-none");
-
-                              $.notify(
-                                  {
-                                      message: `There Service ${object_request_variable['hs_url']} does not provide NetCDF downloads`
-                                  },
-                                  {
-                                      type: "danger",
-                                      allow_dismiss: true,
-                                      z_index: 20000,
-                                      delay: 5000,
-                                      animate: {
-                                        enter: 'animated fadeInRight',
-                                        exit: 'animated fadeOutRight'
-                                      },
-                                      onShow: function() {
-                                          this.css({'width':'auto','height':'auto'});
-                                      }
-                                  }
-                              )
+                              new Notify ({
+                                status: 'error',
+                                title: 'Error',
+                                text: `The Service ${object_request_variable['hs_url']} does not provide NetCDF downloads`,
+                                effect: 'fade',
+                                speed: 300,
+                                customClass: '',
+                                customIcon: '',
+                                showIcon: true,
+                                showCloseButton: true,
+                                autoclose: true,
+                                autotimeout: 3000,
+                                gap: 20,
+                                distance: 20,
+                                type: 1,
+                                position: 'right top'
+                              })   
+                              // $.notify(
+                              //     {
+                              //         message: `The Service ${object_request_variable['hs_url']} does not provide NetCDF downloads`
+                              //     },
+                              //     {
+                              //         type: "danger",
+                              //         allow_dismiss: true,
+                              //         z_index: 20000,
+                              //         delay: 5000,
+                              //         animate: {
+                              //           enter: 'animated fadeInRight',
+                              //           exit: 'animated fadeOutRight'
+                              //         },
+                              //         onShow: function() {
+                              //             this.css({'width':'auto','height':'auto'});
+                              //         }
+                              //     }
+                              // )
                             });
                           }
                         }
@@ -949,25 +1094,41 @@ select_variable_change = function(){
                       catch(e){
                         console.log(e);
                         $("#graphAddLoading").addClass("d-none");
-
-                        $.notify(
-                            {
-                                message: `There was a problem downloading the file for the Service ${object_request_variable['hs_url']}`
-                            },
-                            {
-                                type: "danger",
-                                allow_dismiss: true,
-                                z_index: 20000,
-                                delay: 5000,
-                                animate: {
-                                  enter: 'animated fadeInRight',
-                                  exit: 'animated fadeOutRight'
-                                },
-                                onShow: function() {
-                                    this.css({'width':'auto','height':'auto'});
-                                }
-                            }
-                        )
+                        new Notify ({
+                          status: 'error',
+                          title: 'Error',
+                          text: `There was a problem downloading the file for the Service ${object_request_variable['hs_url']}`,
+                          effect: 'fade',
+                          speed: 300,
+                          customClass: '',
+                          customIcon: '',
+                          showIcon: true,
+                          showCloseButton: true,
+                          autoclose: true,
+                          autotimeout: 3000,
+                          gap: 20,
+                          distance: 20,
+                          type: 1,
+                          position: 'right top'
+                        })   
+                        // $.notify(
+                        //     {
+                        //         message: `There was a problem downloading the file for the Service ${object_request_variable['hs_url']}`
+                        //     },
+                        //     {
+                        //         type: "danger",
+                        //         allow_dismiss: true,
+                        //         z_index: 20000,
+                        //         delay: 5000,
+                        //         animate: {
+                        //           enter: 'animated fadeInRight',
+                        //           exit: 'animated fadeOutRight'
+                        //         },
+                        //         onShow: function() {
+                        //             this.css({'width':'auto','height':'auto'});
+                        //         }
+                        //     }
+                        // )
                       }
 
                     }
@@ -988,48 +1149,82 @@ select_variable_change = function(){
                  let title_graph=  `${object_request_graphs['site_name']} - ${selectedItemText} No Data Available`
                  initialize_graphs([],[],title_graph,"","","","scatter");
                  $("#graphAddLoading").addClass("d-none")
-                 $.notify(
-                     {
-                         message: `The variable does not contain any data, Sorry`
-                     },
-                     {
-                         type: "info",
-                         allow_dismiss: true,
-                         z_index: 20000,
-                         delay: 5000,
-                         animate: {
-                           enter: 'animated fadeInRight',
-                           exit: 'animated fadeOutRight'
-                         },
-                         onShow: function() {
-                             this.css({'width':'auto','height':'auto'});
-                         }
-                     }
-                 )
+                 new Notify ({
+                  status: 'warning',
+                  title: 'Warning',
+                  text: `There is no data for this variable, Sorry`,
+                  effect: 'fade',
+                  speed: 300,
+                  customClass: '',
+                  customIcon: '',
+                  showIcon: true,
+                  showCloseButton: true,
+                  autoclose: true,
+                  autotimeout: 3000,
+                  gap: 20,
+                  distance: 20,
+                  type: 1,
+                  position: 'right top'
+                })  
+                //  $.notify(
+                //      {
+                //          message: `The variable does not contain any data, Sorry`
+                //      },
+                //      {
+                //          type: "info",
+                //          allow_dismiss: true,
+                //          z_index: 20000,
+                //          delay: 5000,
+                //          animate: {
+                //            enter: 'animated fadeInRight',
+                //            exit: 'animated fadeOutRight'
+                //          },
+                //          onShow: function() {
+                //              this.css({'width':'auto','height':'auto'});
+                //          }
+                //      }
+                //  )
 
                }
               }
               catch(e){
                 console.log(e);
                 $("#graphAddLoading").addClass("d-none")
-                $.notify(
-                    {
-                        message: `Unable to retrieve the data for the selected variable`
-                    },
-                    {
-                        type: "danger",
-                        allow_dismiss: true,
-                        z_index: 20000,
-                        delay: 5000,
-                        animate: {
-                          enter: 'animated fadeInRight',
-                          exit: 'animated fadeOutRight'
-                        },
-                        onShow: function() {
-                            this.css({'width':'auto','height':'auto'});
-                        }
-                    }
-                )
+                new Notify ({
+                  status: 'error',
+                  title: 'Error',
+                  text: `Unable to retrieve the data for the selected variable`,
+                  effect: 'fade',
+                  speed: 300,
+                  customClass: '',
+                  customIcon: '',
+                  showIcon: true,
+                  showCloseButton: true,
+                  autoclose: true,
+                  autotimeout: 3000,
+                  gap: 20,
+                  distance: 20,
+                  type: 1,
+                  position: 'right top'
+                }) 
+                // $.notify(
+                //     {
+                //         message: `Unable to retrieve the data for the selected variable`
+                //     },
+                //     {
+                //         type: "danger",
+                //         allow_dismiss: true,
+                //         z_index: 20000,
+                //         delay: 5000,
+                //         animate: {
+                //           enter: 'animated fadeInRight',
+                //           exit: 'animated fadeOutRight'
+                //         },
+                //         onShow: function() {
+                //             this.css({'width':'auto','height':'auto'});
+                //         }
+                //     }
+                // )
               }
 
            },
@@ -1039,24 +1234,41 @@ select_variable_change = function(){
              No Data Available`
              initialize_graphs([],[],title_graph,"","","","scatter");
              $("#graphAddLoading").addClass("d-none")
-             $.notify(
-                 {
-                     message: `There is an error retrieving the values for the ${selectedItem} variable `
-                 },
-                 {
-                     type: "danger",
-                     allow_dismiss: true,
-                     z_index: 20000,
-                     delay: 5000,
-                     animate: {
-                       enter: 'animated fadeInRight',
-                       exit: 'animated fadeOutRight'
-                     },
-                     onShow: function() {
-                         this.css({'width':'auto','height':'auto'});
-                     }
-                 }
-             )
+             new Notify ({
+              status: 'error',
+              title: 'Error',
+              text: `There is an error retrieving the values for the ${selectedItem} variable`,
+              effect: 'fade',
+              speed: 300,
+              customClass: '',
+              customIcon: '',
+              showIcon: true,
+              showCloseButton: true,
+              autoclose: true,
+              autotimeout: 3000,
+              gap: 20,
+              distance: 20,
+              type: 1,
+              position: 'right top'
+            }) 
+            //  $.notify(
+            //      {
+            //          message: `There is an error retrieving the values for the ${selectedItem} variable `
+            //      },
+            //      {
+            //          type: "danger",
+            //          allow_dismiss: true,
+            //          z_index: 20000,
+            //          delay: 5000,
+            //          animate: {
+            //            enter: 'animated fadeInRight',
+            //            exit: 'animated fadeOutRight'
+            //          },
+            //          onShow: function() {
+            //              this.css({'width':'auto','height':'auto'});
+            //          }
+            //      }
+            //  )
            }
 
           })
@@ -1065,24 +1277,41 @@ select_variable_change = function(){
     }
     catch(e){
       console.log(e);
-      $.notify(
-          {
-              message: `Unable to retrieve the data for the selected variable`
-          },
-          {
-              type: "danger",
-              allow_dismiss: true,
-              z_index: 20000,
-              delay: 5000,
-              animate: {
-                enter: 'animated fadeInRight',
-                exit: 'animated fadeOutRight'
-              },
-              onShow: function() {
-                  this.css({'width':'auto','height':'auto'});
-              }
-          }
-      )
+      new Notify ({
+        status: 'error',
+        title: 'Error',
+        text: `Unable to retrieve the data for the selected variable`,
+        effect: 'fade',
+        speed: 300,
+        customClass: '',
+        customIcon: '',
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        gap: 20,
+        distance: 20,
+        type: 1,
+        position: 'right top'
+      })
+      // $.notify(
+      //     {
+      //         message: `Unable to retrieve the data for the selected variable`
+      //     },
+      //     {
+      //         type: "danger",
+      //         allow_dismiss: true,
+      //         z_index: 20000,
+      //         delay: 5000,
+      //         animate: {
+      //           enter: 'animated fadeInRight',
+      //           exit: 'animated fadeOutRight'
+      //         },
+      //         onShow: function() {
+      //             this.css({'width':'auto','height':'auto'});
+      //         }
+      //     }
+      // )
     }
   }
 
