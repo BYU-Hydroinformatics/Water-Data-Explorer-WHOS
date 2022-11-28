@@ -549,10 +549,10 @@ html_for_groups = function(isAdmin, title, id_group_separator){
               </button>
 
               <button id="load-from-soap" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalAddSoap">
-                <i class="bi bi-info-circle"></i>
+                <i class="bi bi-plus-lg"></i>
               </button>
               <button id="delete-server" class="btn btn-primary btn-sm" data-bs-toggle="modal"  data-bs-dismiss="modal" data-bs-target="#modalDelete">
-                <i class="bi bi-info-circle"></i>
+                <i class="bi bi-trash"></i>
               </button>
           </li>
 
