@@ -1,131 +1,69 @@
-{% load staticfiles %}
+{% load static %}
 
-<div id="modalHydroserInformation" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content myModal">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          &times;
-        </button>
-        <h1 id="hydroserverTitle">WaterOneFlow Web Service Information</h1>
-      </div>
-      <div class="modal-body">
-        <p class="hsinfo">
-          Endpoint/URL
-          <span>
-            <button
-              onclick="copyToClipboard('#urlHydroserver')"
-              class="btn btn-light btn-sm tool_tip_h"
-              data-toggle="tooltip"
-              title="copy"
-            >
-              <span class="glyphicon glyphicon-copy"></span></button
-          ></span>
-        </p>
-        <p id="urlHydroserver"></p>
-        <p>
-          <em>
-            In order to make the endpoint operational, users should complete it
-            with a Personal Token Identifier generated after the
-            <a
-              href="https://whos.geodab.eu/gs-service/whos/registration.html"
-              target="_blank"
-              >WHOS User Registration</a
-            >.
-          </em>
-        </p>
-        <div class="image_button">
-          <p class="hsinfo">Analysis Tools</p>
-          <p>
-            The Water Data Explorer application uses a python package called
-            "Pywaterml". The Pywaterml allows to access WaterOneFlow (WOF) web
-            services and retrieve information in different formats.
-          </p>
+<div id="modalHydroserInformation" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content myModal">
+            <div class="modal-header">
+                <h5 id="hydroserverTitle" align="center"> WaterOneFlow Web Service Information </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="hsinfo">Description</p>
+                <p id="description_Hydroserver"></p>
+                <p class="hsinfo"> Endpoint/URL </p>
+                <span id="urlHydroserver"></span> <span> <button onclick="copyToClipboard('#urlHydroserver')" class="btn btn-light btn-sm tool_tip_h" data-bs-toggle="tooltip" title="copy"> 
+                  <i class="bi bi-clipboard"></i>
+                </button></span>
 
-          <span class="hsinfo"> Documentation </span>
-          <span>
-            <a
-              href="https://gist.github.com/romer8/2ea44f0a9536e4cdad8ed7242ca27933"
-              target="_blank"
-              class="tool_tip_h"
-              data-toggle="tooltip"
-              title="Google Colab Pywaterml Tutorial"
-            >
-              <img
-                src="{% static 'water_data_explorer_whos/images/colab_icon.png' %}"
-                alt="google_colab"
-              />
-            </a>
-          </span>
-          <span>
-            <a
-              href="https://pywaterml.readthedocs.io/en/latest/"
-              target="_blank"
-              class="tool_tip_h"
-              data-toggle="tooltip"
-              title="Pywaterml Documentation"
-            >
-              <button id="btn-download-colab" class="btn btn-light">
-                <span class="glyphicon glyphicon-book"></span>
-              </button>
-            </a>
-          </span>
-          <br />
-          <br />
-          <span class="hsinfo"> Python Notebooks </span>
-          <span>
-            <a
-              href="https://gist.github.com/romer8/89c851014afb276b0f20cb61c9c731f6"
-              target="_blank"
-              class="tool_tip_h"
-              data-toggle="tooltip"
-              title="Open in Google Colab"
-            >
-              <img
-                src="{% static 'water_data_explorer_whos/images/colab_icon.png' %}"
-                alt="google_colab"
-              />
-            </a>
-          </span>
-          <span
-            class="tool_tip_h"
-            data-toggle="tooltip"
-            title="Download Notebook"
-          >
-            <button
-              id="btn-download-colab"
-              class="btn btn-light"
-              data-toggle="modal"
-              data-target="#modalPrompDownload"
-            >
-              <span class="glyphicon glyphicon-download"></span>
-            </button>
-          </span>
+                <div class="image_button">
+                  <h3>Analysis Tools</h3>
+                  <p>The Water Data Explorer application uses a python package called "Pywaterml". The Pywaterml allows to access WaterOneFlow (WOF) web services
+                   and retrieve information in different formats. </p>
+
+                   <span class="hsinfo"> Documentation </span>
+                   <span>
+                     <a href="https://gist.github.com/romer8/2ea44f0a9536e4cdad8ed7242ca27933" target="_blank" class="tool_tip_h" data-bs-toggle="tooltip" title="Google Colab Pywaterml Tutorial">
+                       <img src="{% static 'water_data_explorer_whos/images/colab_icon.png' %}" alt="google_colab" />
+                     </a>
+                   </span>
+                   <span>
+                        <a href="https://pywaterml.readthedocs.io/en/latest/" target="_blank" class="tool_tip_h" data-bs-toggle="tooltip" title="Pywaterml Documentation">
+                          <button id="btn-download-colab" class="btn btn-light" > 
+                            <i class="bi bi-journals"></i>
+                          </button>
+                        </a>
+                   </span>
+                   <br>
+                   <br>
+                  <span class="hsinfo"> Python Notebooks </span>
+                  <span>
+
+                    <a href="https://gist.github.com/romer8/89c851014afb276b0f20cb61c9c731f6" target="_blank" class="tool_tip_h" data-bs-toggle="tooltip" title="Open in Google Colab">
+                      <img src="{% static 'water_data_explorer_whos/images/colab_icon.png' %}" alt="google_colab" />
+                    </a>
+                  </span>
+                  <span class="tool_tip_h" data-bs-toggle="tooltip" title="Download Notebook">
+                    <button id="btn-download-colab" class="btn btn-light"  data-bs-toggle="modal" data-bs-target="#modalPrompDownload" > 
+                      <i class="bi bi-download"></i>
+                    </button>
+                  </span>
+                </div>
+
+                <br>
+                <h2 class="hsinfo">Explore Stations/Platforms: </h2>
+                <div id="map2">
+                </div>
+                <br>
+                <p class="hsinfo">List of Stations/Platforms:</p>
+                <input type="text" id="myInput" placeholder="Search for Stations/Platforms names" title="Type in a name">
+                <div id="infoTable">
+
+                </div>
+                <div class="success"></div>
+            </div>
         </div>
-
-        <br />
-        <h2 class="hsinfo">Explore Stations/Platforms:</h2>
-        <div id="map2"></div>
-        <br />
-        <p class="hsinfo">List of Stations/Platforms:</p>
-        <input
-          type="text"
-          id="myInput"
-          placeholder="Search for Stations/Platforms names"
-          title="Type in a name"
-        />
-        <div id="infoTable"></div>
-        <div class="success"></div>
-      </div>
     </div>
-  </div>
 </div>
-<link
-  href="{% static 'water_data_explorer_whos/vendor/openlayers/ol.css' %}"
-  rel="stylesheet"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css">
 
-<script
-  src="{% static 'water_data_explorer_whos/vendor/openlayers/ol.js' %}"
-  type="text/javascript"
-></script>
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>

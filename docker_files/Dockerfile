@@ -1,4 +1,5 @@
-FROM tethysplatform/tethys-core:3.4.1
+FROM tethysplatform/tethys-core:4.0.0-rc.5
+
 #########
 # SETUP #
 #########
@@ -15,7 +16,7 @@ RUN apt-get update --allow-releaseinfo-change -qq && apt-get -yqq install apt-ut
 RUN mkdir -p $HOME/.config/pip && echo "[global]\nquiet = True" > $HOME/.config/pip/pip.conf
 
 # # Clone repository
-RUN mkdir /tethys_apps && cd /tethys_apps && git clone https://github.com/BYU-Hydroinformatics/Water-Data-Explorer-WHOS.git
+RUN mkdir /tethys_apps && cd /tethys_apps && git clone https://github.com/Aquaveo/Water-Data-Explorer-WHOS.git
 
 RUN mkdir -p ${TETHYS_PERSIST}/keys
 # ###########
@@ -53,6 +54,13 @@ RUN export NGINX_USER=$(grep 'user .*;' /etc/nginx/nginx.conf | awk '{print $2}'
 # CONFIGURE ENVIRONMENT #
 #########################
 EXPOSE 80
+
+##########################
+# ADD THE EXTRA MIDDLEWARE 
+##########################
+
+ADD custom_middleware.py /usr/lib/tethys/tethys/tethys_portal/
+
 
 
 ######################################################

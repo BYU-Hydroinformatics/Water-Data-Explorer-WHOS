@@ -1,8 +1,4 @@
-from tethys_sdk.app_settings import (
-    CustomSetting,
-    PersistentStoreDatabaseSetting,
-    SpatialDatasetServiceSetting,
-)
+from tethys_sdk.app_settings import CustomSetting,PersistentStoreDatabaseSetting,SpatialDatasetServiceSetting
 from tethys_sdk.base import TethysAppBase, url_map_maker
 from tethys_sdk.permissions import Permission, PermissionGroup
 
@@ -13,7 +9,7 @@ class WaterDataExplorer(TethysAppBase):
     """
 
     name = "Water Data Explorer"
-    index = "water_data_explorer_whos:home"
+    index = "home"
     icon = "water_data_explorer_whos/images/wde.png"
     package = "water_data_explorer_whos"
     root_url = "water-data-explorer-whos"
@@ -24,122 +20,122 @@ class WaterDataExplorer(TethysAppBase):
     tags = '"Hydrology", "WMO", "BYU"'
     enable_feedback = False
     feedback_emails = []
+    controller_modules = ["startAll", "endpoints", "groups" ]
+    # def url_maps(self):
+    #     """
+    #     Add controllers
+    #     """
+    #     UrlMap = url_map_maker(self.root_url)
 
-    def url_maps(self):
-        """
-        Add controllers
-        """
-        UrlMap = url_map_maker(self.root_url)
+    #     url_maps = (
+    #         UrlMap(
+    #             name="home",
+    #             url="water-data-explorer-whos",
+    #             controller="water_data_explorer_whos.startAll.home",
+    #         ),
+    #         UrlMap(
+    #             name="create-group",
+    #             url="create-group/",
+    #             controller="water_data_explorer_whos.groups.create_group",
+    #         ),
+    #         UrlMap(
+    #             name="load-groups",
+    #             url="load-groups/",
+    #             controller="water_data_explorer_whos.groups.get_groups_list",
+    #         ),
+    #         UrlMap(
+    #             name="add-hydrosever-groups",
+    #             url="soap-group/",
+    #             controller="water_data_explorer_whos.endpoints.soap_group",
+    #         ),
+    #         UrlMap(
+    #             name="update-hydrosever-groups",
+    #             url="soap-update/",
+    #             controller="water_data_explorer_whos.endpoints.upload_hs",
+    #         ),
+    #         UrlMap(
+    #             name="save-sites",
+    #             url="save-sites/",
+    #             controller="water_data_explorer_whos.endpoints.save_sites_data",
+    #         ),
+    #         UrlMap(
+    #             name="save-new-sites",
+    #             url="save_new_sites/",
+    #             controller="water_data_explorer_whos.endpoints.save_new_sites_data",
+    #         ),
+    #         UrlMap(
+    #             name="save-stream",
+    #             url="save_stream/",
+    #             controller="water_data_explorer_whos.endpoints.save_only_sites_stream",
+    #         ),
+    #         UrlMap(
+    #             name="save-variables",
+    #             url="save-variables/",
+    #             controller="water_data_explorer_whos.endpoints.save_variables_data",
+    #         ),
+    #         UrlMap(
+    #             name="load-hydroserver-of-groups",
+    #             url="catalog-group/",
+    #             controller="water_data_explorer_whos.groups.catalog_group",
+    #         ),
+    #         UrlMap(
+    #             name="delete-group-hydroserver",
+    #             url="delete-group-hydroserver/",
+    #             controller="water_data_explorer_whos.endpoints.delete_group_hydroserver",
+    #         ),
+    #         UrlMap(
+    #             name="delete-group",
+    #             url="delete-group/",
+    #             controller="water_data_explorer_whos.groups.delete_group",
+    #         ),
+    #         UrlMap(
+    #             name="keyword-group",
+    #             url="keyword-group",
+    #             controller="water_data_explorer_whos.groups.keyWordsForGroup",
+    #         ),
+    #         UrlMap(
+    #             name="get-variables-hs",
+    #             url="get-variables-hs/",
+    #             controller="water_data_explorer_whos.endpoints.get_variables_hs",
+    #         ),
+    #         UrlMap(
+    #             name="get-available-sites",
+    #             url="get-available-sites/",
+    #             controller="water_data_explorer_whos.endpoints.get_available_sites",
+    #         ),
+    #         UrlMap(
+    #             name="get-hydroserver-info",
+    #             url="get-hydroserver-info/",
+    #             controller="water_data_explorer_whos.endpoints.get_hydroserver_info",
+    #         ),
+    #         UrlMap(
+    #             name="available-variables",
+    #             url="available-variables/",
+    #             controller="water_data_explorer_whos.groups.available_variables",
+    #         ),
+    #         UrlMap(
+    #             name="available-regions",
+    #             url="available-regions/",
+    #             controller="water_data_explorer_whos.groups.available_regions",
+    #         ),
+    #         UrlMap(
+    #             name="catalog-filter",
+    #             url="catalog-filter/",
+    #             controller="water_data_explorer_whos.groups.catalog_filter",
+    #         ),
+    #         UrlMap(
+    #             name="get-variables-for-country",
+    #             url="get-variables-for-country/",
+    #             controller="water_data_explorer_whos.groups.get_variables_for_country",
+    #         ),
+    #         UrlMap(
+    #             name="get-download-hs",
+    #             url="get-download-hs/",
+    #             controller="water_data_explorer_whos.endpoints.get_download_hs",
+    #         ),
+    #     )
 
-        url_maps = (
-            UrlMap(
-                name="home",
-                url="water-data-explorer-whos",
-                controller="water_data_explorer_whos.startAll.home",
-            ),
-            UrlMap(
-                name="create-group",
-                url="create-group/",
-                controller="water_data_explorer_whos.groups.create_group",
-            ),
-            UrlMap(
-                name="load-groups",
-                url="load-groups/",
-                controller="water_data_explorer_whos.groups.get_groups_list",
-            ),
-            UrlMap(
-                name="add-hydrosever-groups",
-                url="soap-group/",
-                controller="water_data_explorer_whos.endpoints.soap_group",
-            ),
-            UrlMap(
-                name="update-hydrosever-groups",
-                url="soap-update/",
-                controller="water_data_explorer_whos.endpoints.upload_hs",
-            ),
-            UrlMap(
-                name="save-sites",
-                url="save-sites/",
-                controller="water_data_explorer_whos.endpoints.save_sites_data",
-            ),
-            UrlMap(
-                name="save-new-sites",
-                url="save_new_sites/",
-                controller="water_data_explorer_whos.endpoints.save_new_sites_data",
-            ),
-            UrlMap(
-                name="save-stream",
-                url="save_stream/",
-                controller="water_data_explorer_whos.endpoints.save_only_sites_stream",
-            ),
-            UrlMap(
-                name="save-variables",
-                url="save-variables/",
-                controller="water_data_explorer_whos.endpoints.save_variables_data",
-            ),
-            UrlMap(
-                name="load-hydroserver-of-groups",
-                url="catalog-group/",
-                controller="water_data_explorer_whos.groups.catalog_group",
-            ),
-            UrlMap(
-                name="delete-group-hydroserver",
-                url="delete-group-hydroserver/",
-                controller="water_data_explorer_whos.endpoints.delete_group_hydroserver",
-            ),
-            UrlMap(
-                name="delete-group",
-                url="delete-group/",
-                controller="water_data_explorer_whos.groups.delete_group",
-            ),
-            UrlMap(
-                name="keyword-group",
-                url="keyword-group",
-                controller="water_data_explorer_whos.groups.keyWordsForGroup",
-            ),
-            UrlMap(
-                name="get-variables-hs",
-                url="get-variables-hs/",
-                controller="water_data_explorer_whos.endpoints.get_variables_hs",
-            ),
-            UrlMap(
-                name="get-available-sites",
-                url="get-available-sites/",
-                controller="water_data_explorer_whos.endpoints.get_available_sites",
-            ),
-            UrlMap(
-                name="get-hydroserver-info",
-                url="get-hydroserver-info/",
-                controller="water_data_explorer_whos.endpoints.get_hydroserver_info",
-            ),
-            UrlMap(
-                name="available-variables",
-                url="available-variables/",
-                controller="water_data_explorer_whos.groups.available_variables",
-            ),
-            UrlMap(
-                name="available-regions",
-                url="available-regions/",
-                controller="water_data_explorer_whos.groups.available_regions",
-            ),
-            UrlMap(
-                name="catalog-filter",
-                url="catalog-filter/",
-                controller="water_data_explorer_whos.groups.catalog_filter",
-            ),
-            UrlMap(
-                name="get-variables-for-country",
-                url="get-variables-for-country/",
-                controller="water_data_explorer_whos.groups.get_variables_for_country",
-            ),
-            UrlMap(
-                name="get-download-hs",
-                url="get-download-hs/",
-                controller="water_data_explorer_whos.endpoints.get_download_hs",
-            ),
-        )
-
-        return url_maps
+    #     return url_maps
 
     def permissions(self):
         """

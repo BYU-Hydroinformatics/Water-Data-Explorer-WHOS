@@ -31,36 +31,53 @@ copyToClipboard = function(element) {
   $temp.val($(element).text()).select();
   document.execCommand("copy");
   $temp.remove();
-  $.notify(
-      {
-          message: `copied to clipboard`
-      },
-      {
-          element: '#urlHydroserver',
-          type: "info",
-          allow_dismiss: true,
-          z_index: 20000,
-          placement: {
-            from: "top",
-            align: "right"
-          },
-          offset: {
-            // x: -80,
-            y: 100,
-          },
-          delay:1000,
-          template: '<div id="modalCrazy" data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-          '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-          '<span data-notify="icon"></span> ' +
-          '<span data-notify="title">{1}</span> ' +
-          '<span data-notify="message">{2}</span>' +
-          '<div class="progress" data-notify="progressbar">' +
-            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-          '</div>' +
-          '<a href="{3}" target="{4}" data-notify="url"></a>' +
-          '</div>'
-      }
-  )
+  new Notify ({
+    status: 'success',
+    title: 'Success',
+    text: `Copied to clipboard`,
+    effect: 'fade',
+    speed: 300,
+    customClass: '',
+    customIcon: '',
+    showIcon: true,
+    showCloseButton: true,
+    autoclose: true,
+    autotimeout: 3000,
+    gap: 20,
+    distance: 20,
+    type: 1,
+    position: 'right top'
+  })
+  // $.notify(
+  //     {
+  //         message: `copied to clipboard`
+  //     },
+  //     {
+  //         element: '#urlHydroserver',
+  //         type: "info",
+  //         allow_dismiss: true,
+  //         z_index: 20000,
+  //         placement: {
+  //           from: "top",
+  //           align: "right"
+  //         },
+  //         offset: {
+  //           // x: -80,
+  //           y: 100,
+  //         },
+  //         delay:1000,
+  //         template: '<div id="modalCrazy" data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+  //         '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+  //         '<span data-notify="icon"></span> ' +
+  //         '<span data-notify="title">{1}</span> ' +
+  //         '<span data-notify="message">{2}</span>' +
+  //         '<div class="progress" data-notify="progressbar">' +
+  //           '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+  //         '</div>' +
+  //         '<a href="{3}" target="{4}" data-notify="url"></a>' +
+  //         '</div>'
+  //     }
+  // )
 }
 
 /**
@@ -97,17 +114,34 @@ disable_map =  function (){
     }
   }
   catch(err){
-    $.notify(
-        {
-            message: `Boundary layer was not setup, please go to settings and set up the boundary layer`
-        },
-        {
-            type: "info",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000
-        }
-    )
+    new Notify ({
+      status: 'warning',
+      title: 'Warning',
+      text: `Boundary layer was not setup, please go to settings and set up the boundary layer`,
+      effect: 'fade',
+      speed: 300,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //     {
+    //         message: `Boundary layer was not setup, please go to settings and set up the boundary layer`
+    //     },
+    //     {
+    //         type: "info",
+    //         allow_dismiss: true,
+    //         z_index: 20000,
+    //         delay: 5000
+    //     }
+    // )
   }
 
 }
@@ -400,17 +434,34 @@ initialize_graphs = function(xArray,yArray,title_graph,xTitle,yTitle,legend1,typ
 
   }
   catch(e){
-    $.notify(
-        {
-            message: `Unable to initialize the graphs`
-        },
-        {
-            type: "danger",
-            allow_dismiss: true,
-            z_index: 20000,
-            delay: 5000
-        }
-    )
+    new Notify ({
+      status: 'error',
+      title: 'Error',
+      text: `Unable to initialize the graphs`,
+      effect: 'fade',
+      speed: 300,
+      customClass: '',
+      customIcon: '',
+      showIcon: true,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: 'right top'
+    })
+    // $.notify(
+    //     {
+    //         message: `Unable to initialize the graphs`
+    //     },
+    //     {
+    //         type: "danger",
+    //         allow_dismiss: true,
+    //         z_index: 20000,
+    //         delay: 5000
+    //     }
+    // )
   }
 
 }
@@ -482,37 +533,36 @@ html_for_groups = function(isAdmin, title, id_group_separator){
       newHtml =
 
       `
-      <div class="panel panel-default" id="${title}_panel">
-        <div class="panel-heading buttonAppearance" role="tab" id="heading_${title}">
-          <h4 class="panel-title tool_tip_h" data-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
-            <a role="button" data-toggle="collapse" data-target="#collapse_${title}" href="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
-            <span class="group-name"> ${id_dictionary[title]}</span>
-
+      <div class="accordion-item" id="${title}_panel">
+        <div class="accordion-header" id="heading_${title}" style="background: #286090 !important; display: flex; width: 100%;">
+          <h4 class="accordion-title tool_tip_h" id="${id_dictionary[title]}" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
+            <a role="button" data-bs-toggle="collapse" data-bs-target="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
+            <span class="group-name">${id_dictionary[title]}</span>
             </a>
           </h4>
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
-
               <input class="chkbx-layers" type="checkbox">
-              <button class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalInterface">
-                <span class=" glyphicon glyphicon-info-sign "></span>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInterface">
+                <i class="bi bi-info-circle-fill"></i>
               </button>
-
-              <button id="load-from-soap" class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalAddSoap">
-                <span class="glyphicon glyphicon-plus"></span>
+              <button id="load-from-soap" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddSoap">
+                <i class="bi bi-plus-lg"></i>
               </button>
-              <button id="delete-server" class="btn btn-primary btn-sm" data-toggle="modal"  data-dismiss="modal" data-target="#modalDelete">
-                <span class="glyphicon glyphicon-trash"></span>
+              <button id="delete-server" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                <i class="bi bi-trash"></i>
               </button>
           </li>
-
         </div>
-
-        <div id="collapse_${title}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_${title}">
-        <div class="iconhydro"><img src="https://img.icons8.com/dusk/24/000000/ssd.png"/>WaterOneFlow Web Services</div>
-          <div class="panel-body">
+  
+        <div id="collapse_${title}" class="accordion-collapse collapse show" aria-labelledby="heading_${title}">
+          <div class="iconhydro"><img src="https://img.icons8.com/dusk/24/000000/ssd.png"/>WaterOneFlow Web Services</div>
+            <div class="accordion-body">
               <div id= ${id_group_separator} class="divForServers">
-                <button class="btn btn-danger btn-block" id = "${title}-noGroups"> The group is empty</button>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-danger btn-block" id = "${title}-noGroups"> The group is empty</button>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -523,23 +573,22 @@ html_for_groups = function(isAdmin, title, id_group_separator){
     else{
       newHtml =
       `
-      <div class="panel panel-default" id="${title}_panel">
-        <div class="panel-heading buttonAppearance" role="tab" id="heading_${title}">
-          <h4 class="panel-title tool_tip_h" data-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
-            <a role="button" data-toggle="collapse" data-parent="#current-Groupservers" href="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
+      <div class="accordion-item" id="${title}_panel">
+        <div class="accordion-header" id="heading_${title}" style="background: #286090 !important; display: flex; width: 100%;">
+          <h4 class="accordion-title tool_tip_h" id="${id_dictionary[title]}" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
+          <a role="button" data-bs-toggle="collapse" data-bs-target="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
             <span class="group-name">${id_dictionary[title]}</span>
-
             </a>
           </h4>
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
             <input class="chkbx-layers" type="checkbox">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#modalInterface">
-              <span class=" glyphicon glyphicon-info-sign "></span>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInterface">
+              <i class="bi bi-info-circle-fill"></i>
             </button>
           </li>
         </div>
-        <div id="collapse_${title}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_${title}">
-          <div class="panel-body">
+        <div id="collapse_${title}" class="accordion-collapse collapse show" aria-labelledby="heading_${title}">
+          <div class="accordion-body">
               <div id= ${id_group_separator} class="divForServers"></div>
           </div>
         </div>
@@ -631,46 +680,42 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
 
     let check_var = (( isNew == true ) ? 'checked' : '');
     let newHtml;
-
-    if (isAdmin){
+      
+      if (isAdmin){
       newHtml = `
       <li class="ui-state-default" layer-name="${title}" id="${title}" >
-      <span class="server-name tool_tip_h" data-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
-      <input class="chkbx-layer" type="checkbox" data-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
-      <button type="button" id="${title}_${group_name}_reload" class="btn btn-xs" >
-       <span  class="glyphicon glyphicon-refresh tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Update View">
-       </span>
+      <span class="server-name tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
+      <input class="chkbx-layer" type="checkbox" data-bs-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
+      <button type="button" id="${title}_${group_name}_reload" class="btn btn-sm" >
+       <i class="bi bi-arrow-clockwise tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Update View"></i>
       </button>
-      <button type="button" id="${title}_zoom" class="btn btn-dark btn-xs" >
-       <span class="glyphicon glyphicon-map-marker tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zoom to View"></span>
+      <button type="button" id="${title}_zoom" class="btn btn-sm" >
+       <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
       </button>
-  
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalShowVariablesTable"> <span class=" glyphicon glyphicon-list-alt tool_tip_h" data-toggle="tooltip" data-placement="bottom" title="View Variables"></span>
+      <button id="${title}_variables" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
+        <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
       </button>
-  
-      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalHydroserInformation">
-       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      <button type="button" id="${title}_variables_info" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
+       <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
       </button>
-  
       </li>
       `;
     }
     else{
       newHtml = `
       <li class="ui-state-default" layer-name="${title}" id="${title}" >
-      <span class="server-name tool_tip_h" data-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
-      <input class="chkbx-layer" type="checkbox" data-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
-      <button type="button" id="${title}_zoom" class="btn btn-dark btn-xs" >
-       <span class="glyphicon glyphicon-map-marker tool_tip_h" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zoom to View"></span>
+      <span class="server-name tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
+      <input class="chkbx-layer" type="checkbox" data-bs-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
+
+      <button type="button" id="${title}_zoom" class="btn btn-sm" >
+       <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
       </button>
-  
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalShowVariablesTable"> <span class=" glyphicon glyphicon-list-alt tool_tip_h" data-toggle="tooltip" data-placement="bottom" title="View Variables"></span>
+      <button id="${title}_variables" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
+        <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
       </button>
-  
-      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-toggle="modal" data-target="#modalHydroserInformation">
-       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      <button type="button" id="${title}_variables_info" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
+       <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
       </button>
-  
       </li>
       `;
       
