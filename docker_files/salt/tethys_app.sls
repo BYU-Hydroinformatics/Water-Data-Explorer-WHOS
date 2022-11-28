@@ -62,6 +62,13 @@ Sync_App_Persistent_Stores:
     - shell: /bin/bash
     - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
+
+Setting_Extra_Middleware:
+  cmd.run:
+    - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys settings --set MIDDLEWARE "['tethys_portal.custom_middleware.HealthCheckMiddleware']"
+    - shell: /bin/bash
+    - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
+
 Making_Portal_Open:
   cmd.run:
     - name: . {{ CONDA_HOME }}/bin/activate {{ CONDA_ENV_NAME }} && tethys settings --set BYPASS_TETHYS_HOME_PAGE "${BYPASS_TETHYS_HOME_PAGE}" --set ENABLE_OPEN_PORTAL "${ENABLE_OPEN_PORTAL}"
