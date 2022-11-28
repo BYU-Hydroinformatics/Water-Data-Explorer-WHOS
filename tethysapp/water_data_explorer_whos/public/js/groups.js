@@ -1936,7 +1936,8 @@ load_group_hydroservers = function () {
  * */
 make_list_groups = function () {
   try {
-    let groupsDiv = $("#current-Groupservers").find(".panel.panel-default");
+    let groupsDiv = $("#current-Groupservers").find(".accordion-item");
+
     let arrayGroups = Object.values(groupsDiv);
     let finalGroupArray = [];
     arrayGroups.forEach(function (g) {
