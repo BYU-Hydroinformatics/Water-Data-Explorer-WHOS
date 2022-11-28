@@ -686,22 +686,18 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
       <li class="ui-state-default" layer-name="${title}" id="${title}" >
       <span class="server-name tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
       <input class="chkbx-layer" type="checkbox" data-bs-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
-      <button type="button" id="${title}_${group_name}_reload" class="btn btn-xs" >
-      <i class="bi bi-arrow-clockwise tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Update View"></i> 
-
+      <button type="button" id="${title}_${group_name}_reload" class="btn btn-sm" >
+       <i class="bi bi-arrow-clockwise tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Update View"></i>
       </button>
-      <button type="button" id="${title}_zoom" class="btn btn-dark btn-xs" >
+      <button type="button" id="${title}_zoom" class="btn btn-sm" >
        <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
       </button>
-  
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
+      <button id="${title}_variables" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
         <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
-        </button>
-  
-      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
+      </button>
+      <button type="button" id="${title}_variables_info" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
        <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
-       </button>
-  
+      </button>
       </li>
       `;
     }
@@ -710,19 +706,16 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
       <li class="ui-state-default" layer-name="${title}" id="${title}" >
       <span class="server-name tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">${id_dictionary[title]}</span>
       <input class="chkbx-layer" type="checkbox" data-bs-toggle="tooltip" data-placement="bottom" title="Show/Hide View" ${check_var}>
-      <button type="button" id="${title}_zoom" class="btn btn-dark btn-xs" >
-        <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
 
+      <button type="button" id="${title}_zoom" class="btn btn-sm" >
+       <i class="bi bi-geo-alt-fill tool_tip_h" aria-hidden="true" data-bs-toggle="tooltip" data-placement="bottom" title="Zoom to View"></i>
       </button>
-  
-      <button id="${title}_variables" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
-      <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
+      <button id="${title}_variables" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
+        <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
       </button>
-  
-      <button type="button" id="${title}_variables_info" class="btn btn-dark btn-xs" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
+      <button type="button" id="${title}_variables_info" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
        <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
       </button>
-  
       </li>
       `;
       
