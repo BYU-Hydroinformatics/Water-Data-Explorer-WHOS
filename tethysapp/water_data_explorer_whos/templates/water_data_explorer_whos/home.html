@@ -13,7 +13,7 @@
 
 <br>
 
-<img id="GeneralLoading" class="view-file hidden" src="{% static 'water_data_explorer/images/loading.gif' %}" />
+<img id="GeneralLoading" class="view-file d-none" src="{% static 'water_data_explorer_whos/images/loading.gif' %}" />
 
 <div class="accordion" id="groups_hydroservers">
 
@@ -62,7 +62,7 @@
 <div id="map" class="map"></div>
 <table id="tableLegend"></table>
 <div id ="graph">
-  <img id="graphAddLoading" class="view-file hidden" alt="loading gif" src="{% static 'water_data_explorer/images/loading.gif' %}">
+  <img id="graphAddLoading" class="view-file d-none" alt="loading gif" src="{% static 'water_data_explorer_whos/images/loading.gif' %}">
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" >
     <div class="carousel-indicators">
       <li type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="carousel-indicator active"></li>
@@ -165,9 +165,13 @@
     });
 </script>
 
-{% endblock %} {# Use the after_app_content block for modals #} 
+{% endblock %} 
+{# Use the after_app_content block for modals #} 
+
 {% block app_content_wrapper_override %} 
+
 {{ block.super }} 
+
 {% include "water_data_explorer_whos/modals/manageServers.html" %} 
 {% include "water_data_explorer_whos/modals/delCentral.html" %} 
 {% include "water_data_explorer_whos/modals/addHydroserver.html" %} 

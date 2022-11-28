@@ -533,37 +533,36 @@ html_for_groups = function(isAdmin, title, id_group_separator){
       newHtml =
 
       `
-      <div class="panel panel-default" id="${title}_panel">
-        <div class="panel-heading buttonAppearance" role="tab" id="heading_${title}">
-          <h4 class="panel-title tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
-            <a role="button" data-bs-toggle="collapse" data-bs-target="#collapse_${title}" href="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
-            <span class="group-name"> ${id_dictionary[title]}</span>
-
+      <div class="accordion-item" id="${title}_panel">
+        <div class="accordion-header" id="heading_${title}" style="background: #286090 !important; display: flex; width: 100%;">
+          <h4 class="accordion-title tool_tip_h" id="${id_dictionary[title]}" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
+            <a role="button" data-bs-toggle="collapse" data-bs-target="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
+            <span class="group-name">${id_dictionary[title]}</span>
             </a>
           </h4>
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
-
               <input class="chkbx-layers" type="checkbox">
-              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalInterface">
-                <i class="bi bi-info-circle"></i>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInterface">
+                <i class="bi bi-info-circle-fill"></i>
               </button>
-
-              <button id="load-from-soap" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalAddSoap">
+              <button id="load-from-soap" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddSoap">
                 <i class="bi bi-plus-lg"></i>
               </button>
-              <button id="delete-server" class="btn btn-primary btn-sm" data-bs-toggle="modal"  data-bs-dismiss="modal" data-bs-target="#modalDelete">
+              <button id="delete-server" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDelete">
                 <i class="bi bi-trash"></i>
               </button>
           </li>
-
         </div>
-
-        <div id="collapse_${title}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_${title}">
-        <div class="iconhydro"><img src="https://img.icons8.com/dusk/24/000000/ssd.png"/>WaterOneFlow Web Services</div>
-          <div class="panel-body">
+  
+        <div id="collapse_${title}" class="accordion-collapse collapse show" aria-labelledby="heading_${title}">
+          <div class="iconhydro"><img src="https://img.icons8.com/dusk/24/000000/ssd.png"/>WaterOneFlow Web Services</div>
+            <div class="accordion-body">
               <div id= ${id_group_separator} class="divForServers">
-                <button class="btn btn-danger btn-block" id = "${title}-noGroups"> The group is empty</button>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-danger btn-block" id = "${title}-noGroups"> The group is empty</button>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -574,23 +573,22 @@ html_for_groups = function(isAdmin, title, id_group_separator){
     else{
       newHtml =
       `
-      <div class="panel panel-default" id="${title}_panel">
-        <div class="panel-heading buttonAppearance" role="tab" id="heading_${title}">
-          <h4 class="panel-title tool_tip_h" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
-            <a role="button" data-bs-toggle="collapse" data-parent="#current-Groupservers" href="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
+      <div class="accordion-item" id="${title}_panel">
+        <div class="accordion-header" id="heading_${title}" style="background: #286090 !important; display: flex; width: 100%;">
+          <h4 class="accordion-title tool_tip_h" id="${id_dictionary[title]}" data-bs-toggle="tooltip" data-placement="right" title="${id_dictionary[title]}">
+          <a role="button" data-bs-toggle="collapse" data-bs-target="#collapse_${title}" aria-expanded="true" aria-controls="collapse_${title}">
             <span class="group-name">${id_dictionary[title]}</span>
-
             </a>
           </h4>
           <li class="ui-state-default buttonAppearance" id="${title}" layer-name="none">
             <input class="chkbx-layers" type="checkbox">
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#modalInterface">
-              <i class="bi bi-info-circle"></i>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalInterface">
+              <i class="bi bi-info-circle-fill"></i>
             </button>
           </li>
         </div>
-        <div id="collapse_${title}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_${title}">
-          <div class="panel-body">
+        <div id="collapse_${title}" class="accordion-collapse collapse show" aria-labelledby="heading_${title}">
+          <div class="accordion-body">
               <div id= ${id_group_separator} class="divForServers"></div>
           </div>
         </div>
