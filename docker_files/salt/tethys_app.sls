@@ -64,7 +64,7 @@ Sync_App_Persistent_Stores:
 
 Setting_Extra_Middleware:
   cmd.run:
-    - name: tethys settings --set MIDDLEWARE "['tethys_portal.custom_middleware.HealthCheckMiddleware']"
+    - name: tethys settings --set MIDDLEWARE_OVERRIDE "['django.contrib.sessions.middleware.SessionMiddleware', 'corsheaders.middleware.CorsMiddleware', 'tethys_portal.custom_middleware.HealthCheckMiddleware', 'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware', 'tethys_portal.middleware.TethysMfaRequiredMiddleware', 'django.middleware.clickjacking.XFrameOptionsMiddleware', 'tethys_portal.middleware.TethysSocialAuthExceptionMiddleware', 'tethys_portal.middleware.TethysAppAccessMiddleware', 'session_security.middleware.SessionSecurityMiddleware', 'axes.middleware.AxesMiddleware']"
     - shell: /bin/bash
     - unless: /bin/bash -c "[ -f "${TETHYS_PERSIST}/water_data_explorer_whos_setup_complete" ];"
 
