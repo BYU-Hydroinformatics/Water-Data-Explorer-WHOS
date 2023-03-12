@@ -12,13 +12,36 @@
 
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Default ad_storage to 'denied' as a placeholder
+      // Determine actual values based on your own requirements
+      gtag('consent', 'default', {
+        'ad_storage': 'denied'
+      });
       gtag('js', new Date());
 
       gtag('config', gcode);
-
     </script>
-    
+
+    <script>
+      //function to update consent
+      function consentGranted() {
+        console.log("google data analytics consent updated")
+
+        gtag('consent', 'update', {
+          'ad_storage': 'granted'
+        });
+      }
+    </script>
+  {% else %}
+    <script>
+      //function to update consent
+      function consentGranted() {
+        console.log("No google data analytics was setup")
+      }
+    </script>
+
   {% endif%}
+
 {% endblock %}
 {% block title %}{{ tethys_app.name }}{% endblock %}
 
