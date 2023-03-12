@@ -66,7 +66,7 @@ RUN export NGINX_USER=$(grep 'user .*;' /etc/nginx/nginx.conf | awk '{print $2}'
 #########################
 # CONFIGURE ENVIRONMENT #
 #########################
-EXPOSE 80
+EXPOSE 8080
 
 ##########################
 # ADD THE EXTRA MIDDLEWARE 
