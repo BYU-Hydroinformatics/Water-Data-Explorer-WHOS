@@ -1,7 +1,6 @@
-from django.http import HttpResponse
-from django.utils.deprecation import MiddlewareMixin
+class HealthCheckMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
 
-class HealthCheckMiddleware(MiddlewareMixin):
-    def process_request(self, request):
-        if request.META["PATH_INFO"] == "/ping/":
-            return HttpResponse("pong")
+    def __call__(self, request):
+       return self.get_response(request)
