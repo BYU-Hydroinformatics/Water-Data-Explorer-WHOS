@@ -59,6 +59,8 @@
 
 {% endblock %} 
 {% block app_content %}
+{% include "water_data_explorer_whos/modals/partners.html" %} 
+
 <div id="map" class="map"></div>
 <table id="tableLegend"></table>
 <div id ="graph">
@@ -184,7 +186,8 @@
 {% include "water_data_explorer_whos/modals/showVariables.html" %} 
 {% include "water_data_explorer_whos/modals/showVariables2.html" %} 
 {% include "water_data_explorer_whos/modals/hydro_info.html" %} 
-{% include "water_data_explorer_whos/modals/promp_down.html" %} 
+{% include "water_data_explorer_whos/modals/promp_down.html" %}
+
 
 {% endblock %} 
 
