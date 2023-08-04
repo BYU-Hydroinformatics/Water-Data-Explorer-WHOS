@@ -1,3 +1,15 @@
+
+#p_page{
+  position: absolute;
+  z-index: 10000;
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+.fig-class{
+  display: flex;
+  justify-content: center;
+}
 #partners_page{
   display: none;
 }
@@ -10,7 +22,9 @@
   left: 12.5%;
   border-radius: 50%;
 }
-
+.sub-title-cs{
+  text-align: center;
+}
 
 .square-holder {
   padding:20px;
@@ -34,17 +48,19 @@
   /* filter: grayscale(50%); */
   /* transition: all 0.3s; */
 }
-
+.single-feature{
+  justify-content: center;
+}
 .square-holder:hover {
   background-color:#a5a4a4;
 }
 
 .ftco-section,
 .ftco-footer {
-  padding: 7em 0 7em 0; }
+  padding: 2em 0 7em 0; }
   .ftco-section.ftco-slant,
   .ftco-footer.ftco-slant {
-    padding: 7em 0 22em 0; }
+    padding: 2em 0 1em 0; }
   .ftco-section .ftco-heading,
   .ftco-footer .ftco-heading {
     font-size: 40px;
