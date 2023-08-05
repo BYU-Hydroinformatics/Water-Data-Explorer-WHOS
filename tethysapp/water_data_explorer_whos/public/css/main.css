@@ -3,6 +3,8 @@
   color: #01509f;
   font-size: 28px;
   line-height: 1.2;
+  display: flex;
+  justify-content: space-between;
 }
 .icon {
   width: 3rem;
