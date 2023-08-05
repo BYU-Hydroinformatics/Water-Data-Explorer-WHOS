@@ -1,12 +1,16 @@
 // Get the required elements
 var switchPartners = document.getElementById("switch_partners");
 var partnersPage = document.getElementById("p_page");
-
+var back_button = document.getElementById("back-map")
 // Add a click event listener to the "switch_partners" element
 switchPartners.addEventListener("click", function () {
-  // Remove the "display: none" style from the "partners_page" element
   partnersPage.style.zIndex = "10000";
-  // Add the "display: none" style to the "map", "tableLegend", and "graph" elements
+  partnersPage.style.display = "block";
 
 });
 
+back_button.addEventListener("click", function () {
+  partnersPage.style.zIndex = "0";
+  partnersPage.style.display = "none";
+
+});
