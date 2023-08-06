@@ -8,6 +8,26 @@
  *
  *****************************************************************************/
 
+add_wms_layers_hydroserver= function(){
+  const url = $("#add-wms-catalog-url").val();
+
+  // Using jQuery's AJAX method to make the request
+  $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "text",
+      success: function(data) {
+          dict_data = JSON.parse(data)
+          console.log(dict_data)
+      },
+      error: function(xhr, textStatus, errorThrown) {
+          console.error("Error fetching data:", errorThrown);
+      }
+  });
+}
+
+$("#btn-add-wms-catalog-url").on("click",add_wms_layers_hydroserver)
+
 /**
 * get_download_hs function.
 * Function to overwrite the retrieved data from a python notebook.
@@ -846,6 +866,7 @@ add_hydroserver = function(){
       console.log(url_request);
       // $("#loading_p").removeClass("d-none");
       // $("#loading_p").html(`Adding ${title_server}: 0 new sites added to the database . . .`);
+
         $.ajax({
           type:"GET",
           url:url_request,

@@ -177,7 +177,8 @@ var colors,
     toDegreesMinutesAndSeconds,
     getSitesJS,
     check_groups_length = 0,
-    check_if_exits;
+    check_if_exits,
+    add_wms_layers_hydroserver;
 
 /************************************************************************
  *  PRIVATE FUNCTION IMPLEMENTATIONS

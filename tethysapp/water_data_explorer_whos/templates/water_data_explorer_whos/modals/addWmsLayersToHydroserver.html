@@ -1,0 +1,26 @@
+{% load static %}
+<form id="modalAddWMSLayers" class="modal" method="POST">
+    {% csrf_token %}
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add WMS Layers</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label for="add-wms-catalog-url">WMS Layers</label>
+                <input type="text" class="form-control" name="add-wms-catalog-url" id="add-wms-catalog-url" placeholder="Please enter a valid WMS Catalog service">
+
+                <div class="loading_id">
+                  <img id="soapAddLoading" class="view-file d-none" src="{% static 'water_data_explorer_whos/images/loading.gif' %}" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="button-group">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btn-add-wms-catalog-url" class="btn btn-success">Add to WMS Layers</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

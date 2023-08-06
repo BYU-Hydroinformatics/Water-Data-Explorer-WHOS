@@ -175,6 +175,7 @@
 {% block app_content_wrapper_override %} 
 
 {{ block.super }} 
+{% include "water_data_explorer_whos/modals/addWmsLayersToHydroserver.html" %} 
 
 {% include "water_data_explorer_whos/modals/manageServers.html" %} 
 {% include "water_data_explorer_whos/modals/delCentral.html" %} 
