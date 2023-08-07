@@ -165,7 +165,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
 
         var url_UN = "https://geoservices.un.org/arcgis/rest/services/ClearMap_WebTopo/MapServer";
         
-        var layers = [
+        var layers_base_maps = [
           new ol.layer.Tile({
             title: 'Open Street Map',
             source: new ol.source.OSM(),
@@ -202,7 +202,10 @@ var water_data_explorer_whos_PACKAGE = (function() {
 
         ]
 
-
+        const baseMaps = new ol.layer.Group({
+          title: 'Base maps',
+          layers: layers_base_maps
+        });
         // var url_UN = "https://geoservices.un.org/arcgis/rest/services/ClearMap_WebTopo/MapServer";
 
         var myZoom;
@@ -258,10 +261,11 @@ var water_data_explorer_whos_PACKAGE = (function() {
         })
 
         layersDict = {}
+        layers_list = [baseMaps]
         // layers = [baseLayer, vector_layer, shpLayer];
           map = new ol.Map({
               target: "map",
-              layers: layers,
+              layers: layers_list,
               view: new ol.View({
                 // -25.30066, -57.63591
                   center: [17.670578, -49.082926],
@@ -282,10 +286,11 @@ var water_data_explorer_whos_PACKAGE = (function() {
               crossOrigin: "anonymous",
               // interactions: ol.interaction.defaults({ dragPan: false}),
           })
-
-          map.addControl(new ol.control.LayerSwitcher({reverse:true}));
+          main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+          map.addControl(main_layer_switcher);
           map.addLayer(vector_layer);
           map.addLayer(shpLayer);
+          // map.addLayer(layers_wms_group)
 
         var lastFeature, draw, featureType
         //Remove the last feature before drawing a new one
@@ -579,6 +584,8 @@ var water_data_explorer_whos_PACKAGE = (function() {
 
       init_jquery_var();
       addDefaultBehaviorToAjax();
+      load_wms_layers();
+
       init_map();
       load_group_hydroservers();
       activate_layer_values();

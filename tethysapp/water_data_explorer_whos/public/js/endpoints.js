@@ -8,6 +8,51 @@
  *
  *****************************************************************************/
 
+load_wms_layers = function(){
+  $.ajax({
+    type: "POST",
+    url: "get-wms-layers-hydroserver/",
+    success: function(data) {
+      console.log(data)
+      var layers_wms = []
+
+
+      for (single_hs in data){
+
+        for (single_layer in data[single_hs]){
+          var layer_name = data[single_hs][single_layer]['services'][0]['title']  
+          var layer_url = data[single_hs][single_layer]['services'][0]['href'].split("?")[0];
+          var layer_wms_to_add = new ol.layer.Tile({
+            title: layer_name,
+
+            source: new ol.source.TileWMS({
+              url: layer_url,
+              params: {
+                'LAYERS': layer_name,
+                'FORMAT': 'image/png',
+              },
+              projection: 'EPSG:4326', // Specify the CRS for the WMS layer
+            }),
+            visible: false
+          })
+          layers_wms.push(layer_wms_to_add);
+        }
+        const WMSLayers = new ol.layer.Group({
+          title: `${single_hs}`,
+          layers: layers_wms
+        });
+        if(layers_wms.length > 0){
+          map.addLayer(WMSLayers)
+          // layers_list.push(WMSLayers)
+        }
+      }
+      // main_layer_switcher.renderPanel(map)
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        console.error("Error fetching data:", errorThrown);
+    }
+});
+}
 add_wms_layers_hydroserver= function(){
   const url = $("#add-wms-catalog-url").val();
 
@@ -17,8 +62,88 @@ add_wms_layers_hydroserver= function(){
       url: url,
       dataType: "text",
       success: function(data) {
+          layers_metadata_list = []
           dict_data = JSON.parse(data)
           console.log(dict_data)
+          data_array = dict_data['features']
+          data_array.forEach(function(single_layer){
+            
+            wms_services = single_layer['links']
+            geometry = single_layer['geometry']
+            id = single_layer['id']
+            var single_layer_dict = {
+              'wms_services': wms_services,
+              'geometry': geometry,
+              'id':id
+            }
+            layers_metadata_list.push(single_layer_dict);
+          });
+
+          data_dict = {
+            'hs':id_dictionary[wms_hs_to_add],
+            'group': id_dictionary[wms_group_to_add],
+            'data': JSON.stringify(layers_metadata_list)
+          }
+          $.ajax({
+            type: "POST",
+            url: "save-wms-layers-hydroserver/",
+            data: data_dict,
+            dataType: "JSON",
+            success: function(data) {
+              console.log(data)
+              var layers_wms = []
+              const WMSLayers = new ol.layer.Group({
+                title: `${wms_hs_to_add}`,
+                layers: layers_wms
+              });
+
+              for (single_layer in data){
+                if(!data[single_layer]['msge'].includes('WMS layers already present in view')){
+                  var layer_name = data[single_layer]['services'][0]['title']  
+                  var layer_url = data[single_layer]['services'][0]['href'].split("?")[0];
+                  
+                  var layer_wms_to_add = new ol.layer.Tile({
+                    title: layer_name,
+        
+                    source: new ol.source.TileWMS({
+                      url: layer_url,
+                      params: {
+                        'LAYERS': layer_name,
+                        'FORMAT': 'image/png',
+                      },
+                      projection: 'EPSG:4326', // Specify the CRS for the WMS layer
+                    }),
+                    visible: false
+                  })
+                  layers_wms.push(layer_wms_to_add);
+                }
+
+              }
+              if(layers_wms.length > 0){
+                layers_list.push(WMSLayers)
+              }
+
+              // var layers_wms = [
+              //   new ol.layer.Tile({
+              //     title: 'hmfs_s2sep_asmt_month_1',
+      
+              //     source: new ol.source.TileWMS({
+              //       url: 'https://alerta.ina.gob.ar/geoserver/public2/wms',
+              //       params: {
+              //         'LAYERS': 'public2:hmfs_s2sep_asmt_month_1',
+              //         'FORMAT': 'image/png',
+              //       },
+              //       projection: 'EPSG:4326', // Specify the CRS for the WMS layer
+              //     }),
+              //     visible: false
+                  
+              //   }),
+
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.error("Error fetching data:", errorThrown);
+            }
+        });
       },
       error: function(xhr, textStatus, errorThrown) {
           console.error("Error fetching data:", errorThrown);
@@ -562,6 +687,10 @@ load_individual_hydroservers_group = function(group_name){
                      $(`#${new_title}_variables`).on("click",showVariables2);
                      $(`#${new_title}_variables_info`).on("click",hydroserver_information);
                      $(`#${new_title}_${group_name_e3}_reload`).on("click",update_hydroserver);
+                     $(`#${new_title}_${group_name_e3}_wms_services`).on("click",function(){
+                      wms_hs_to_add = this.id.split("_")[0];
+                      wms_group_to_add = this.id.split("_")[1];
+                     });
 
 
                      let lis = document.getElementById(`${id_group_separator}`).getElementsByTagName("li");
@@ -1212,7 +1341,10 @@ add_hydroserver = function(){
                            $(`#${new_title}_variables`).on("click",showVariables2);
                            $(`#${new_title}_variables_info`).on("click",hydroserver_information);
                            $(`#${new_title}_${group_name_e3}_reload`).on("click",update_hydroserver);
-
+                           $(`#${new_title}_${group_name_e3}_wms_services`).on("click",function(){
+                            wms_hs_to_add = this.id.split("_")[0];
+                            wms_group_to_add = this.id.split("_")[1];
+                           });
                           // MAKES THE LAYER INVISIBLE
 
                           let lis = document.getElementById("current-Groupservers").getElementsByTagName("li");
