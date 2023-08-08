@@ -530,8 +530,8 @@ def delete_group_hydroserver(request):
         hydroservers_group = session.query(Groups).filter(Groups.title == group)[0].hydroserver
 
         for title in titles:
-            hydroservers_group = session.query(HydroServer_Individual).filter(HydroServer_Individual.title == title).delete(
-                synchronize_session='evaluate')  # Deleting the record from the local catalog
+            hydroservers_group = session.query(HydroServer_Individual).filter(HydroServer_Individual.title == title).first()
+            session.delete(hydroservers_group)
             session.commit()
             session.close()
 
@@ -550,8 +550,7 @@ def save_wms_layers(request):
     specific_hs = request.POST.get('hs')
     wms_information = json.loads(request.POST.get('data'))
     SessionMaker = app.get_persistent_store_database(Persistent_Store_Name, as_sessionmaker=True)
-    session = SessionMaker()  # Initiate a session    
-    # breakpoint()
+    session = SessionMaker()  # Initiate a session
     for single_layer in wms_information:
         services = single_layer['wms_services']
         geometry = single_layer['geometry']

@@ -8,6 +8,10 @@
  *
  *****************************************************************************/
 
+delete_wms_layers_hydroserver = function(layerGroupToRemove){
+  map.removeLayer(layerGroupToRemove);
+}
+
 load_wms_layers = function(){
   $.ajax({
     type: "POST",
@@ -53,8 +57,8 @@ load_wms_layers = function(){
     }
 });
 }
-add_wms_layers_hydroserver= function(){
-  const url = $("#add-wms-catalog-url").val();
+add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
+  // const url = $("#add-wms-catalog-url").val();
 
   // Using jQuery's AJAX method to make the request
   $.ajax({
@@ -80,8 +84,8 @@ add_wms_layers_hydroserver= function(){
           });
 
           data_dict = {
-            'hs':id_dictionary[wms_hs_to_add],
-            'group': id_dictionary[wms_group_to_add],
+            'hs':wms_hs,
+            'group': wms_group,
             'data': JSON.stringify(layers_metadata_list)
           }
           $.ajax({
@@ -93,7 +97,7 @@ add_wms_layers_hydroserver= function(){
               console.log(data)
               var layers_wms = []
               const WMSLayers = new ol.layer.Group({
-                title: `${wms_hs_to_add}`,
+                title: `${wms_hs}`,
                 layers: layers_wms
               });
 
@@ -120,24 +124,8 @@ add_wms_layers_hydroserver= function(){
 
               }
               if(layers_wms.length > 0){
-                layers_list.push(WMSLayers)
+                map.addLayer(WMSLayers)
               }
-
-              // var layers_wms = [
-              //   new ol.layer.Tile({
-              //     title: 'hmfs_s2sep_asmt_month_1',
-      
-              //     source: new ol.source.TileWMS({
-              //       url: 'https://alerta.ina.gob.ar/geoserver/public2/wms',
-              //       params: {
-              //         'LAYERS': 'public2:hmfs_s2sep_asmt_month_1',
-              //         'FORMAT': 'image/png',
-              //       },
-              //       projection: 'EPSG:4326', // Specify the CRS for the WMS layer
-              //     }),
-              //     visible: false
-                  
-              //   }),
 
             },
             error: function(xhr, textStatus, errorThrown) {
@@ -151,7 +139,10 @@ add_wms_layers_hydroserver= function(){
   });
 }
 
-$("#btn-add-wms-catalog-url").on("click",add_wms_layers_hydroserver)
+$("#btn-add-wms-catalog-url").on("click",function(){
+  const url = $("#add-wms-catalog-url").val();
+  add_wms_layers_hydroserver(url,id_dictionary[wms_hs_to_add],id_dictionary[wms_group_to_add])
+})
 
 /**
 * get_download_hs function.
@@ -1206,6 +1197,8 @@ add_hydroserver = function(){
 
                   })
 
+
+
                   for(let i=0; i < parsedObject.length; ++i){
                     list_sites_me.push(parsedObject[i].sitename)
                   }
@@ -1427,28 +1420,11 @@ add_hydroserver = function(){
                               position: 'right top'
                             })
                           }
-                          // $.notify(
-                          //     {
-                          //         message: `Successfully Added the ${title_server} WaterOneFlow Service to the Map`
-                          //     },
-                          //     {
-                          //         newest_on_top: true,
-                          //         type: "success",
-                          //         allow_dismiss: true,
-                          //         z_index: 20000,
-                          //         delay: 100,
-                          //         animate: {
-                          //           enter: 'animated fadeInRight',
-                          //           exit: 'animated fadeOutRight'
-                          //         },
-                          //         onShow: function() {
-                          //             this.css({'width':'auto','height':'auto'});
-                          //         }
-                          //     }
-                          // )
-                          // notifications.close();
-                          $("#soapAddLoading-group").addClass("d-none");
 
+                          $("#soapAddLoading-group").addClass("d-none");
+                          var url_wms = $("#wms-catalog-url").val();
+                          console.log(url_wms);
+                          add_wms_layers_hydroserver(url_wms,title_server,actual_group_name)
 
                     }
                     catch(err){
@@ -1515,27 +1491,10 @@ add_hydroserver = function(){
                     type: 1,
                     position: 'right top'
                   })
-                  // $.notify(
-                  //     {
-                  //         message: `We are having problems adding the ${title_server} WaterOneFlow web service`
-                  //     },
-                  //     {
-                  //         type: "danger",
-                  //         allow_dismiss: true,
-                  //         z_index: 20000,
-                  //         delay: 5000,
-                  //         animate: {
-                  //           enter: 'animated fadeInRight',
-                  //           exit: 'animated fadeOutRight'
-                  //         },
-                  //         onShow: function() {
-                  //             this.css({'width':'auto','height':'auto'});
-                  //         }
-                  //     }
-                  // )
                 }
 
               })
+
             }
             catch(e){
               console.log(e);
@@ -1720,6 +1679,8 @@ delete_hydroserver= function(){
 
               }
               $(`#${new_title}deleteID`).remove();
+
+              delete_wms_layers_hydroserver(title)
               new Notify ({
                 status: 'success',
                 title: 'Success',
