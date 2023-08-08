@@ -9,7 +9,14 @@
  *****************************************************************************/
 
 delete_wms_layers_hydroserver = function(layerGroupToRemove){
-  map.removeLayer(layerGroupToRemove);
+  var lg = wms_group_layers_list[layerGroupToRemove]
+  lg.getLayersArray().forEach(function(layer){
+    map.removeLayer(layerGroupToRemove);
+  })
+  map.removeLayer(lg);
+  map.removeControl(main_layer_switcher);
+  main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+  map.addControl(main_layer_switcher);
 }
 
 load_wms_layers = function(){
@@ -96,11 +103,6 @@ add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
             success: function(data) {
               console.log(data)
               var layers_wms = []
-              const WMSLayers = new ol.layer.Group({
-                title: `${wms_hs}`,
-                layers: layers_wms
-              });
-
               for (single_layer in data){
                 if(!data[single_layer]['msge'].includes('WMS layers already present in view')){
                   var layer_name = data[single_layer]['services'][0]['title']  
@@ -123,10 +125,17 @@ add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
                 }
 
               }
+              const WMSLayers = new ol.layer.Group({
+                title: `${wms_hs}`,
+                layers: layers_wms
+              });
               if(layers_wms.length > 0){
-                map.addLayer(WMSLayers)
+                wms_group_layers_list[wms_hs]= WMSLayers;
+                map.addLayer(WMSLayers);
+                map.removeControl(main_layer_switcher);
+                main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+                map.addControl(main_layer_switcher);
               }
-
             },
             error: function(xhr, textStatus, errorThrown) {
                 console.error("Error fetching data:", errorThrown);
@@ -1874,6 +1883,8 @@ delete_hydroserver_Individual= function(group,server){
                 let no_servers = `<button class="btn btn-danger btn-block noGroups"> The group is empty</button>`
                     $(no_servers).appendTo(`#${id_group_separator}`) ;
               }
+              delete_wms_layers_hydroserver(title)
+
               new Notify ({
                 status: 'success',
                 title: 'Success',
@@ -1891,25 +1902,7 @@ delete_hydroserver_Individual= function(group,server){
                 type: 1,
                 position: 'right top'
               })
-              // $.notify(
 
-              //     {
-              //         message: `Successfully Deleted the Web service!`
-              //     },
-              //     {
-              //         type: "success",
-              //         allow_dismiss: true,
-              //         z_index: 20000,
-              //         delay: 5000,
-              //         animate: {
-              //           enter: 'animated fadeInRight',
-              //           exit: 'animated fadeOutRight'
-              //         },
-              //         onShow: function() {
-              //             this.css({'width':'auto','height':'auto'});
-              //         }
-              //     }
-              // )
             }
           }
           catch(e){

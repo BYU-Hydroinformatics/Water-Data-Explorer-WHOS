@@ -184,6 +184,7 @@ var colors,
     wms_group_to_add,
     main_layer_switcher,
     delete_wms_layers_hydroserver,
+    wms_group_layers_list = {},
     load_wms_layers;
 
 /************************************************************************
