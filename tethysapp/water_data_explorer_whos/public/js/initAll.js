@@ -691,18 +691,21 @@ var water_data_explorer_whos_PACKAGE = (function() {
       map.getView().on('change:resolution', function(evt){
         var view = evt.target;
 
-        map.getLayers().getArray().map(function(layer) {
-          var source = layer.getSource();
-          if (source instanceof ol.source.Cluster) {
-            var distance = source.getDistance();
-            if (view.getZoom() >= 9 && distance > 0) {
-              source.setDistance(0);
+        map.getLayers().getArray().map(function(layers) {
+          layers.getLayersArray().forEach(function(layer){
+            var source = layer.getSource();
+            if (source instanceof ol.source.Cluster) {
+              var distance = source.getDistance();
+              if (view.getZoom() >= 9 && distance > 0) {
+                source.setDistance(0);
+              }
+              else if (view.getZoom() < 9 && distance == 0) {
+                source.setDistance(50);
+  
+              }
             }
-            else if (view.getZoom() < 9 && distance == 0) {
-              source.setDistance(50);
+          })
 
-            }
-          }
         });
       }, map);
     }
