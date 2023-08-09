@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'partners_page'
     tags:
       - 'v*'
   pull_request:
