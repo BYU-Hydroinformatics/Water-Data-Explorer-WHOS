@@ -8,9 +8,9 @@ services:
     ports:
       - '5432:5432'
     env_file:
-      - ./helpful_files/db.env
+      - ./docker_files/helpful_files/db.env
     volumes:
-      - ./data/db2:/var/lib/postgresql/data
+      - ./docker_files/data/db2:/var/lib/postgresql/data
 
   web:
     image: tethys-portal-docker:latest
@@ -24,10 +24,10 @@ services:
     ports:
       - '80:80'
     env_file:
-      - ./helpful_files/tethys_mockup.env
+      - ./docker_files/helpful_files/tethys_mockup.env
     volumes:
-      - ./data/tethys:/var/lib/tethys_persist
-      - ./logs/tethys:/var/log/tethys
+      - ./docker_files/data/tethys:/var/lib/tethys_persist
+      - ./docker_files/logs/tethys:/var/log/tethys
 networks:
   internal:
     internal: true
