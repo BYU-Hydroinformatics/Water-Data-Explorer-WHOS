@@ -32,7 +32,7 @@ COPY docker_files/custom_middleware.py /usr/lib/tethys/tethys/tethys_portal/
 # CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
 ######################################################
 
-COPY docker_filesnginx /usr/lib/tethys/tethys/tethys_cli/gen_templates/
+COPY docker_files/nginx /usr/lib/tethys/tethys/tethys_cli/gen_templates/
 
 ################
 # COPY IN SALT #
