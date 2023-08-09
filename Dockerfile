@@ -6,6 +6,9 @@ FROM tethysplatform/tethys-core:4.1.3
 
 COPY . ${TETHYS_HOME}/apps/Water-Data-Explorer-WHOS
 
+# Activate tethys conda environment during build
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
+
 # ###########
 # # INSTALL #
 # ###########
