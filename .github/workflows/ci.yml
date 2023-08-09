@@ -29,8 +29,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Set Tag
         run: |
-          echo "TAG=${GITHUB_REF:10}" >> $GITHUB_ENV
           echo "TAG_LATEST=latest" >> $GITHUB_ENV
+          echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test Tag
         run: |
           echo $TAG
