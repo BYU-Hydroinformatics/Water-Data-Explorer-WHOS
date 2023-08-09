@@ -165,7 +165,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
 
         var url_UN = "https://geoservices.un.org/arcgis/rest/services/ClearMap_WebTopo/MapServer";
         
-        var layers = [
+        var layers_base_maps = [
           new ol.layer.Tile({
             title: 'Open Street Map',
             source: new ol.source.OSM(),
@@ -202,7 +202,10 @@ var water_data_explorer_whos_PACKAGE = (function() {
 
         ]
 
-
+        const baseMaps = new ol.layer.Group({
+          title: 'Base maps',
+          layers: layers_base_maps
+        });
         // var url_UN = "https://geoservices.un.org/arcgis/rest/services/ClearMap_WebTopo/MapServer";
 
         var myZoom;
@@ -258,10 +261,11 @@ var water_data_explorer_whos_PACKAGE = (function() {
         })
 
         layersDict = {}
+        layers_list = [baseMaps]
         // layers = [baseLayer, vector_layer, shpLayer];
           map = new ol.Map({
               target: "map",
-              layers: layers,
+              layers: layers_list,
               view: new ol.View({
                 // -25.30066, -57.63591
                   center: [17.670578, -49.082926],
@@ -282,10 +286,11 @@ var water_data_explorer_whos_PACKAGE = (function() {
               crossOrigin: "anonymous",
               // interactions: ol.interaction.defaults({ dragPan: false}),
           })
-
-          map.addControl(new ol.control.LayerSwitcher({reverse:true}));
+          main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+          map.addControl(main_layer_switcher);
           map.addLayer(vector_layer);
           map.addLayer(shpLayer);
+          // map.addLayer(layers_wms_group)
 
         var lastFeature, draw, featureType
         //Remove the last feature before drawing a new one
@@ -579,6 +584,8 @@ var water_data_explorer_whos_PACKAGE = (function() {
 
       init_jquery_var();
       addDefaultBehaviorToAjax();
+      load_wms_layers();
+
       init_map();
       load_group_hydroservers();
       activate_layer_values();
@@ -684,18 +691,21 @@ var water_data_explorer_whos_PACKAGE = (function() {
       map.getView().on('change:resolution', function(evt){
         var view = evt.target;
 
-        map.getLayers().getArray().map(function(layer) {
-          var source = layer.getSource();
-          if (source instanceof ol.source.Cluster) {
-            var distance = source.getDistance();
-            if (view.getZoom() >= 9 && distance > 0) {
-              source.setDistance(0);
+        map.getLayers().getArray().map(function(layers) {
+          layers.getLayersArray().forEach(function(layer){
+            var source = layer.getSource();
+            if (source instanceof ol.source.Cluster) {
+              var distance = source.getDistance();
+              if (view.getZoom() >= 9 && distance > 0) {
+                source.setDistance(0);
+              }
+              else if (view.getZoom() < 9 && distance == 0) {
+                source.setDistance(50);
+  
+              }
             }
-            else if (view.getZoom() < 9 && distance == 0) {
-              source.setDistance(50);
+          })
 
-            }
-          }
         });
       }, map);
     }
@@ -718,24 +728,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //     {
-        //         message: `Unable to start the Water Data Explorer`
-        //     },
-        //     {
-        //         type: "danger",
-        //         allow_dismiss: true,
-        //         z_index: 20000,
-        //         delay: 5000,
-        //         animate: {
-        //           enter: 'animated fadeInRight',
-        //           exit: 'animated fadeOutRight'
-        //         },
-        //         onShow: function() {
-        //             this.css({'width':'auto','height':'auto'});
-        //         }
-        //     }
-        // )
+
       }
 
 

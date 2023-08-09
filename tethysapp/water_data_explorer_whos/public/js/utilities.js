@@ -695,6 +695,10 @@ html_for_servers = function(isAdmin,title,group_name,isNew){
       <button id="${title}_variables" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalShowVariablesTable"> 
         <i class="bi bi-card-list tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="View Variables"></i>
       </button>
+      <button id="${title}_${group_name}_wms_services" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddWMSLayers"> 
+        <i class="fa-solid fa-layer-group tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Add WMS Layers"></i>
+      </button>
+
       <button type="button" id="${title}_variables_info" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalHydroserInformation">
        <i class="bi bi-info-circle-fill tool_tip_h" data-bs-toggle="tooltip" data-placement="bottom" title="Hydroserver Information"></i>
       </button>

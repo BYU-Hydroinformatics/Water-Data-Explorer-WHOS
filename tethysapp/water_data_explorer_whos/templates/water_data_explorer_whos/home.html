@@ -59,6 +59,10 @@
 
 {% endblock %} 
 {% block app_content %}
+<div id="p_page">
+{% include "water_data_explorer_whos/modals/partners.html" %} 
+
+</div>
 <div id="map" class="map"></div>
 <table id="tableLegend"></table>
 <div id ="graph">
@@ -171,6 +175,7 @@
 {% block app_content_wrapper_override %} 
 
 {{ block.super }} 
+{% include "water_data_explorer_whos/modals/addWmsLayersToHydroserver.html" %} 
 
 {% include "water_data_explorer_whos/modals/manageServers.html" %} 
 {% include "water_data_explorer_whos/modals/delCentral.html" %} 
@@ -184,7 +189,8 @@
 {% include "water_data_explorer_whos/modals/showVariables.html" %} 
 {% include "water_data_explorer_whos/modals/showVariables2.html" %} 
 {% include "water_data_explorer_whos/modals/hydro_info.html" %} 
-{% include "water_data_explorer_whos/modals/promp_down.html" %} 
+{% include "water_data_explorer_whos/modals/promp_down.html" %}
+
 
 {% endblock %} 
 

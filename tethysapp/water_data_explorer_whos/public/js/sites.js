@@ -649,10 +649,12 @@ activate_layer_values = function (){
                   let time_serie_range = result['times_series'][variable_code_new];
 
                   let begin_date = time_serie_range['beginDateTime'].split('T')[0];
+
                   if(begin_date == null){
                     begin_date = "No Data Provided"
                   }
                   let end_date = time_serie_range['endDateTime'].split('T')[0];
+
                   if(end_date == null){
                     end_date = "No Data Provided"
                   }
@@ -740,15 +742,12 @@ activate_layer_values = function (){
 
 
                     let start_dateUTC = result['times_series'][Object.keys(result['times_series'])[selectedItem]]['beginDateTimeUTC']
-                    let dateUTC_start = new Date(start_dateUTC)
-                    let starts = start_dateUTC.split("T");
-                    let starts_no_seconds = starts[1].split(":");
+                    let dateUTC_start = new Date(start_dateUTC.replace(/-/g, '\/').replace(/T.+/, ''));
+
+
                     let end_dateUTC = result['times_series'][Object.keys(result['times_series'])[selectedItem]]['endDateTimeUTC']
-                    let dateUTC_end = new Date(end_dateUTC)
+                    let dateUTC_end = new Date(end_dateUTC.replace(/-/g, '\/').replace(/T.+/, ''));
 
-                    let ends = end_dateUTC.split("T");
-
-                    let ends_no_seconds = ends[1].split(":");
 
                     // THIS IS NECESARRY TO RESET THE DATES OTHERWISE IT IS GOING TO HAVE EMPTY SPACES..
                     $('#datetimepicker6').datepicker('setStartDate', null);
@@ -806,24 +805,7 @@ activate_layer_values = function (){
                   type: 1,
                   position: 'right top'
                 })
-                // $.notify(
-                //     {
-                //         message: `The ${feature_single.values_['name']} site does not contain any variable`
-                //     },
-                //     {
-                //         type: "info",
-                //         allow_dismiss: true,
-                //         z_index: 20000,
-                //         delay: 5000,
-                //         animate: {
-                //           enter: 'animated fadeInRight',
-                //           exit: 'animated fadeOutRight'
-                //         },
-                //         onShow: function() {
-                //             this.css({'width':'auto','height':'auto'});
-                //         }
-                //     }
-                // )
+
               }
             }
             catch(e){
@@ -846,24 +828,7 @@ activate_layer_values = function (){
                 type: 1,
                 position: 'right top'
               })
-              // $.notify(
-              //     {
-              //         message: `The is an error retriving the complete data of the station/platform `
-              //     },
-              //     {
-              //         type: "danger",
-              //         allow_dismiss: true,
-              //         z_index: 20000,
-              //         delay: 5000,
-              //         animate: {
-              //           enter: 'animated fadeInRight',
-              //           exit: 'animated fadeOutRight'
-              //         },
-              //         onShow: function() {
-              //             this.css({'width':'auto','height':'auto'});
-              //         }
-              //     }
-              // )
+
             }
 
 
@@ -932,24 +897,7 @@ activate_layer_values = function (){
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //     {
-    //         message: `Unable to retrieve information of the selected site`
-    //     },
-    //     {
-    //         type: "info",
-    //         allow_dismiss: true,
-    //         z_index: 20000,
-    //         delay: 5000,
-    //         animate: {
-    //           enter: 'animated fadeInRight',
-    //           exit: 'animated fadeOutRight'
-    //         },
-    //         onShow: function() {
-    //             this.css({'width':'auto','height':'auto'});
-    //         }
-    //     }
-    // )
+
   }
 
 }

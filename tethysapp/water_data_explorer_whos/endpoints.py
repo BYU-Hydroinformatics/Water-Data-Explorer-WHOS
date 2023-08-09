@@ -6,7 +6,7 @@ import geopandas as gpd
 import requests
 import shapely.speedups
 import pywaterml.waterML as pwml
-from .model import Base, Groups, HydroServer_Individual
+from .model import Base, Groups, HydroServer_Individual, WMS_Layers
 from .auxiliary import *
 from django.http import JsonResponse
 from .app import WaterDataExplorer as app
@@ -530,8 +530,8 @@ def delete_group_hydroserver(request):
         hydroservers_group = session.query(Groups).filter(Groups.title == group)[0].hydroserver
 
         for title in titles:
-            hydroservers_group = session.query(HydroServer_Individual).filter(HydroServer_Individual.title == title).delete(
-                synchronize_session='evaluate')  # Deleting the record from the local catalog
+            hydroservers_group = session.query(HydroServer_Individual).filter(HydroServer_Individual.title == title).first()
+            session.delete(hydroservers_group)
             session.commit()
             session.close()
 
@@ -541,3 +541,70 @@ def delete_group_hydroserver(request):
             list_catalog[i_string] = title
             i=i+1
     return JsonResponse(list_catalog)
+
+
+@controller(name='save-wms-layers-hydroserver', url='water-data-explorer-whos/save-wms-layers-hydroserver')
+def save_wms_layers(request):
+    return_obj = {}
+    specific_group = request.POST.get('group')
+    specific_hs = request.POST.get('hs')
+    wms_information = json.loads(request.POST.get('data'))
+    SessionMaker = app.get_persistent_store_database(Persistent_Store_Name, as_sessionmaker=True)
+    session = SessionMaker()  # Initiate a session
+    for single_layer in wms_information:
+        services = single_layer['wms_services']
+        geometry = single_layer['geometry']
+        specific_wms_layers_title = single_layer['id']
+        hs_wms_layer_model = session.query(WMS_Layers).join(HydroServer_Individual).join(Groups).filter(Groups.title == specific_group).filter(HydroServer_Individual.title == specific_hs).filter(WMS_Layers.title == specific_wms_layers_title).first()
+        if not hs_wms_layer_model:
+            hydroserver_model = session.query(HydroServer_Individual).join(Groups).filter(Groups.title == specific_group).filter(HydroServer_Individual.title == specific_hs).first()
+            wms_one = WMS_Layers(title=specific_wms_layers_title,
+                                services = json.dumps(services),
+                                geometry = json.dumps(geometry))
+
+            hydroserver_model.wms_layers.append(wms_one)
+            session.add(hydroserver_model)
+
+            return_obj[specific_wms_layers_title] = {
+                'msge': f'WMS layers successfully added to view {specific_hs}',
+                'services': services,
+                'geometry': geometry
+            }
+        else:
+            return_obj[specific_wms_layers_title] = {
+                'msge': f'WMS layers already present in view {specific_hs}',
+                'services': services,
+                'geometry': geometry
+            }   
+    session.commit()
+    session.close() 
+    return JsonResponse(return_obj)
+
+
+@controller(name='get-wms-layers-hydroserver', url='water-data-explorer-whos/get-wms-layers-hydroserver')
+def get_wms_layers(request):
+    return_obj = {}
+    # specific_group = request.POST.get('group')
+    # specific_hs = request.POST.get('hs')
+    SessionMaker = app.get_persistent_store_database(Persistent_Store_Name, as_sessionmaker=True)
+    session = SessionMaker()  # Initiate a session    
+    # breakpoint()
+
+    # hs_wms_layer_model = session.query(WMS_Layers).join(HydroServer_Individual).join(Groups).filter(Groups.title == specific_group).filter(HydroServer_Individual.title == specific_hs).all()
+    hs_wms_layer_model = session.query(WMS_Layers).all()
+    
+    if hs_wms_layer_model:
+        for wms_layer in hs_wms_layer_model:
+            new_layer = {
+                'services': json.loads(wms_layer.services),
+                'geometry': json.loads(wms_layer.geometry)
+            }
+            if wms_layer.hs.title in return_obj:
+                return_obj[wms_layer.hs.title].append(new_layer)
+            else:
+                return_obj[wms_layer.hs.title] = []
+                return_obj[wms_layer.hs.title].append(new_layer)
+
+    session.commit()
+    session.close() 
+    return JsonResponse(return_obj)

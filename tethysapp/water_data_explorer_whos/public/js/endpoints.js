@@ -8,6 +8,151 @@
  *
  *****************************************************************************/
 
+delete_wms_layers_hydroserver = function(layerGroupToRemove){
+  var lg = wms_group_layers_list[layerGroupToRemove]
+  lg.getLayersArray().forEach(function(layer){
+    map.removeLayer(layerGroupToRemove);
+  })
+  map.removeLayer(lg);
+  map.removeControl(main_layer_switcher);
+  main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+  map.addControl(main_layer_switcher);
+}
+
+load_wms_layers = function(){
+  $.ajax({
+    type: "POST",
+    url: "get-wms-layers-hydroserver/",
+    success: function(data) {
+      console.log(data)
+      var layers_wms = []
+
+
+      for (single_hs in data){
+
+        for (single_layer in data[single_hs]){
+          var layer_name = data[single_hs][single_layer]['services'][0]['title']  
+          var layer_url = data[single_hs][single_layer]['services'][0]['href'].split("?")[0];
+          var layer_wms_to_add = new ol.layer.Tile({
+            title: layer_name,
+
+            source: new ol.source.TileWMS({
+              url: layer_url,
+              params: {
+                'LAYERS': layer_name,
+                'FORMAT': 'image/png',
+              },
+              projection: 'EPSG:4326', // Specify the CRS for the WMS layer
+            }),
+            visible: false
+          })
+          layers_wms.push(layer_wms_to_add);
+        }
+        const WMSLayers = new ol.layer.Group({
+          title: `${single_hs}`,
+          layers: layers_wms
+        });
+        if(layers_wms.length > 0){
+          map.addLayer(WMSLayers)
+          // layers_list.push(WMSLayers)
+        }
+      }
+      // main_layer_switcher.renderPanel(map)
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        console.error("Error fetching data:", errorThrown);
+    }
+});
+}
+add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
+  // const url = $("#add-wms-catalog-url").val();
+
+  // Using jQuery's AJAX method to make the request
+  $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "text",
+      success: function(data) {
+          layers_metadata_list = []
+          dict_data = JSON.parse(data)
+          console.log(dict_data)
+          data_array = dict_data['features']
+          data_array.forEach(function(single_layer){
+            
+            wms_services = single_layer['links']
+            geometry = single_layer['geometry']
+            id = single_layer['id']
+            var single_layer_dict = {
+              'wms_services': wms_services,
+              'geometry': geometry,
+              'id':id
+            }
+            layers_metadata_list.push(single_layer_dict);
+          });
+
+          data_dict = {
+            'hs':wms_hs,
+            'group': wms_group,
+            'data': JSON.stringify(layers_metadata_list)
+          }
+          $.ajax({
+            type: "POST",
+            url: "save-wms-layers-hydroserver/",
+            data: data_dict,
+            dataType: "JSON",
+            success: function(data) {
+              console.log(data)
+              var layers_wms = []
+              for (single_layer in data){
+                if(!data[single_layer]['msge'].includes('WMS layers already present in view')){
+                  var layer_name = data[single_layer]['services'][0]['title']  
+                  var layer_url = data[single_layer]['services'][0]['href'].split("?")[0];
+                  
+                  var layer_wms_to_add = new ol.layer.Tile({
+                    title: layer_name,
+        
+                    source: new ol.source.TileWMS({
+                      url: layer_url,
+                      params: {
+                        'LAYERS': layer_name,
+                        'FORMAT': 'image/png',
+                      },
+                      projection: 'EPSG:4326', // Specify the CRS for the WMS layer
+                    }),
+                    visible: false
+                  })
+                  layers_wms.push(layer_wms_to_add);
+                }
+
+              }
+              const WMSLayers = new ol.layer.Group({
+                title: `${wms_hs}`,
+                layers: layers_wms
+              });
+              if(layers_wms.length > 0){
+                wms_group_layers_list[wms_hs]= WMSLayers;
+                map.addLayer(WMSLayers);
+                map.removeControl(main_layer_switcher);
+                main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+                map.addControl(main_layer_switcher);
+              }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.error("Error fetching data:", errorThrown);
+            }
+        });
+      },
+      error: function(xhr, textStatus, errorThrown) {
+          console.error("Error fetching data:", errorThrown);
+      }
+  });
+}
+
+$("#btn-add-wms-catalog-url").on("click",function(){
+  const url = $("#add-wms-catalog-url").val();
+  add_wms_layers_hydroserver(url,id_dictionary[wms_hs_to_add],id_dictionary[wms_group_to_add])
+})
+
 /**
 * get_download_hs function.
 * Function to overwrite the retrieved data from a python notebook.
@@ -542,6 +687,10 @@ load_individual_hydroservers_group = function(group_name){
                      $(`#${new_title}_variables`).on("click",showVariables2);
                      $(`#${new_title}_variables_info`).on("click",hydroserver_information);
                      $(`#${new_title}_${group_name_e3}_reload`).on("click",update_hydroserver);
+                     $(`#${new_title}_${group_name_e3}_wms_services`).on("click",function(){
+                      wms_hs_to_add = this.id.split("_")[0];
+                      wms_group_to_add = this.id.split("_")[1];
+                     });
 
 
                      let lis = document.getElementById(`${id_group_separator}`).getElementsByTagName("li");
@@ -846,6 +995,7 @@ add_hydroserver = function(){
       console.log(url_request);
       // $("#loading_p").removeClass("d-none");
       // $("#loading_p").html(`Adding ${title_server}: 0 new sites added to the database . . .`);
+
         $.ajax({
           type:"GET",
           url:url_request,
@@ -1056,6 +1206,8 @@ add_hydroserver = function(){
 
                   })
 
+
+
                   for(let i=0; i < parsedObject.length; ++i){
                     list_sites_me.push(parsedObject[i].sitename)
                   }
@@ -1191,7 +1343,10 @@ add_hydroserver = function(){
                            $(`#${new_title}_variables`).on("click",showVariables2);
                            $(`#${new_title}_variables_info`).on("click",hydroserver_information);
                            $(`#${new_title}_${group_name_e3}_reload`).on("click",update_hydroserver);
-
+                           $(`#${new_title}_${group_name_e3}_wms_services`).on("click",function(){
+                            wms_hs_to_add = this.id.split("_")[0];
+                            wms_group_to_add = this.id.split("_")[1];
+                           });
                           // MAKES THE LAYER INVISIBLE
 
                           let lis = document.getElementById("current-Groupservers").getElementsByTagName("li");
@@ -1274,28 +1429,11 @@ add_hydroserver = function(){
                               position: 'right top'
                             })
                           }
-                          // $.notify(
-                          //     {
-                          //         message: `Successfully Added the ${title_server} WaterOneFlow Service to the Map`
-                          //     },
-                          //     {
-                          //         newest_on_top: true,
-                          //         type: "success",
-                          //         allow_dismiss: true,
-                          //         z_index: 20000,
-                          //         delay: 100,
-                          //         animate: {
-                          //           enter: 'animated fadeInRight',
-                          //           exit: 'animated fadeOutRight'
-                          //         },
-                          //         onShow: function() {
-                          //             this.css({'width':'auto','height':'auto'});
-                          //         }
-                          //     }
-                          // )
-                          // notifications.close();
-                          $("#soapAddLoading-group").addClass("d-none");
 
+                          $("#soapAddLoading-group").addClass("d-none");
+                          var url_wms = $("#wms-catalog-url").val();
+                          console.log(url_wms);
+                          add_wms_layers_hydroserver(url_wms,title_server,actual_group_name)
 
                     }
                     catch(err){
@@ -1362,27 +1500,10 @@ add_hydroserver = function(){
                     type: 1,
                     position: 'right top'
                   })
-                  // $.notify(
-                  //     {
-                  //         message: `We are having problems adding the ${title_server} WaterOneFlow web service`
-                  //     },
-                  //     {
-                  //         type: "danger",
-                  //         allow_dismiss: true,
-                  //         z_index: 20000,
-                  //         delay: 5000,
-                  //         animate: {
-                  //           enter: 'animated fadeInRight',
-                  //           exit: 'animated fadeOutRight'
-                  //         },
-                  //         onShow: function() {
-                  //             this.css({'width':'auto','height':'auto'});
-                  //         }
-                  //     }
-                  // )
                 }
 
               })
+
             }
             catch(e){
               console.log(e);
@@ -1567,6 +1688,8 @@ delete_hydroserver= function(){
 
               }
               $(`#${new_title}deleteID`).remove();
+
+              delete_wms_layers_hydroserver(title)
               new Notify ({
                 status: 'success',
                 title: 'Success',
@@ -1760,6 +1883,8 @@ delete_hydroserver_Individual= function(group,server){
                 let no_servers = `<button class="btn btn-danger btn-block noGroups"> The group is empty</button>`
                     $(no_servers).appendTo(`#${id_group_separator}`) ;
               }
+              delete_wms_layers_hydroserver(title)
+
               new Notify ({
                 status: 'success',
                 title: 'Success',
@@ -1777,25 +1902,7 @@ delete_hydroserver_Individual= function(group,server){
                 type: 1,
                 position: 'right top'
               })
-              // $.notify(
 
-              //     {
-              //         message: `Successfully Deleted the Web service!`
-              //     },
-              //     {
-              //         type: "success",
-              //         allow_dismiss: true,
-              //         z_index: 20000,
-              //         delay: 5000,
-              //         animate: {
-              //           enter: 'animated fadeInRight',
-              //           exit: 'animated fadeOutRight'
-              //         },
-              //         onShow: function() {
-              //             this.css({'width':'auto','height':'auto'});
-              //         }
-              //     }
-              // )
             }
           }
           catch(e){

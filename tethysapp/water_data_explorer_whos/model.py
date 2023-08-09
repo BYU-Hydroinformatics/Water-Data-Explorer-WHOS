@@ -35,6 +35,8 @@ class HydroServer_Individual(Base):
     countries = Column(JSON)
     group_id = Column(Integer, ForeignKey('Group_Hydroserver_Individuals.id'))
     group = relationship("Groups", back_populates="hydroserver")  # Tile as given by the admin
+    wms_layers = relationship("WMS_Layers", back_populates ="hs", cascade = "all,delete, delete-orphan" )
+    
     #cascade="all, delete-orphan"
     time_updated = Column(DateTime(timezone=True), onupdate=func.now())
 
@@ -45,3 +47,19 @@ class HydroServer_Individual(Base):
         self.siteinfo = siteinfo
         self.variables = variables
         self.countries = countries
+
+class WMS_Layers(Base):
+    __tablename__ = 'WMS_Layers_Table'
+    id = Column(Integer, primary_key=True)  # Record number.
+    title = Column(String(1000))  # Tile as given by the admin
+    services = Column(JSON)
+    geometry = Column(JSON)
+    hs_id = Column(Integer, ForeignKey('Hydroserver_Singular.id'))
+    hs = relationship("HydroServer_Individual", back_populates="wms_layers") 
+    #cascade="all, delete-orphan"
+    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
+
+    def __init__(self, title,services,geometry):
+        self.title = title
+        self.services = services
+        self.geometry = geometry
