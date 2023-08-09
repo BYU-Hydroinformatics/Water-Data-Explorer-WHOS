@@ -1,11 +1,8 @@
 name: ci
 on:
   push:
-    branches:
-      - 'main'
-      - 'partners_page'
     tags:
-      - 'v*'
+      - '*'
   pull_request:
     branches:
       - 'main'
@@ -29,19 +26,28 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Set Tag
         run: |
+          echo "TAG=${GITHUB_REF:10}" >> $GITHUB_ENV
           echo "TAG_LATEST=latest" >> $GITHUB_ENV
-          echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test Tag
         run: |
           echo $TAG
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: ./docker_files
-          builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.TAG }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest,mode=max
+
+      - name: build and push latest tag
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ env.DOCKER_HUB_ORG }}/${{ env.DOCKER_REPO }}:${{ env.TAG_LATEST }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest,mode=max
