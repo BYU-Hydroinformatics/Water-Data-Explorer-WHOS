@@ -60,7 +60,6 @@ var water_data_explorer_whos_PACKAGE = (function() {
         }
         if(endpointGeoServer ==="None"){
           endpointGeoServer = "Whole_world";
-          ////console.log(endpointGeoServer);
         }
         if(geoServerWorkspace ==="None"){
           geoServerWorkspace= "Whole_world";
@@ -98,7 +97,6 @@ var water_data_explorer_whos_PACKAGE = (function() {
           vectorSource.once('change',function(e){
             if(vectorSource.getState() === 'ready') {
               var extent = vectorSource.getExtent();
-              ////console.log(extent);
               map.getView().fit(extent, map.getSize());
 
               //disable zoom out //
@@ -115,7 +113,6 @@ var water_data_explorer_whos_PACKAGE = (function() {
         }
       }
       catch(e) {
-        // console.log(e);
         new Notify ({
           status: 'warning',
           title: 'Info',
@@ -134,25 +131,6 @@ var water_data_explorer_whos_PACKAGE = (function() {
           position: 'right top'
         })
 
-
-        // $.notify(
-        //     {
-        //         message: `No boundary found for the Water Data Explorer`
-        //     },
-        //     {
-        //         type: "info",
-        //         allow_dismiss: true,
-        //         z_index: 20000,
-        //         delay: 5000,
-        //         animate: {
-        //           enter: 'animated fadeInRight',
-        //           exit: 'animated fadeOutRight'
-        //         },
-        //         onShow: function() {
-        //             this.css({'width':'auto','height':'auto'});
-        //         }
-        //     }
-        // )
       }
     }
 
@@ -517,24 +495,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
           position: 'right top'
         })
 
-        // $.notify(
-        //     {
-        //         message: `Unable to give a customized name to the view of the Water Data Explorer`
-        //     },
-        //     {
-        //         type: "info",
-        //         allow_dismiss: true,
-        //         z_index: 20000,
-        //         delay: 5000,
-        //         animate: {
-        //           enter: 'animated fadeInRight',
-        //           exit: 'animated fadeOutRight'
-        //         },
-        //         onShow: function() {
-        //             this.css({'width':'auto','height':'auto'});
-        //         }
-        //     }
-        // )
+
       }
 
 
@@ -621,16 +582,6 @@ var water_data_explorer_whos_PACKAGE = (function() {
       $(".carousel-control-next").on("click",hide_or_show_buttons_on_carousel)
       $(".carousel-indicator").on("click",hide_or_show_buttons_on_carousel)
 
-      // $(".carousel-control").on("click",function(){
-      //   if ($("#tables_info").hasClass("active")) {
-      //    $(".carousel-control.right ").hide();
-      //    $(".carousel-control.left ").show();
-      //   }
-      //   if ($("#plots_info").hasClass("active")) {
-      //    $(".carousel-control.right ").show();
-      //    $(".carousel-control.left ").hide();
-      //   }
-      // })
       $(".toggle-nav").on("click",function(){
 
           setTimeout(function(){ map.updateSize(); }, 200);

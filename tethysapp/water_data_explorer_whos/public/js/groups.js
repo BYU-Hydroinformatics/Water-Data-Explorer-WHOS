@@ -40,7 +40,6 @@ getWaterOneFlowServicesInfoHelperJS = function (xmlData) {
   var result = parser.validate(xmlData);
   if (result !== true) console.log(result.err);
   var jsonObj = parser.parse(xmlData, options);
-  console.log(jsonObj);
 
   try {
     return_array = jsonObj["ArrayOfServiceInfo"]["ServiceInfo"];
@@ -126,11 +125,8 @@ give_available_services = function () {
       dataType: "text",
       success: function (xmlData) {
         try {
-          console.log(xmlData);
           let services = getWaterOneFlowServicesInfoHelperJS(xmlData);
-          console.log(services);
           obj_services = giveServices(services);
-          console.log(obj_services);
           $("#rows_servs").empty();
           var services_ava = obj_services["services"];
           tmp_hs_url = services_ava;
@@ -172,24 +168,7 @@ give_available_services = function () {
             type: 1,
             position: 'right top'
           }) 
-          // $.notify(
-          //   {
-          //     message: `There was an error retrieving the different web services contained in the view`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+ 
         }
       },
       error: function (error) {
@@ -212,24 +191,7 @@ give_available_services = function () {
           type: 1,
           position: 'right top'
         }) 
-        // $.notify(
-        //   {
-        //     message: `There was an error retrieving the different web services contained in the view`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       },
     });
   } catch (error) {
@@ -358,24 +320,7 @@ show_variables_groups = function () {
           type: 1,
           position: 'right top'
         }) 
-        // $.notify(
-        //   {
-        //     message: `There was an error retrieving the different variables for the selected group`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       }
     },
     error: function (error) {
@@ -473,24 +418,7 @@ available_regions = function () {
           type: 1,
           position: 'right top'
         }) 
-        // $.notify(
-        //   {
-        //     message: `There was an error trying to retrieve the different countries contained by the web services in the app`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       }
     },
     error: function (error) {
@@ -552,7 +480,6 @@ listener_checkbox = function (list_countries) {
       dataType: "JSON",
       data: le_object,
       success: function (data) {
-        console.log(data);
         try {
           $("#modalKeyWordSearch").find("#groups_variables").empty();
 
@@ -586,7 +513,6 @@ listener_checkbox = function (list_countries) {
             z = z + 1;
           });
           HSTableHtml += "</tbody></table>";
-          ////console.log(HSTableHtml)
           $("#modalKeyWordSearch").find("#groups_variables").html(HSTableHtml);
           $("#KeywordLoading").addClass("d-none");
         } catch (e) {
@@ -609,24 +535,7 @@ listener_checkbox = function (list_countries) {
             type: 1,
             position: 'right top'
           }) 
-          // $.notify(
-          //   {
-          //     message: `There was an error retrieving the different variables for the selected web service`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+
         }
       },
       error: function (error) {
@@ -725,9 +634,7 @@ $(document).on("click", "#btn-key-update-variables", function () {
     })
     .get(); // Get array.
 
-  console.log(countries_selected);
   if (countries_selected.length > 0) {
-    ////console.log(countries_selected);
     listener_checkbox(countries_selected);
   } else {
     show_variables_groups();
@@ -753,7 +660,6 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
     url_decons = url_single.split("?");
 
     let url_request;
-    console.log(url_decons[0]);
     let make_sure_not_mc = url_decons[0].split("//");
 
     if (make_sure_not_mc[0] == document.location.protocol) {
@@ -777,8 +683,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
     var list_sites_me = [];
     var notifications;
     console.log(url_request);
-    // $("#loading_p").removeClass("d-none");
-    // $("#loading_p").html(`Adding ${title_server}: 0 new sites added to the database . . .`);
+
     $.ajax({
       type: "GET",
       url: url_request,
@@ -798,12 +703,9 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
               tag_b =
                 progressResponse.split("</queryInfo>")[0] + "</queryInfo>";
               last_child = progressResponse.substr(progressResponse.length - 7);
-              console.log("last characters", last_child);
               if (last_child == "</site>" || last_child == "velope>") {
-                console.log("1a");
                 complete_response = progressResponse;
               } else {
-                console.log("1b");
                 // Get the first incomplete element and add the site tag//
                 almost_response =
                   "<site>" +
@@ -820,10 +722,8 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
             } else {
               progressResponse = response.substring(lastResponseLength);
               last_child = progressResponse.substr(progressResponse.length - 7);
-              console.log("last characters", last_child);
               if (last_child == "</site>" || last_child == "velope>") {
                 if (almost_response != "") {
-                  console.log("2a1");
 
                   complete_response =
                     tag_b + almost_response + progressResponse;
@@ -831,13 +731,11 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                   // complete_response = almost_response + progressResponse.split('<site>')[0];
                   // almost_response = progressResponse.split('<site>').slice(1).join('<site>');
                 } else {
-                  console.log("2a2");
 
                   complete_response = tag_b + progressResponse;
                 }
               } else {
                 if (almost_response != "") {
-                  console.log("2b1");
 
                   complete_response =
                     tag_b +
@@ -847,7 +745,6 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                     "<site>" +
                     progressResponse.split("<site>").slice(1).join("<site>");
                 } else {
-                  console.log("2b2");
 
                   // Get the first incomplete element and add the site tag//
                   almost_response =
@@ -866,21 +763,10 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
               }
               lastResponseLength = response.length;
 
-              // console.log(complete_response);
             }
             if (!complete_response.includes(tag_c)) {
               complete_response = complete_response + tag_c;
             }
-
-            // complete_response += tag_c;
-            // console.log("raw");
-            // console.log(progressResponse);
-            //
-            // console.log("complete");
-            // console.log(complete_response);
-            //
-            // console.log("partial");
-            // console.log(almost_response);
 
             loco_index += 1;
 
@@ -893,7 +779,6 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
               description: description,
             };
 
-            console.log(requestObject);
             $.ajax({
               type: "POST",
               url: "save_stream/",
@@ -901,9 +786,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
               data: requestObject,
               success: function (result) {
                 //Returning the geoserver layer metadata from the controller
-                console.log(result);
                 var json_response = result["success"];
-                console.log(json_response);
                 if (!result.hasOwnProperty("error")) {
                   $("#loading_p").html(
                     `Adding ${title_server}: ${json_response} . . .`
@@ -927,10 +810,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                       type: 1,
                       position: 'right top'
                     })
-                    // notifications.update({
-                    //   message: `${title_server}: ${json_response} . . .`,
-                    //   delay: 500,
-                    // });
+
                   } else {
 
                     notifications =   new Notify ({
@@ -950,51 +830,13 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                       type: 1,
                       position: 'right top'
                     })
-                    // notifications = $.notify(
-                    //   {
-                    //     message: `${title_server}: 0 new sites added to the database . . .`,
-                    //   },
-                    //   {
-                    //     newest_on_top: true,
-                    //     type: "success",
-                    //     allow_dismiss: true,
-                    //     z_index: 500,
-                    //     delay: 0,
-                    //     animate: {
-                    //       enter: "animated fadeInRight",
-                    //       exit: "animated fadeOutRight",
-                    //     },
-                    //     onShow: function () {
-                    //       this.css({ width: "auto", height: "auto" });
-                    //     },
-                    //   }
-                    // );
                   }
                 }
               },
               error: function (err) {
                 console.log(err);
                 $("#soapAddLoading-group").addClass("d-none");
-                // $("#loading_p").addClass("d-none");
 
-                // $.notify(
-                //     {
-                //         message: `We are having problems adding the ${title_server} WaterOneFlow web service`
-                //     },
-                //     {
-                //         type: "danger",
-                //         allow_dismiss: true,
-                //         z_index: 20000,
-                //         delay: 5000,
-                //         animate: {
-                //           enter: 'animated fadeInRight',
-                //           exit: 'animated fadeOutRight'
-                //         },
-                //         onShow: function() {
-                //             this.css({'width':'auto','height':'auto'});
-                //         }
-                //     }
-                // )
               },
             });
 
@@ -1037,7 +879,6 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
             test_cont.push(parsedObject[i].sitename);
           }
 
-          console.log(arrayCompare(test_cont, list_sites_me));
 
           let requestObject = {
             hs: title_server,
@@ -1047,7 +888,6 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
             description: description,
           };
 
-          console.log(requestObject);
           $.ajax({
             type: "POST",
             url: "save_new_sites/",
@@ -1234,26 +1074,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                     position: 'right top'
                   })
                 }
-                // $.notify(
-                //   {
-                //     message: `Successfully Added the ${title_server} WaterOneFlow Service to the Map`,
-                //   },
-                //   {
-                //     newest_on_top: true,
-                //     type: "success",
-                //     allow_dismiss: true,
-                //     z_index: 20000,
-                //     delay: 100,
-                //     animate: {
-                //       enter: "animated fadeInRight",
-                //       exit: "animated fadeOutRight",
-                //     },
-                //     onShow: function () {
-                //       this.css({ width: "auto", height: "auto" });
-                //     },
-                //   }
-                // );
-                // notifications.close();
+
                 $("#soapAddLoading-group").addClass("d-none");
               } catch (err) {
                 console.log(err);
@@ -1277,24 +1098,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                   type: 1,
                   position: 'right top'
                 })
-                // $.notify(
-                //   {
-                //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-                //   },
-                //   {
-                //     type: "danger",
-                //     allow_dismiss: true,
-                //     z_index: 20000,
-                //     delay: 5000,
-                //     animate: {
-                //       enter: "animated fadeInRight",
-                //       exit: "animated fadeOutRight",
-                //     },
-                //     onShow: function () {
-                //       this.css({ width: "auto", height: "auto" });
-                //     },
-                //   }
-                // );
+
               }
             },
             error: function (err) {
@@ -1317,24 +1121,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
                 type: 1,
                 position: 'right top'
               })
-              // $.notify(
-              //   {
-              //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-              //   },
-              //   {
-              //     type: "danger",
-              //     allow_dismiss: true,
-              //     z_index: 20000,
-              //     delay: 5000,
-              //     animate: {
-              //       enter: "animated fadeInRight",
-              //       exit: "animated fadeOutRight",
-              //     },
-              //     onShow: function () {
-              //       this.css({ width: "auto", height: "auto" });
-              //     },
-              //   }
-              // );
+
             },
           });
         } catch (e) {
@@ -1357,24 +1144,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //   {
-          //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+
         }
       },
 
@@ -1398,24 +1168,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //   {
-        //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       },
     });
   } catch (e) {
@@ -1439,25 +1192,7 @@ add_hydroserver_for_groups = function (hs_object, actual_group_name) {
       type: 1,
       position: 'right top'
     })
-    
-    // $.notify(
-    //   {
-    //     message: `We are having problems adding the ${title_server} WaterOneFlow web service`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 
@@ -1516,7 +1251,6 @@ create_group_hydroservers = function () {
     //MAKE THE AJAX REQUEST///
     let elementForm = $("#modalAddGroupServerForm");
     let datastring = elementForm.serialize();
-    // console.log(datastring);
     $("#soapAddLoading-group").removeClass("d-none");
 
     let urls_array = datastring.split("&server=");
@@ -1525,16 +1259,13 @@ create_group_hydroservers = function () {
     let urls_array2 = urls_array.map(function (single_url) {
       return decodeURIComponent(single_url);
     });
-    // console.log(urls_array2);
     let tmp_hs_url_select = [];
 
     tmp_hs_url.forEach(function (single_hs) {
-      console.log(single_hs);
       if (urls_array2.includes(single_hs["url"])) {
         tmp_hs_url_select.push(single_hs);
       }
     });
-    // console.log(tmp_hs_url_select);
 
     let datastring_empty_group = datastring.split("&server=")[0];
     $.ajax({
@@ -1575,7 +1306,6 @@ create_group_hydroservers = function () {
           let input_check = li_object.getElementsByClassName("chkbx-layers")[0];
 
           if (!input_check.checked) {
-            // //console.log("HERE NOT CHECKEC")
             load_individual_hydroservers_group(title);
           }
           input_check.addEventListener("change", function () {
@@ -1621,24 +1351,7 @@ create_group_hydroservers = function () {
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //   {
-          //     message: `Successfully Created Group of views to the database`,
-          //   },
-          //   {
-          //     type: "success",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 500,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+
           $("#modalAddGroupServerForm").each(function () {
             this.reset();
           });
@@ -1670,24 +1383,6 @@ create_group_hydroservers = function () {
             position: 'right top'
           })
           
-          // $.notify(
-          //   {
-          //     message: `There was an error adding the group of views`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
         }
       },
       error: function (error) {
@@ -1711,24 +1406,6 @@ create_group_hydroservers = function () {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //   {
-        //     message: `There was an error adding the group of views`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
       },
     });
   } catch (error) {
@@ -1751,24 +1428,7 @@ create_group_hydroservers = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `There was an error while adding the group of WaterOneFlow web services`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-add-addHydro").on("click", create_group_hydroservers);
@@ -1786,7 +1446,6 @@ load_group_hydroservers = function () {
       try {
         let groups = result["hydroservers"];
         check_groups_length = groups.length;
-        console.log(check_groups_length);
         $(".divForServers").empty(); //Resetting the catalog
         let extent = ol.extent.createEmpty();
         ind = 1;
@@ -1868,24 +1527,7 @@ load_group_hydroservers = function () {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //   {
-        //     message: `There was an error while loading the different Web Services`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       }
     },
     error: function (error) {
@@ -1908,24 +1550,7 @@ load_group_hydroservers = function () {
         type: 1,
         position: 'right top'
       })
-      // $.notify(
-      //   {
-      //     message: `There was an error while loading the different Web Services`,
-      //   },
-      //   {
-      //     type: "danger",
-      //     allow_dismiss: true,
-      //     z_index: 20000,
-      //     delay: 5000,
-      //     animate: {
-      //       enter: "animated fadeInRight",
-      //       exit: "animated fadeOutRight",
-      //     },
-      //     onShow: function () {
-      //       this.css({ width: "auto", height: "auto" });
-      //     },
-      //   }
-      // );
+
     },
   });
 };
@@ -1988,24 +1613,7 @@ make_list_groups = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having an error trying to make the list of groups in the application`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-del-groups-f").on("click", make_list_groups);
@@ -2081,24 +1689,7 @@ get_hs_list_from_hydroserver = function () {
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //   {
-          //     message: `We are having an error trying to get the list of servers that are in the group`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+
         }
       },
       error: function (error) {
@@ -2120,24 +1711,7 @@ get_hs_list_from_hydroserver = function () {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //   {
-        //     message: `We are having an error trying to get the list of servers that are in the group`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       },
     });
   } catch (error) {
@@ -2159,24 +1733,7 @@ get_hs_list_from_hydroserver = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having an error trying to recognize the actual group`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $(document).on("click", "#delete-server", get_hs_list_from_hydroserver);
@@ -2218,7 +1775,6 @@ delete_group_of_hydroservers = function () {
                 if (id_dictionary[key] == group) {
                   group_name_e3 = key;
                   delete id_dictionary[key];
-                  console.log(id_dictionary);
                   $(`#${group_name_e3}-row-complete`).remove();
                 }
               });
@@ -2274,24 +1830,7 @@ delete_group_of_hydroservers = function () {
               type: 1,
               position: 'right top'
             })
-            // $.notify(
-            //   {
-            //     message: `Successfully Deleted Group!`,
-            //   },
-            //   {
-            //     type: "success",
-            //     allow_dismiss: true,
-            //     z_index: 20000,
-            //     delay: 5000,
-            //     animate: {
-            //       enter: "animated fadeInRight",
-            //       exit: "animated fadeOutRight",
-            //     },
-            //     onShow: function () {
-            //       this.css({ width: "auto", height: "auto" });
-            //     },
-            //   }
-            // );
+
           } catch (e) {
             console.log(e);
             new Notify ({
@@ -2311,24 +1850,7 @@ delete_group_of_hydroservers = function () {
               type: 1,
               position: 'right top'
             })
-            // $.notify(
-            //   {
-            //     message: `We are having an error deleting the selected groups of views`,
-            //   },
-            //   {
-            //     type: "danger",
-            //     allow_dismiss: true,
-            //     z_index: 20000,
-            //     delay: 5000,
-            //     animate: {
-            //       enter: "animated fadeInRight",
-            //       exit: "animated fadeOutRight",
-            //     },
-            //     onShow: function () {
-            //       this.css({ width: "auto", height: "auto" });
-            //     },
-            //   }
-            // );
+
           }
         },
         error: function (error) {
@@ -2350,24 +1872,7 @@ delete_group_of_hydroservers = function () {
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //   {
-          //     message: `We are having an error deleting the selected groups of views`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+
         },
       });
     } else {
@@ -2388,24 +1893,7 @@ delete_group_of_hydroservers = function () {
         type: 1,
         position: 'right top'
       })
-      // $.notify(
-      //   {
-      //     message: `You need to select at least one group to delete`,
-      //   },
-      //   {
-      //     type: "info",
-      //     allow_dismiss: true,
-      //     z_index: 20000,
-      //     delay: 5000,
-      //     animate: {
-      //       enter: "animated fadeInRight",
-      //       exit: "animated fadeOutRight",
-      //     },
-      //     onShow: function () {
-      //       this.css({ width: "auto", height: "auto" });
-      //     },
-      //   }
-      // );
+
     }
   } catch (err) {
     console.log(err);
@@ -2426,24 +1914,7 @@ delete_group_of_hydroservers = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having problems trying to recognize the actual group`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-del-hydro-groups").on("click", delete_group_of_hydroservers);
@@ -2562,24 +2033,16 @@ catalog_filter_regions = function () {
             Object.keys(id_dictionary).forEach(function (key) {
               if (id_dictionary[key] == hs) {
                 hs_new2 = key;
-                // console.log(hs_available);
                 new_hs_available.push(hs_new2);
               }
             });
           });
-          // console.log(new_hs_available);
           let sitesObj = JSON.parse(result)["stations"];
           map.getLayers().forEach(function (layer) {
             if (layer instanceof ol.layer.Vector) {
               layer.setStyle(new ol.style.Style({}));
             }
           });
-
-          // if(jeojson['features'].length > 0){
-          //   map.addLayer(layer_selected_countries['countries']);
-          //   map.getView().fit(layer_selected_countries['countries'].getSource().getExtent());
-          //   map.updateSize();
-          // }
 
           for (let i = 0; i < sitesObj.length; ++i) {
             let title = sitesObj[i]["title"];
@@ -2588,10 +2051,7 @@ catalog_filter_regions = function () {
             var vectorLayer = map_layers(sites, title, url)[0];
             var vectorSource = map_layers(sites, title, url)[1];
             map.getLayers().forEach(function (layer) {
-              // if(layer instanceof ol.layer.Vector){
-              //   layer.setStyle(new ol.style.Style({}));
-              // }
-              //
+
               if (
                 layer instanceof ol.layer.Vector &&
                 layer == layersDict[title]
@@ -2726,24 +2186,7 @@ catalog_filter_regions = function () {
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //   {
-          //     message: `Something were wrong when filtering the web services by region`,
-          //   },
-          //   {
-          //     type: "danger",
-          //     allow_dismiss: true,
-          //     z_index: 20000,
-          //     delay: 5000,
-          //     animate: {
-          //       enter: "animated fadeInRight",
-          //       exit: "animated fadeOutRight",
-          //     },
-          //     onShow: function () {
-          //       this.css({ width: "auto", height: "auto" });
-          //     },
-          //   }
-          // );
+
         }
       },
       error: function (error) {
@@ -2766,24 +2209,7 @@ catalog_filter_regions = function () {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //   {
-        //     message: `Something were wrong when filtering the web services by region`,
-        //   },
-        //   {
-        //     type: "danger",
-        //     allow_dismiss: true,
-        //     z_index: 20000,
-        //     delay: 5000,
-        //     animate: {
-        //       enter: "animated fadeInRight",
-        //       exit: "animated fadeOutRight",
-        //     },
-        //     onShow: function () {
-        //       this.css({ width: "auto", height: "auto" });
-        //     },
-        //   }
-        // );
+
       },
     });
   } catch (error) {
@@ -2806,24 +2232,7 @@ catalog_filter_regions = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having a problem trying to retrieve the regions to filter the groups`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-key-filter-only-country").on("click", catalog_filter_regions);
@@ -2902,8 +2311,7 @@ catalog_filter_vars = function () {
                 .each(function () {
                   var $li = $(this)["0"];
                   let id_li = $li["id"];
-                  // console.log(id_li)
-                  // console.log(server_name)
+
                   let hs_new2;
                   Object.keys(id_dictionary).forEach(function (key) {
                     if (id_dictionary[key] == server_name) {
@@ -3014,24 +2422,7 @@ catalog_filter_vars = function () {
                 type: 1,
                 position: 'right top'
               })
-              // $.notify(
-              //   {
-              //     message: `Something were wrong when filtering the web services by variable`,
-              //   },
-              //   {
-              //     type: "danger",
-              //     allow_dismiss: true,
-              //     z_index: 20000,
-              //     delay: 5000,
-              //     animate: {
-              //       enter: "animated fadeInRight",
-              //       exit: "animated fadeOutRight",
-              //     },
-              //     onShow: function () {
-              //       this.css({ width: "auto", height: "auto" });
-              //     },
-              //   }
-              // );
+
             }
           },
           error: function (error) {
@@ -3054,24 +2445,7 @@ catalog_filter_vars = function () {
               type: 1,
               position: 'right top'
             })
-            // $.notify(
-            //   {
-            //     message: `Something were wrong when filtering the web services by variable`,
-            //   },
-            //   {
-            //     type: "danger",
-            //     allow_dismiss: true,
-            //     z_index: 20000,
-            //     delay: 5000,
-            //     animate: {
-            //       enter: "animated fadeInRight",
-            //       exit: "animated fadeOutRight",
-            //     },
-            //     onShow: function () {
-            //       this.css({ width: "auto", height: "auto" });
-            //     },
-            //   }
-            // );
+
           },
         });
       });
@@ -3096,24 +2470,7 @@ catalog_filter_vars = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having a problem trying to retrieve the regions to filter the groups`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-key-filter-only-variables").on("click", catalog_filter_vars);
@@ -3181,24 +2538,7 @@ reset_keywords = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `There is a problem reseting the fitler`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-r-reset").on("click", reset_keywords);
@@ -3252,24 +2592,7 @@ load_search_modal = function () {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having an error trying to load the menu`,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 $("#btn-filter-groups-f").on("click", load_search_modal);
@@ -3377,24 +2700,7 @@ general_search = function (id_search_input, id_table) {
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //   {
-    //     message: `We are having a problem trying doing the search `,
-    //   },
-    //   {
-    //     type: "danger",
-    //     allow_dismiss: true,
-    //     z_index: 20000,
-    //     delay: 5000,
-    //     animate: {
-    //       enter: "animated fadeInRight",
-    //       exit: "animated fadeOutRight",
-    //     },
-    //     onShow: function () {
-    //       this.css({ width: "auto", height: "auto" });
-    //     },
-    //   }
-    // );
+
   }
 };
 

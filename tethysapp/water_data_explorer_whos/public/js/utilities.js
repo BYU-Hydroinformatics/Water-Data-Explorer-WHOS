@@ -91,7 +91,6 @@ disable_map =  function (){
     let vectorSource = layerBoundary.getSource();
     if(map_block.checked){
       var extent = vectorSource.getExtent();
-      ////console.log(extent);
       map.getView().fit(extent, map.getSize());
       var properties = map.getView().getProperties();
       properties["minZoom"] = map.getView().getZoom();
@@ -631,10 +630,8 @@ change_effect_groups = function(element_to_check,id_group_separator){
            }
        }
        let server_new_name = id_dictionary[server_name];
-       ////console.log(checkbox);
        map.getLayers().forEach(function(layer) {
          if(layer_object_filter.hasOwnProperty(server_new_name) == false){
-           //console.log("false")
            if(layer instanceof ol.layer.Vector && layer == layersDict[server_new_name]){
              if(element_to_check.checked){
 
