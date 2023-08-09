@@ -728,24 +728,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
           type: 1,
           position: 'right top'
         })
-        // $.notify(
-        //     {
-        //         message: `Unable to start the Water Data Explorer`
-        //     },
-        //     {
-        //         type: "danger",
-        //         allow_dismiss: true,
-        //         z_index: 20000,
-        //         delay: 5000,
-        //         animate: {
-        //           enter: 'animated fadeInRight',
-        //           exit: 'animated fadeOutRight'
-        //         },
-        //         onShow: function() {
-        //             this.css({'width':'auto','height':'auto'});
-        //         }
-        //     }
-        // )
+
       }
 
 
