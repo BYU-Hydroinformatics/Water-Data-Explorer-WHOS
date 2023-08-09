@@ -10,8 +10,7 @@ COPY . ${TETHYS_HOME}/apps/Water-Data-Explorer-WHOS
 # # INSTALL #
 # ###########
 
-RUN cd /tethys_apps/Water-Data-Explorer-WHOS &&\
-  git switch -c la_plata origin/la_plata && \
+RUN cd ${TETHYS_HOME}/apps/Water-Data-Explorer-WHOS &&\
   micromamba install --yes --file requirements.txt -c conda-forge && \
   pip install pywaterml && \
   pip install psycopg2==2.8.6 && \ 
