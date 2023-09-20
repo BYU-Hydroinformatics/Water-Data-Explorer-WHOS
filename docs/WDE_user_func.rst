@@ -5,7 +5,6 @@
    :scale: 25%
 
 .. |add_layer| image:: images/layer.png
-   :scale: 75%
 
 .. |colab| image:: images/colab_icon.png
    :scale: 15%

@@ -8,7 +8,6 @@
 
 .. |layer| image:: images/layer.png
 
-
 =========================
 WDE Admin Functionalities
 =========================
