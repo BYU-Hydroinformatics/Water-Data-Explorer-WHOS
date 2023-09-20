@@ -4,6 +4,9 @@
 .. |update_view| image:: images/update_view.png
    :scale: 25%
 
+.. |add_layer| image:: images/layer.png
+   :scale: 75%
+
 .. |colab| image:: images/colab_icon.png
    :scale: 15%
 
@@ -57,12 +60,12 @@ and list of stations as well as the available analysis tools, the user should us
 To zoom to a specific View on the map, the user should use the |marker| icon.
 
 .. note::
-   To have the data and information of a specific View up to date, the user should update the View by
-   using the |update_view| icon.
+   Some features are only accesible to admin users such as update of data and information of a specific View |update_view| and addition of WMS layers |add_layer|
 
 .. image:: images/1.6.png
    :width: 1000
    :align: center
+
 
 
 Data Analysis

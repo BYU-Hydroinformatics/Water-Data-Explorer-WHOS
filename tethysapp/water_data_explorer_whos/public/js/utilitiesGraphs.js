@@ -326,7 +326,6 @@ getValuesJS = function(xmlData, methodCode, qualityControlLevelCode){
   var result = parser.validate(xmlData);
   if (result !== true) console.log(result.err);
   var jsonObj = parser.parse(xmlData,options);
-  console.log(jsonObj);
   var times_series = {};
   try{
     let values_json = jsonObj['soap:Envelope']['soap:Body'];
@@ -461,7 +460,6 @@ get_values_graph_hs = function(values){
   let double_come = []
   for(let i= 0; i< time_series_timeUTC.length; i++){
     if(!double_come.includes(time_series_timeUTC[i])){
-      // console.log("si hay error ");
       return_obj['graphs'].push([time_series_timeUTC[i], time_series_vals[i]]);
     }
     double_come.push(time_series_timeUTC[i])
@@ -539,7 +537,6 @@ select_variable_change = function(){
                 let result1 = {};
                 result1 = get_values_graph_hs(parseValuesData);
 
-                console.log(result1);
                 if(result1['graphs'].length > 0){
                   //GRAPHS VALUES//
                 let time_series_array = result1['graphs'];
@@ -658,24 +655,7 @@ select_variable_change = function(){
                               type: 1,
                               position: 'right top'
                             })
-                            // $.notify(
-                            //     {
-                            //         message: `Download completed for the ${object_request_graphs['variable']} variable in CSV format`
-                            //     },
-                            //     {
-                            //         type: "sucess",
-                            //         allow_dismiss: true,
-                            //         z_index: 20000,
-                            //         delay: 5000,
-                            //         animate: {
-                            //           enter: 'animated fadeInRight',
-                            //           exit: 'animated fadeOutRight'
-                            //         },
-                            //         onShow: function() {
-                            //             this.css({'width':'auto','height':'auto'});
-                            //         }
-                            //     }
-                            // )
+
                           }
                           // IF TO AVOID 'WaterML1.0' VALUE IN THE DROPDOWN//
                           else if(selectedDownloadType == "WaterML1.0" ){
@@ -686,7 +666,6 @@ select_variable_change = function(){
                             let BEGINDATE = x_array[0].replace(" ","T");
                             let ENDDATE = x_array[x_array.length -1].replace(" ","T");
                             let url_download = `${url_base}?request=GetValuesObject&site=${SITE}&variable=${VARIABLE}&beginDate=${BEGINDATE}&endDate=${ENDDATE}&format=WML1`;
-                            //console.log(url_download)
                             fetch(url_download).then(res => res.blob()) // Gets the response and returns it as a blob
                               .then(blob => {
                                 var pom = document.createElement('a');
@@ -719,24 +698,7 @@ select_variable_change = function(){
                                   type: 1,
                                   position: 'right top'
                                 })
-                                // $.notify(
-                                //     {
-                                //         message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`
-                                //     },
-                                //     {
-                                //         type: "success",
-                                //         allow_dismiss: true,
-                                //         z_index: 20000,
-                                //         delay: 5000,
-                                //         animate: {
-                                //           enter: 'animated fadeInRight',
-                                //           exit: 'animated fadeOutRight'
-                                //         },
-                                //         onShow: function() {
-                                //             this.css({'width':'auto','height':'auto'});
-                                //         }
-                                //     }
-                                // )
+
                             }).
                             catch(error =>{
 
@@ -777,24 +739,7 @@ select_variable_change = function(){
                                     type: 1,
                                     position: 'right top'
                                   })
-                                  //  $.notify(
-                                  //      {
-                                  //          message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 1.0 format`
-                                  //      },
-                                  //      {
-                                  //          type: "success",
-                                  //          allow_dismiss: true,
-                                  //          z_index: 20000,
-                                  //          delay: 5000,
-                                  //          animate: {
-                                  //            enter: 'animated fadeInRight',
-                                  //            exit: 'animated fadeOutRight'
-                                  //          },
-                                  //          onShow: function() {
-                                  //              this.css({'width':'auto','height':'auto'});
-                                  //          }
-                                  //      }
-                                  //  )
+  
 
                                  },
                                  error:function(){
@@ -816,24 +761,7 @@ select_variable_change = function(){
                                     type: 1,
                                     position: 'right top'
                                   })
-                                  //  $.notify(
-                                  //      {
-                                  //          message: `Something went wrong when Downloading the data for the ${object_request_graphs['variable']} in WaterML 1.0 format`
-                                  //      },
-                                  //      {
-                                  //          type: "danger",
-                                  //          allow_dismiss: true,
-                                  //          z_index: 20000,
-                                  //          delay: 5000,
-                                  //          animate: {
-                                  //            enter: 'animated fadeInRight',
-                                  //            exit: 'animated fadeOutRight'
-                                  //          },
-                                  //          onShow: function() {
-                                  //              this.css({'width':'auto','height':'auto'});
-                                  //          }
-                                  //      }
-                                  //  )
+
                                  }
 
 
@@ -881,24 +809,7 @@ select_variable_change = function(){
                                   type: 1,
                                   position: 'right top'
                                 })
-                                // $.notify(
-                                //     {
-                                //         message: `Download completed for the ${object_request_graphs['variable']} variable in WaterML 2.0 format`
-                                //     },
-                                //     {
-                                //         type: "success",
-                                //         allow_dismiss: true,
-                                //         z_index: 20000,
-                                //         delay: 5000,
-                                //         animate: {
-                                //           enter: 'animated fadeInRight',
-                                //           exit: 'animated fadeOutRight'
-                                //         },
-                                //         onShow: function() {
-                                //             this.css({'width':'auto','height':'auto'});
-                                //         }
-                                //     }
-                                // )
+
                             }).
                             catch(error =>{ console
                               try{
@@ -1069,24 +980,7 @@ select_variable_change = function(){
                                 type: 1,
                                 position: 'right top'
                               })   
-                              // $.notify(
-                              //     {
-                              //         message: `The Service ${object_request_variable['hs_url']} does not provide NetCDF downloads`
-                              //     },
-                              //     {
-                              //         type: "danger",
-                              //         allow_dismiss: true,
-                              //         z_index: 20000,
-                              //         delay: 5000,
-                              //         animate: {
-                              //           enter: 'animated fadeInRight',
-                              //           exit: 'animated fadeOutRight'
-                              //         },
-                              //         onShow: function() {
-                              //             this.css({'width':'auto','height':'auto'});
-                              //         }
-                              //     }
-                              // )
+ 
                             });
                           }
                         }
@@ -1111,24 +1005,7 @@ select_variable_change = function(){
                           type: 1,
                           position: 'right top'
                         })   
-                        // $.notify(
-                        //     {
-                        //         message: `There was a problem downloading the file for the Service ${object_request_variable['hs_url']}`
-                        //     },
-                        //     {
-                        //         type: "danger",
-                        //         allow_dismiss: true,
-                        //         z_index: 20000,
-                        //         delay: 5000,
-                        //         animate: {
-                        //           enter: 'animated fadeInRight',
-                        //           exit: 'animated fadeOutRight'
-                        //         },
-                        //         onShow: function() {
-                        //             this.css({'width':'auto','height':'auto'});
-                        //         }
-                        //     }
-                        // )
+
                       }
 
                     }
@@ -1166,24 +1043,7 @@ select_variable_change = function(){
                   type: 1,
                   position: 'right top'
                 })  
-                //  $.notify(
-                //      {
-                //          message: `The variable does not contain any data, Sorry`
-                //      },
-                //      {
-                //          type: "info",
-                //          allow_dismiss: true,
-                //          z_index: 20000,
-                //          delay: 5000,
-                //          animate: {
-                //            enter: 'animated fadeInRight',
-                //            exit: 'animated fadeOutRight'
-                //          },
-                //          onShow: function() {
-                //              this.css({'width':'auto','height':'auto'});
-                //          }
-                //      }
-                //  )
+
 
                }
               }
@@ -1207,24 +1067,7 @@ select_variable_change = function(){
                   type: 1,
                   position: 'right top'
                 }) 
-                // $.notify(
-                //     {
-                //         message: `Unable to retrieve the data for the selected variable`
-                //     },
-                //     {
-                //         type: "danger",
-                //         allow_dismiss: true,
-                //         z_index: 20000,
-                //         delay: 5000,
-                //         animate: {
-                //           enter: 'animated fadeInRight',
-                //           exit: 'animated fadeOutRight'
-                //         },
-                //         onShow: function() {
-                //             this.css({'width':'auto','height':'auto'});
-                //         }
-                //     }
-                // )
+
               }
 
            },
@@ -1251,24 +1094,7 @@ select_variable_change = function(){
               type: 1,
               position: 'right top'
             }) 
-            //  $.notify(
-            //      {
-            //          message: `There is an error retrieving the values for the ${selectedItem} variable `
-            //      },
-            //      {
-            //          type: "danger",
-            //          allow_dismiss: true,
-            //          z_index: 20000,
-            //          delay: 5000,
-            //          animate: {
-            //            enter: 'animated fadeInRight',
-            //            exit: 'animated fadeOutRight'
-            //          },
-            //          onShow: function() {
-            //              this.css({'width':'auto','height':'auto'});
-            //          }
-            //      }
-            //  )
+
            }
 
           })
@@ -1294,24 +1120,7 @@ select_variable_change = function(){
         type: 1,
         position: 'right top'
       })
-      // $.notify(
-      //     {
-      //         message: `Unable to retrieve the data for the selected variable`
-      //     },
-      //     {
-      //         type: "danger",
-      //         allow_dismiss: true,
-      //         z_index: 20000,
-      //         delay: 5000,
-      //         animate: {
-      //           enter: 'animated fadeInRight',
-      //           exit: 'animated fadeOutRight'
-      //         },
-      //         onShow: function() {
-      //             this.css({'width':'auto','height':'auto'});
-      //         }
-      //     }
-      // )
+
     }
   }
 

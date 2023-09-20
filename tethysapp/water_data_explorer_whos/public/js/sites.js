@@ -73,7 +73,6 @@ getSiteInfoHelperJS = function(object_siteInfo,object_methods){
 
   }
   catch(e){
-    // console.log(e);
     return_obj['country'] = "No Data was Provided";
   }
 
@@ -84,7 +83,6 @@ getSiteInfoHelperJS = function(object_siteInfo,object_methods){
   }
 
   catch(e){
-    // console.log(e);
     return_obj['siteName'] = "No Data was Provided";
   }
 
@@ -92,7 +90,6 @@ getSiteInfoHelperJS = function(object_siteInfo,object_methods){
     return_obj['latitude'] = object_siteInfo['geoLocation']['geogLocation']['latitude'];
   }
   catch(e){
-    // console.log(e);
     return_obj['latitude'] = "No Data was Provided";
   }
 
@@ -101,7 +98,6 @@ getSiteInfoHelperJS = function(object_siteInfo,object_methods){
 
   }
   catch(e){
-    // console.log(e);
     return_obj['longitude'] = "No Data was Provided";
   }
 
@@ -110,7 +106,6 @@ getSiteInfoHelperJS = function(object_siteInfo,object_methods){
 
   }
   catch(e){
-    // console.log(e);
     return_obj['geolocation'] = "No Data was Provided";
   }
 
@@ -119,14 +114,12 @@ getSiteInfoHelperJS = function(object_siteInfo,object_methods){
 
   }
   catch(e){
-    // console.log(e);
      return_obj['network'] = "No Data was Provided";
   }
   try{
     return_obj['siteCode'] = object_siteInfo['siteCode']['#text'];
   }
   catch(e){
-    // console.log(e);
     return_obj['siteCode'] = "No Data was Provided";
   }
 
@@ -384,10 +377,8 @@ getSitesInfoJS = function(xmlData){
   var result = parser.validate(xmlData);
   if (result !== true) console.log(result.err);
   var jsonObj = parser.parse(xmlData,options);
-  // console.log(jsonObj);
   try{
     let firstObject = jsonObj['soap:Envelope']['soap:Body']['GetSiteInfoObjectResponse']['sitesResponse'];
-    // console.log(firstObject);
     let object_methods = firstObject['site']['seriesCatalog']['series'];
     let object_siteInfo = firstObject['site']['siteInfo'];
     if (object_methods.constructor == Object) {
@@ -404,7 +395,6 @@ getSitesInfoJS = function(xmlData){
 
   }
   catch(e){
-    // console.log(e);
     return_array = []
     return return_array
   }
@@ -435,7 +425,6 @@ getSiteInfoObjectParsableJS = function(getSiteInfoObjectParse){
       return return_obj
     }
     df = new dfd.DataFrame(getSiteInfoObjectParse);
-    // console.log(df['geolocation']);
 
     return_obj['country'] = df['country']['data'][0]
     return_obj['variables'] = df['variableName']['data']
@@ -547,11 +536,8 @@ activate_layer_values = function (){
           url:url_request,
           dataType: "text",
           success: function(xmlData){
-            // console.log(xmlData);
             let getSiteInfoObjectParse = getSitesInfoJS(xmlData);
-            // console.log(getSiteInfoObjectParse);
             let result =getSiteInfoObjectParsableJS(getSiteInfoObjectParse);
-            // console.log(result);
             try{
               // MAKE THE METADATA OF THE SITE TO LOAD IN THE FIRST SLIDE //
               let description_site = document.getElementById('siteDes');
@@ -810,7 +796,6 @@ activate_layer_values = function (){
             }
             catch(e){
               $("#GeneralLoading").addClass("d-none");
-              // console.log(e);
               new Notify ({
                 status: 'error',
                 title: 'Error',
@@ -853,24 +838,7 @@ activate_layer_values = function (){
               type: 1,
               position: 'right top'
             })
-            // $.notify(
-            //     {
-            //         message: `There is an error to retrieve the values for the ${feature_single.values_['name']} site `
-            //     },
-            //     {
-            //         type: "danger",
-            //         allow_dismiss: true,
-            //         z_index: 20000,
-            //         delay: 5000,
-            //         animate: {
-            //           enter: 'animated fadeInRight',
-            //           exit: 'animated fadeOutRight'
-            //         },
-            //         onShow: function() {
-            //             this.css({'width':'auto','height':'auto'});
-            //         }
-            //     }
-            // )
+
           }
 
         })

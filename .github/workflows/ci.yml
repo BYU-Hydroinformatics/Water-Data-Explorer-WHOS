@@ -1,11 +1,11 @@
 name: ci
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - 'la_plata'
   pull_request:
     branches:
-      - 'main'
+      - 'la_plata'
   workflow_dispatch:
     inputs:
       git-ref:
@@ -26,8 +26,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Set Tag
         run: |
-          echo "TAG=${GITHUB_REF:10}" >> $GITHUB_ENV
-          echo "TAG_LATEST=latest" >> $GITHUB_ENV
+          echo "TAG=v1.0.0-rc-plata" >> $GITHUB_ENV
       - name: Test Tag
         run: |
           echo $TAG
@@ -40,14 +39,5 @@ jobs:
           context: ./docker_files
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.TAG }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest,mode=max
-
-      - name: build and push latest tag
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: ${{ env.DOCKER_HUB_ORG }}/${{ env.DOCKER_REPO }}:${{ env.TAG_LATEST }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest,mode=max

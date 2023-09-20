@@ -1,0 +1,34 @@
+version: '3.2'
+services:
+  db:
+    image: postgis/postgis:latest
+    restart: always
+    networks:
+      - 'internal'
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./docker_files/helpful_files/db.env
+    volumes:
+      - ./docker_files/data/db2:/var/lib/postgresql/data
+
+  web:
+    image: tethys-portal-docker:latest
+    build: .
+    restart: always
+    depends_on:
+      - 'db'
+    networks:
+      - 'internal'
+      - 'external'
+    ports:
+      - '80:80'
+    env_file:
+      - ./docker_files/helpful_files/tethys_mockup.env
+    volumes:
+      - ./docker_files/data/tethys:/var/lib/tethys_persist
+      - ./docker_files/logs/tethys:/var/log/tethys
+networks:
+  internal:
+    internal: true
+  external:

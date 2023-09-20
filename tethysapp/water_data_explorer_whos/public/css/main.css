@@ -1,3 +1,11 @@
+.logo_institucion {
+  display: flex;
+  justify-content: center;
+}
+
+.logo_institucion img {
+  height: 50px;
+}
 
 .main-title{
   color: #01509f;

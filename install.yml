@@ -15,7 +15,7 @@ requirements:
       - pyshp
       - geopandas
       - suds-community
-      - pywaterml
-  pip:
 
+  pip:
+    - pywaterml
 post:

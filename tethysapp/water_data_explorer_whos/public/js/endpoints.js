@@ -8,6 +8,13 @@
  *
  *****************************************************************************/
 
+
+
+/**
+* delete_wms_layers_hydroserver
+* Function to delete the wms layers of a hydroserver when this one is deleted.
+* @param {string} layerGroupToRemove - name of the layer group to remove. It is the name of the hydroserver view
+* */
 delete_wms_layers_hydroserver = function(layerGroupToRemove){
   var lg = wms_group_layers_list[layerGroupToRemove]
   lg.getLayersArray().forEach(function(layer){
@@ -19,14 +26,16 @@ delete_wms_layers_hydroserver = function(layerGroupToRemove){
   map.addControl(main_layer_switcher);
 }
 
+/**
+* load_wms_layers
+* Function to load the wms layers of all hydroservers with wms layers
+* */
 load_wms_layers = function(){
   $.ajax({
     type: "POST",
     url: "get-wms-layers-hydroserver/",
     success: function(data) {
-      console.log(data)
       var layers_wms = []
-
 
       for (single_hs in data){
 
@@ -54,20 +63,24 @@ load_wms_layers = function(){
         });
         if(layers_wms.length > 0){
           map.addLayer(WMSLayers)
-          // layers_list.push(WMSLayers)
         }
       }
-      // main_layer_switcher.renderPanel(map)
     },
     error: function(xhr, textStatus, errorThrown) {
         console.error("Error fetching data:", errorThrown);
     }
 });
 }
-add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
-  // const url = $("#add-wms-catalog-url").val();
 
-  // Using jQuery's AJAX method to make the request
+/**
+* add_wms_layers_hydroserver
+* Function to add  wms layer group to a hydroserver view after/during creation of hydroserver.
+* @param {string} url - url of the service containing a catalog of wms services for the hydroserver view
+* @param {string} wms_hs - name/code of the hydroserver name
+* @param {string} wms_group - name/code of the group containing the hydroserver view
+* */
+add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
+
   $.ajax({
       type: "GET",
       url: url,
@@ -101,7 +114,6 @@ add_wms_layers_hydroserver= function(url,wms_hs,wms_group){
             data: data_dict,
             dataType: "JSON",
             success: function(data) {
-              console.log(data)
               var layers_wms = []
               for (single_layer in data){
                 if(!data[single_layer]['msge'].includes('WMS layers already present in view')){
@@ -199,7 +211,6 @@ get_vars_from_site = function (resultList){
       url_base = document.location.protocol + "//" + make_sure_not_mc[1];
     }
     url_request = `${url_base}?request=GetSiteInfoObject&site=${SITE}`;
-    console.log(url_request);
       $.ajax({
         type:"GET",
         url:url_request,
@@ -238,7 +249,6 @@ get_vars_from_site = function (resultList){
                   dataType: "text",
                   success: function(result2_){
                     try{
-                      // console.log(result2_);
                       let result2 = get_download_hs(JSON.parse(result2_),$("#site_choose option:selected").html(),$("#url_WOF").text(),$("#variable_choose")['0'].value,$("#site_choose")['0'].value );
                       var name_together =reque_ob['hs_name'].replace(/(?!\w|\s)./g, '_').replace(/\s+/g, '_').replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
                       var blob = new Blob([JSON.stringify(result2)], { type: 'application/json' });
@@ -505,7 +515,6 @@ get_vars_from_site = function (resultList){
   * @return {object} array containing the open layers vector Layer and vector Source
 * */
 map_layers = function(sites,title,url){
-  // console.log(sites)
   try{
     sites = sites.map(site => {
         return {
@@ -532,7 +541,6 @@ map_layers = function(sites,title,url){
             }
         }
     })
-    // console.log(sites)
     let sitesGeoJSON = {
         type: "FeatureCollection",
         crs: {
@@ -631,7 +639,6 @@ load_individual_hydroservers_group = function(group_name){
            success: result => {
              try{
                let servers = result["hydroserver"]
-               // console.log(servers);
                servers.sort(function(a, b) {
                     var textA = a.title.toUpperCase();
                     var textB = b.title.toUpperCase();
@@ -971,10 +978,7 @@ add_hydroserver = function(){
       }
       let url_request;
       let url
-      console.log(url_decons);
-      // url_request = url_decons[0] + "?request=GetSitesObject&format=WML1";
       let make_sure_not_mc = url_decons.split("//");
-      console.log(make_sure_not_mc);
       if(make_sure_not_mc[0] == document.location.protocol){
         url_request = url_decons + "?request=GetSitesObject&format=WML1";
       }
@@ -992,10 +996,6 @@ add_hydroserver = function(){
       var tag_c = '</sitesResponse></GetSitesObjectResponse></soap:Body></soap:Envelope>';
       var list_sites_me = [];
       var notifications;
-      console.log(url_request);
-      // $("#loading_p").removeClass("d-none");
-      // $("#loading_p").html(`Adding ${title_server}: 0 new sites added to the database . . .`);
-
         $.ajax({
           type:"GET",
           url:url_request,
@@ -1016,11 +1016,9 @@ add_hydroserver = function(){
                       last_child = progressResponse.substr(progressResponse.length - 7);
                       console.log("last characters",last_child);
                       if(last_child == '</site>' || last_child == 'velope>'){
-                        console.log('1a');
                           complete_response = progressResponse;
                       }
                       else{
-                        console.log('1b');
                         // Get the first incomplete element and add the site tag//
                         almost_response = '<site>' + progressResponse.split('<site>')[progressResponse.split('<site>').length - 1] ;
                         // Add the response withpu the last element as the complete response //
@@ -1031,10 +1029,8 @@ add_hydroserver = function(){
                   else{
                     progressResponse = response.substring(lastResponseLength);
                     last_child = progressResponse.substr(progressResponse.length - 7);
-                    console.log("last characters",last_child);
                     if(last_child == '</site>' || last_child == 'velope>'){
                       if(almost_response != ''){
-                        console.log('2a1');
 
                         complete_response = tag_b + almost_response + progressResponse;
                         // almost_response = '';
@@ -1043,20 +1039,17 @@ add_hydroserver = function(){
 
                       }
                       else{
-                        console.log('2a2');
 
                         complete_response = tag_b + progressResponse;
                       }
                     }
                     else{
                       if(almost_response != ''){
-                        console.log('2b1');
 
                         complete_response = tag_b + almost_response + progressResponse.split('<site>')[0];
                         almost_response = '<site>' + progressResponse.split('<site>').slice(1).join('<site>');
                       }
                       else{
-                        console.log('2b2');
 
                         // Get the first incomplete element and add the site tag//
                         almost_response = '<site>' + progressResponse.split('<site>')[progressResponse.split('<site>').length - 1];
@@ -1067,21 +1060,10 @@ add_hydroserver = function(){
                     }
                     lastResponseLength = response.length;
 
-                    // console.log(complete_response);
                   }
                   if(!complete_response.includes(tag_c)){
                     complete_response = complete_response + tag_c;
                   }
-
-                  // complete_response += tag_c;
-                  // console.log("raw");
-                  // console.log(progressResponse);
-                  //
-                  // console.log("complete");
-                  // console.log(complete_response);
-                  //
-                  // console.log("partial");
-                  // console.log(almost_response);
 
                   loco_index += 1;
 
@@ -1094,7 +1076,6 @@ add_hydroserver = function(){
                     description:description,
                   }
 
-                  console.log(requestObject);
                   $.ajax({
                     type:"POST",
                     url: "save_stream/",
@@ -1102,9 +1083,7 @@ add_hydroserver = function(){
                     data: requestObject,
                     success:function(result){
                         //Returning the geoserver layer metadata from the controller
-                        console.log(result);
                         var json_response = result['success']
-                        console.log(json_response);
                         if(!result.hasOwnProperty("error")){
 
                           $("#loading_p").html(`Adding ${title_server}: ${json_response} . . .`);
@@ -1180,28 +1159,8 @@ add_hydroserver = function(){
 
                     },
                     error: function(err){
-                      console.log(err);
                       $("#soapAddLoading-group").addClass("d-none");
-                      // $("#loading_p").addClass("d-none");
 
-                      // $.notify(
-                      //     {
-                      //         message: `We are having problems adding the ${title_server} WaterOneFlow web service`
-                      //     },
-                      //     {
-                      //         type: "danger",
-                      //         allow_dismiss: true,
-                      //         z_index: 20000,
-                      //         delay: 5000,
-                      //         animate: {
-                      //           enter: 'animated fadeInRight',
-                      //           exit: 'animated fadeOutRight'
-                      //         },
-                      //         onShow: function() {
-                      //             this.css({'width':'auto','height':'auto'});
-                      //         }
-                      //     }
-                      // )
                     }
 
                   })
@@ -1250,7 +1209,6 @@ add_hydroserver = function(){
                 test_cont.push(parsedObject[i].sitename)
               }
 
-              console.log(arrayCompare(test_cont,list_sites_me));
 
               let requestObject = {
                 hs: title_server,
@@ -1260,7 +1218,6 @@ add_hydroserver = function(){
                 description:description
               }
 
-              console.log(requestObject);
               $.ajax({
                 type:"POST",
                 url: "save_new_sites/",
@@ -1432,7 +1389,6 @@ add_hydroserver = function(){
 
                           $("#soapAddLoading-group").addClass("d-none");
                           var url_wms = $("#wms-catalog-url").val();
-                          console.log(url_wms);
                           add_wms_layers_hydroserver(url_wms,title_server,actual_group_name)
 
                     }
@@ -1590,7 +1546,6 @@ add_hydroserver = function(){
   catch(e){
         $("#soapAddLoading").addClass("d-none");
         $("#btn-add-soap").show();
-        // console.log(e);
         new Notify ({
           status: 'error',
           title: 'Error',
@@ -1729,7 +1684,6 @@ delete_hydroserver= function(){
             }
           }
           catch(e){
-            // console.log(e);
             new Notify ({
               status: 'warning',
               title: 'Warning',
@@ -1906,7 +1860,6 @@ delete_hydroserver_Individual= function(group,server){
             }
           }
           catch(e){
-            // console.log(e);
             new Notify ({
               status: 'error',
               title: 'Error',
@@ -1924,28 +1877,10 @@ delete_hydroserver_Individual= function(group,server){
               type: 1,
               position: 'right top'
             })
-            // $.notify(
-            //     {
-            //         message: `We have a problem updating the interface, please reload the page`
-            //     },
-            //     {
-            //         type: "info",
-            //         allow_dismiss: true,
-            //         z_index: 20000,
-            //         delay: 5000,
-            //         animate: {
-            //           enter: 'animated fadeInRight',
-            //           exit: 'animated fadeOutRight'
-            //         },
-            //         onShow: function() {
-            //             this.css({'width':'auto','height':'auto'});
-            //         }
-            //     }
-            // )
+
           }
         },
         error: error => {
-          // console.log(error);
           new Notify ({
             status: 'error',
             title: 'Error',
@@ -2065,7 +2000,6 @@ showVariables2 = function(){
               result['variables_code'][k] = list_e[k].variables_code;
           }
 
-             // console.log(result);
              var HSTableHtml =
                  `<table id="${filterSites['hs']}-variable-table" class="table table-striped table-bordered nowrap" width="100%">
                     <thead><th>Observed Variable</th><th>Unit</th><th> WHOS Variable Code</th></thead>
@@ -2239,7 +2173,6 @@ hydroserver_information = function(){
     site_select.empty();
     // $("#site_choose").unbind('change');
     $("#site_choose").off("change.something").on("change", function(){
-      // console.log("change unbind");
     });
 
     // site_select.selectpicker("refresh");
@@ -2306,8 +2239,6 @@ hydroserver_information = function(){
           url_token_array[7] = token_s;
           let url_token_final = url_token_array.join("/");
 
-          console.log(result1['url']);
-          console.log(url_token_final);
 
           $("#urlHydroserver").html(url_token_final);
           $("#url_WOF").html($("#urlHydroserver").html());
@@ -2413,24 +2344,7 @@ hydroserver_information = function(){
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //     {
-          //         message: `There is a problem retriving information for the selected Web Service`
-          //     },
-          //     {
-          //         type: "danger",
-          //         allow_dismiss: true,
-          //         z_index: 20000,
-          //         delay: 5000,
-          //         animate: {
-          //           enter: 'animated fadeInRight',
-          //           exit: 'animated fadeOutRight'
-          //         },
-          //         onShow: function() {
-          //             this.css({'width':'auto','height':'auto'});
-          //         }
-          //     }
-          // )
+
         }
 
       },
@@ -2454,24 +2368,7 @@ hydroserver_information = function(){
           type: 1,
           position: 'right top'
         })
-          // $.notify(
-          //     {
-          //         message: `There is a problem retriving information for the selected Web Service`
-          //     },
-          //     {
-          //         type: "danger",
-          //         allow_dismiss: true,
-          //         z_index: 20000,
-          //         delay: 5000,
-          //         animate: {
-          //           enter: 'animated fadeInRight',
-          //           exit: 'animated fadeOutRight'
-          //         },
-          //         onShow: function() {
-          //             this.css({'width':'auto','height':'auto'});
-          //         }
-          //     }
-          // )
+
       }
 
     })
@@ -2611,7 +2508,6 @@ getVariablesJS = function(url,hsActual,group_name){
       url:url_request,
       dataType: "text",
       success: function(xmlData){
-        // console.log(xmlData);
         try{
           let parsedObject = getVariablesHelperJS(xmlData);
           let requestObject = {
@@ -2648,30 +2544,12 @@ getVariablesJS = function(url,hsActual,group_name){
                 type: 1,
                 position: 'right top'
               })
-              // $.notify(
-              //     {
-              //         message: `There was an error updating the Web Service`
-              //     },
-              //     {
-              //         type: "danger",
-              //         allow_dismiss: true,
-              //         z_index: 20000,
-              //         delay: 5000,
-              //         animate: {
-              //           enter: 'animated fadeInRight',
-              //           exit: 'animated fadeOutRight'
-              //         },
-              //         onShow: function() {
-              //             this.css({'width':'auto','height':'auto'});
-              //         }
-              //     }
-              // )
+
             }
           })
         }
         catch(e){
           $("#GeneralLoading").addClass("d-none");
-          // console.log(e);
           new Notify ({
             status: 'error',
             title: 'Error',
@@ -2689,30 +2567,12 @@ getVariablesJS = function(url,hsActual,group_name){
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //     {
-          //         message: `There was an error updating the Web Service`
-          //     },
-          //     {
-          //         type: "danger",
-          //         allow_dismiss: true,
-          //         z_index: 20000,
-          //         delay: 5000,
-          //         animate: {
-          //           enter: 'animated fadeInRight',
-          //           exit: 'animated fadeOutRight'
-          //         },
-          //         onShow: function() {
-          //             this.css({'width':'auto','height':'auto'});
-          //         }
-          //     }
-          // )
+
         }
 
       },
       error: function(error){
         $("#GeneralLoading").addClass("d-none");
-        // console.log(error);
         new Notify ({
           status: 'error',
           title: 'Error',
@@ -2770,24 +2630,7 @@ getVariablesJS = function(url,hsActual,group_name){
       type: 1,
       position: 'right top'
     })
-    // $.notify(
-    //     {
-    //         message: `There was an error updating the Web Service`
-    //     },
-    //     {
-    //         type: "danger",
-    //         allow_dismiss: true,
-    //         z_index: 20000,
-    //         delay: 5000,
-    //         animate: {
-    //           enter: 'animated fadeInRight',
-    //           exit: 'animated fadeOutRight'
-    //         },
-    //         onShow: function() {
-    //             this.css({'width':'auto','height':'auto'});
-    //         }
-    //     }
-    // )
+
     console.log(e);
   }
 
@@ -2825,7 +2668,6 @@ getVariablesHelperJS = function(xmlData){
   var result = parser.validate(xmlData);
   if (result !== true) console.log(result.err);
   var jsonObj = parser.parse(xmlData,options);
-  // console.log(jsonObj);
   let firstObject = jsonObj['soap:Envelope']['soap:Body']['GetVariablesObjectResponse'];
 
   let array_variables = firstObject['variablesResponse']['variables']['variable'];
@@ -2987,15 +2829,12 @@ getSitesFilterHelper = function (xmlData){
   var result = parser.validate(xmlData);
   if (result !== true) console.log(result.err);
   var jsonObj = parser.parse(xmlData,options);
-  //console.log(jsonObj);
   let firstObject = jsonObj['soap:Envelope']['soap:Body']['GetSitesResponse']['GetSitesResult'];
-  // console.log(firstObject);
 
   var result2 = parser.validate(firstObject);
   if (result2 !== true) console.log(result2.err);
   var jsonObj2 = parser.parse(firstObject,options);
   firstObject = jsonObj2;
-  //console.log(jsonObj2);
 
   let hs_sites = []
   try{
@@ -3276,7 +3115,6 @@ getSitesJS = function(url,hsActual,group_name){
         url:url_request,
         dataType: "text",
         success: function(xmlData){
-          // console.log(xmlData);
           try{
             let parsedObject = getSitesHelper(xmlData);
 
@@ -3330,25 +3168,6 @@ getSitesJS = function(url,hsActual,group_name){
                     type: 1,
                     position: 'right top'
                   })
-
-                    // $.notify(
-                    //     {
-                    //         message: `Successfully updated the Web Service , ${sitesAdded} have been added to the Map.`
-                    //     },
-                    //     {
-                    //         type: "success",
-                    //         allow_dismiss: true,
-                    //         z_index: 20000,
-                    //         delay: 5000,
-                    //         animate: {
-                    //           enter: 'animated fadeInRight',
-                    //           exit: 'animated fadeOutRight'
-                    //         },
-                    //         onShow: function() {
-                    //             this.css({'width':'auto','height':'auto'});
-                    //         }
-                    //     }
-                    // )
                   $("#GeneralLoading").addClass("d-none");
                 }
                 catch(e){
@@ -3371,24 +3190,7 @@ getSitesJS = function(url,hsActual,group_name){
                     type: 1,
                     position: 'right top'
                   })
-                  // $.notify(
-                  //     {
-                  //         message: `There was an error updating the Web Service`
-                  //     },
-                  //     {
-                  //         type: "danger",
-                  //         allow_dismiss: true,
-                  //         z_index: 20000,
-                  //         delay: 5000,
-                  //         animate: {
-                  //           enter: 'animated fadeInRight',
-                  //           exit: 'animated fadeOutRight'
-                  //         },
-                  //         onShow: function() {
-                  //             this.css({'width':'auto','height':'auto'});
-                  //         }
-                  //     }
-                  // )
+                  
                 }
               },
               error:function(error){
@@ -3411,24 +3213,6 @@ getSitesJS = function(url,hsActual,group_name){
                     type: 1,
                     position: 'right top'
                   })
-                // $.notify(
-                //     {
-                //         message: `There was an error updating the Web Service.`
-                //     },
-                //     {
-                //         type: "danger",
-                //         allow_dismiss: true,
-                //         z_index: 20000,
-                //         delay: 5000,
-                //         animate: {
-                //           enter: 'animated fadeInRight',
-                //           exit: 'animated fadeOutRight'
-                //         },
-                //         onShow: function() {
-                //             this.css({'width':'auto','height':'auto'});
-                //         }
-                //     }
-                // )
               }
             })
           }
@@ -3452,24 +3236,7 @@ getSitesJS = function(url,hsActual,group_name){
               type: 1,
               position: 'right top'
             })
-            // $.notify(
-            //     {
-            //         message: `There was an error Updating the selected Web Service.`
-            //     },
-            //     {
-            //         type: "danger",
-            //         allow_dismiss: true,
-            //         z_index: 20000,
-            //         delay: 5000,
-            //         animate: {
-            //           enter: 'animated fadeInRight',
-            //           exit: 'animated fadeOutRight'
-            //         },
-            //         onShow: function() {
-            //             this.css({'width':'auto','height':'auto'});
-            //         }
-            //     }
-            // )
+
           }
 
 
@@ -3494,24 +3261,7 @@ getSitesJS = function(url,hsActual,group_name){
             type: 1,
             position: 'right top'
           })
-          // $.notify(
-          //     {
-          //         message: `There was an error Updating the selected Web Service.`
-          //     },
-          //     {
-          //         type: "danger",
-          //         allow_dismiss: true,
-          //         z_index: 20000,
-          //         delay: 5000,
-          //         animate: {
-          //           enter: 'animated fadeInRight',
-          //           exit: 'animated fadeOutRight'
-          //         },
-          //         onShow: function() {
-          //             this.css({'width':'auto','height':'auto'});
-          //         }
-          //     }
-          // )
+
         }
       })
     }
@@ -3536,24 +3286,7 @@ getSitesJS = function(url,hsActual,group_name){
         type: 1,
         position: 'right top'
       })
-      // $.notify(
-      //     {
-      //         message: `There was an error Updating the selected Web Service.`
-      //     },
-      //     {
-      //         type: "danger",
-      //         allow_dismiss: true,
-      //         z_index: 20000,
-      //         delay: 5000,
-      //         animate: {
-      //           enter: 'animated fadeInRight',
-      //           exit: 'animated fadeOutRight'
-      //         },
-      //         onShow: function() {
-      //             this.css({'width':'auto','height':'auto'});
-      //         }
-      //     }
-      // )
+
     }
   }
 
