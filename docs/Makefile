@@ -1,20 +1,35 @@
-# Minimal makefile for Sphinx documentation
-#
+# Configuration file for the Sphinx documentation builder.
 
-# You can set these variables from the command line, and also
-# from the environment for the first two.
-SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = .
-BUILDDIR      = _build
+# -- Project information
 
-# Put it first so that "make" without argument is like "make help".
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+project = 'WDE_WHOS'
+copyright = '2021, Gio'
+author = 'Gio'
 
-.PHONY: help Makefile
+release = '0.1'
+version = '0.1.0'
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+# -- General configuration
+
+extensions = [
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.intersphinx',
+]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+}
+intersphinx_disabled_domains = ['std']
+
+templates_path = ['_templates']
+
+# -- Options for HTML output
+
+html_theme = 'sphinx_rtd_theme'
+
+# -- Options for EPUB output
+epub_show_urls = 'footnote'
