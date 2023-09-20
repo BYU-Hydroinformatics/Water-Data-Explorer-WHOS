@@ -6,6 +6,9 @@
 
 .. |settings| image:: images/settings.png
 
+.. |layer| image:: images/layer.png
+
+
 =========================
 WDE Admin Functionalities
 =========================
@@ -53,9 +56,14 @@ To delete Views, administrators should use the |trash| icon to access the “Del
    :width: 1000
    :align: center
 
-Adding and Deleting Data Catalogs and Views
-*******************************************
+Adding and WMS Layers
+*********************
 
+To add WMS layers to Views, administrators should use the |layer| icon to access the "Add WMS Layers" menu.
+
+.. image:: images/1.13.png
+   :width: 1000
+   :align: center
 
 Customizing the WDE User Interface
 **********************************
