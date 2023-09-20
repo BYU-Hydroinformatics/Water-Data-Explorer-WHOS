@@ -51,6 +51,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
       * @param {object} map - base map
     * */
     add_boundary_map = function(color, width, map){
+      console.log(endpointGeoServer)
       try{
         if(color === "None"){
           color = "#000000";
@@ -77,7 +78,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
           var request = "GetFeature";
           var typename = `${workspaceURL}:${layerURL}`;
           var outputFormat = "application/json";
-          var finalURL = `${owsrootUrl}/${typeRoot}?service=${serviceURL}&version=${versionURL}&request=${request}&typename=${typename}&outputFormat=${outputFormat} `;
+          var finalURL = `${owsrootUrl}/${typeRoot}?service=${serviceURL}&version=${versionURL}&request=${request}&typename=${typename}&outputFormat=${outputFormat}`;
           var vectorSource = new ol.source.Vector({
               url:finalURL,
               format: new ol.format.GeoJSON()
@@ -102,10 +103,6 @@ var water_data_explorer_whos_PACKAGE = (function() {
               //disable zoom out //
               var properties = map.getView().getProperties();
               properties["minZoom"] = map.getView().getZoom();
-              if(geoServerMovement){
-                properties["extent"]= extent
-
-              }
               map.setView(new ol.View(properties));
 
             }
@@ -264,7 +261,7 @@ var water_data_explorer_whos_PACKAGE = (function() {
               crossOrigin: "anonymous",
               // interactions: ol.interaction.defaults({ dragPan: false}),
           })
-          main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group'})
+          main_layer_switcher = new ol.control.LayerSwitcher({reverse:true,  groupSelectStyle: 'group', activationMode:'click'})
           map.addControl(main_layer_switcher);
           map.addLayer(vector_layer);
           map.addLayer(shpLayer);
@@ -564,10 +561,10 @@ var water_data_explorer_whos_PACKAGE = (function() {
       // }
       $('#sG-legend').bootstrapToggle('on');
       $('#sG').bootstrapToggle('off');
-      try{
-        $('#blockPosition').bootstrapToggle('off');
-      }
-      catch(e){}
+      // try{
+      //   $('#blockPosition').bootstrapToggle('on');
+      // }
+      // catch(e){}
 
       //make the picker to always appear//
       //$(".selectpicker").selectpicker("refresh");

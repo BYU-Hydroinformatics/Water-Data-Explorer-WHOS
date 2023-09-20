@@ -85,6 +85,7 @@ copyToClipboard = function(element) {
   * Function to disable the movement of the map
 * */
 disable_map =  function (){
+  console.log("hey")
   try{
     let map_block=document.getElementById("blockPosition");
     let layerBoundary = layersDict['boundaryLayer'];
@@ -93,11 +94,8 @@ disable_map =  function (){
       var extent = vectorSource.getExtent();
       map.getView().fit(extent, map.getSize());
       var properties = map.getView().getProperties();
-      properties["minZoom"] = map.getView().getZoom();
-      if(geoServerMovement){
-        properties["extent"]= extent
+      properties["minZoom"] = 1;
 
-      }
       map.setView(new ol.View(properties));
       map.addLayer(layersDict['boundaryLayer']);
     }
