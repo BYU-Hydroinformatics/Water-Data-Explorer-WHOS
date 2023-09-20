@@ -16,9 +16,9 @@
    :width: 10%
 
 
-===============================
-|wde| Water Data Explorer Guide
-===============================
+========================================
+|wde| Water Data Explorer La Plata Guide
+========================================
 
 .. toctree::
   :caption: Table of Contents

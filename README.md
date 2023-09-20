@@ -1,8 +1,8 @@
 <p align="center">
-<img align= "center" src="https://drive.google.com/uc?export=view&id=1ACAkrm6PsfdWzXnpMOL4uwfKwbTqqkQZ" width="20%" height="20%"/>
+<img align= "center" src="https://drive.google.com/uc?export=view&id=18U0IrFjN_QnD-hXrD6O_xq_u_laxwECg" width="20%" height="20%"/>
 </p>
 
-<h1 align="center"> Water Data Explorer (WDE)</h1>
+<h1 align="center"> Water Data Explorer (WDE) - La Plata</h1>
 
 <p align="center">
 <img align= "center" src="https://img.shields.io/badge/license-BSD%203--Clause-yellow.svg" width="20%" height="20%"/>
