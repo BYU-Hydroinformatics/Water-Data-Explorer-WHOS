@@ -1,6 +1,6 @@
-=========================
-Water Data Explorer (WDE)
-=========================
+==================================
+Water Data Explorer (WDE) La Plata
+==================================
 
 Introduction
 ************
@@ -35,7 +35,7 @@ To organize and manage various WaterOneFlow web services, WDE uses Data Views th
 
 Each Data View contains a set of data that is accessible through a specific WaterOneFlow web service.
 
-The stations for which data are accessible through a specific Data View are displayed on the WDE map interface along with a legend of the respective Data Views.
+The stations for which data are accessible through a specific Data View are displayed on the WDE map interface along with a legend of the respective Data Views. Views also contain WMS Layers, which can be displayed with the different stations
 
 
 .. image:: images/1.2.png

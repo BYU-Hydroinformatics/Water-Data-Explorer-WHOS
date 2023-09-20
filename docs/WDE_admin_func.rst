@@ -53,13 +53,16 @@ To delete Views, administrators should use the |trash| icon to access the “Del
    :width: 1000
    :align: center
 
+Adding and Deleting Data Catalogs and Views
+*******************************************
+
 
 Customizing the WDE User Interface
 **********************************
 
 Administrators can customize the WDE user interface by selecting the |settings| icon.
 
-.. image:: images/1.13.png
+.. image:: images/1.14.png
    :width: 1000
    :align: center
 
