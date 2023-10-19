@@ -1,4 +1,4 @@
-FROM tethysplatform/tethys-core:4.1.3
+FROM tethysplatform/tethys-core:dev
 
 #########
 # SETUP #
