@@ -21,4 +21,4 @@ docker_files/postgres-data
 .trunk
 docker_files/data
 docker_files/logs
-
+.vscode
