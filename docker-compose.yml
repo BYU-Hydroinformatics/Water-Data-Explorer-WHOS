@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   db:
-    image: postgis/postgis:latest
+    image: postgis/postgis:11-2.5
     restart: always
     networks:
       - 'internal'
@@ -13,7 +13,7 @@ services:
       - ./docker_files/data/db2:/var/lib/postgresql/data
 
   web:
-    image: tethys-portal-docker:latest
+    image: tethys-portal-wde:latest
     build: .
     restart: always
     depends_on:
@@ -22,7 +22,7 @@ services:
       - 'internal'
       - 'external'
     ports:
-      - '80:80'
+      - '80:8080'
     env_file:
       - ./docker_files/helpful_files/tethys_mockup.env
     volumes:

@@ -4,7 +4,7 @@ FROM tethysplatform/tethys-core:dev
 # SETUP #
 #########
 
-COPY . ${TETHYS_HOME}/apps/Water-Data-Explorer-WHOS
+COPY . ${TETHYS_HOME}/Water-Data-Explorer-WHOS
 
 # Activate tethys conda environment during build
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
@@ -13,7 +13,7 @@ ARG MAMBA_DOCKERFILE_ACTIVATE=1
 # # INSTALL #
 # ###########
 
-RUN cd ${TETHYS_HOME}/apps/Water-Data-Explorer-WHOS &&\
+RUN cd ${TETHYS_HOME}/Water-Data-Explorer-WHOS &&\
   micromamba install --yes --file requirements.txt -c conda-forge && \
   pip install pywaterml && \
   tethys install -N -w
@@ -22,12 +22,6 @@ RUN cd ${TETHYS_HOME}/apps/Water-Data-Explorer-WHOS &&\
 # CONFIGURE ENVIRONMENT #
 #########################
 EXPOSE 8080
-
-##########################
-# ADD THE EXTRA MIDDLEWARE 
-##########################
-
-COPY docker_files/custom_middleware.py /usr/lib/tethys/tethys/tethys_portal/
 
 ######################################################
 # CHANGE THE PROXY TIME REPLACING THE NGINX TEMPLATE #
