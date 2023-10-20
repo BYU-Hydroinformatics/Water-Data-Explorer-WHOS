@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Set Tag
         run: |
-          echo "TAG=v1.0.0-rc-plata" >> $GITHUB_ENV
+          echo "TAG=v1.0.0-rc4-plata" >> $GITHUB_ENV
       - name: Test Tag
         run: |
           echo $TAG
@@ -38,6 +38,6 @@ jobs:
         with:
           context: ./docker_files
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.TAG }}
+          tags: aquaveollc/${{ env.DOCKER_REPO }}:${{ env.TAG }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_REPO }}-cache:latest,mode=max

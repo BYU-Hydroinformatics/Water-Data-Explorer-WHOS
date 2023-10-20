@@ -1,10 +1,21 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
 [project]
-name = "wde_whos"
+name = "water_data_explorer_whos"
 authors = [
     { name = "Elkin Giovanni Romero Bustamante", email = "gromero@aquaveo.com" },
 ]
-dynamic = ["version", "description"]
+version = "1.0.0"
+description = 'A tethys app that lets visualize data from La Plata basin'
+dependencies = []
+requires-python = ">=3.8"
+readme = "README.md"
+license = { text = "" }
+keywords = [""]
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["tethysapp*"]
