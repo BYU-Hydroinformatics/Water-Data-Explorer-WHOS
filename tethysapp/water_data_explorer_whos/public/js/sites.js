@@ -583,6 +583,7 @@ activate_layer_values = function (){
                       <tr class="danger">
                         <th>Observed Variables</th>
                         <th>Unit</th>
+                        <th>Aggregation Period</th>
                         <th>Interpolation Type</th>
                       </tr>`;
 
@@ -590,8 +591,12 @@ activate_layer_values = function (){
 
                 //1) combine the arrays:
                  var list_e = [];
-                 for (var j = 0; j <result['variables'].length; j++)
-                     list_e.push({'variables_name': result['variables'][j], 'units': result['units'][j],'interpolation': result['dataType'][j] ,'timeSupport':result['timeSupport'][j],'timeUnits':result['timeUnitName'][j],'codes':result['codes'][j]});
+                 console.log(result)
+                 for (var j = 0; j <result['variables'].length; j++){
+                  
+                  list_e.push({'variables_name': result['variables'][j], 'units': result['units'][j],'interpolation': result['dataType'][j] ,'timeSupport':result['timeSupport'][j],'timeUnits':result['timeUnitName'][j],'codes':result['codes'][j]});
+
+                 }
 
                  //2) sort:
                  list_e.sort(function(a, b) {
@@ -609,6 +614,7 @@ activate_layer_values = function (){
                  };
 
                  for (var k = 0; k < list_e.length; k++) {
+                    
                      parsed_table['variables'].push(list_e[k].variables_name);
                      parsed_table['units'].push(list_e[k].units);
                      parsed_table['dataType'].push(list_e[k].interpolation);
@@ -653,6 +659,7 @@ activate_layer_values = function (){
                   <tr>
                     <th>${variable_new}</th>
                     <th>${variable_unit}</th>
+                    <th>${aggregation_dur}</th>
                     <th>${interpolation_type}</th>
                   </tr>
                   `
@@ -686,12 +693,12 @@ activate_layer_values = function (){
                     array_variables.push(variable);
                     if(i === 1){
 
-                      option_begin = `<option value=${i}>${variable} </option>`;
+                      option_begin = `<option value=${i}>${variable} ${parsed_table['dataType'][i-1] ? " - " + parsed_table['dataType'][i-1] : "" } </option>`;
                       variable_select.append(option_begin)
 
                     }
                     else{
-                      option = `<option value=${i} >${variable} </option>`;
+                      option = `<option value=${i} >${variable} ${parsed_table['dataType'][i-1] ? " - " + parsed_table['dataType'][i-1] : "" }</option>`;
 
                     }
                     variable_select.append(option)

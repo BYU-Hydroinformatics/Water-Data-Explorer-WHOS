@@ -561,10 +561,11 @@ select_variable_change = function(){
 
                   // NAME TITLE //
                    let title_graph = "";
-                   if (result1['variablename'] != "No Data was Provided"){
-                     title_graph = `${result1['variablename']}`;
-                     title_graph = title_graph.replace(',', ' ');
-                   }
+                   title_graph=  `${object_request_graphs['site_name']}`
+                  //  if (result1['variablename'] != "No Data was Provided"){
+                  //    title_graph = `${result1['variablename']}`;
+                  //    title_graph = title_graph.replace(',', ' ');
+                  //  }
                    // UNITS X AXIS //
                    // let units_x = `${result1['variablename']} (${result1['unit_name']})` ;
                    let units_x = "";

@@ -361,6 +361,11 @@ initialize_graphs = function(xArray,yArray,title_graph,xTitle,yTitle,legend1,typ
       }
 
       var layout = {
+        title: {
+          text: title_graph,
+          yref: 'paper',
+          automargin: true,
+      },
         width: $(".carousel-inner").parent().width(),
         yaxis: {
           title: {
@@ -385,13 +390,13 @@ initialize_graphs = function(xArray,yArray,title_graph,xTitle,yTitle,legend1,typ
           y:-0.15,
           x:0.5
         },
-        margin: {
-          l: 40,
-          r: 40,
-          b: 40,
-          t: 40,
-          pad: 10
-        },
+        // margin: {
+        //   l: 40,
+        //   r: 40,
+        //   b: 40,
+        //   t: 40,
+        //   pad: 10
+        // },
       };
 
 
